@@ -1,0 +1,42 @@
+html {
+    font-size: 62.5%;
+    @apply max-h-screen;
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+
+section {
+    @apply py-[4.8rem];
+
+    // @media (min-width: 960px) {
+    //     @apply py-[8rem];
+    // }
+    // @media (min-width: 1440) {
+    //     @apply py-[10rem];
+    // }
+}
+    // @media (min-width: 768px) {
+    //     @apply pl-[2rem] pr-[2rem] px-[2rem] ;  // Padding left and right (32px) for 'lg' breakpoint
+    // }
+
+// body {
+//     @apply font-normal relative;
+// }
+// li {
+//     @apply ;
+// }
+
+// picture {
+//     @apply block;
+// }
+
+// img {
+//     @apply size-full;
+// }
+
+// a, span {
+//     @apply block;
+// }
