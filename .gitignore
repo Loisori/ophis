@@ -1,0 +1,65 @@
+# ------------------------------------
+# Next.js Specific
+# ------------------------------------
+# Next.js build output
+.next/
+out/
+
+# Production output (for static export/deploy)
+dist/
+
+# ------------------------------------
+# Dependency & Package Files
+# ------------------------------------
+# node_modules
+/node_modules
+
+# pnpm-lock.yaml (if using pnpm)
+pnpm-lock.yaml
+
+# yarn-error.log (if using yarn)
+yarn-error.log
+# yarn package manager files
+.yarn/
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# ------------------------------------
+# Local Development & IDE Files
+# ------------------------------------
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.log
+
+# Environment variables
+# IMPORTANT: Never commit sensitive data like API keys!
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# VS Code directory (optional)
+.vscode/
+
+# Editor/OS temporary files
+.DS_Store
+Thumbs.db
+
+# ------------------------------------
+# TypeScript/JavaScript Build Artifacts (if you used TypeScript)
+# ------------------------------------
+# Compiled JavaScript files (if not using .next)
+*.js.map
+*.d.ts
