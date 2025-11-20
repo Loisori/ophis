@@ -2,7 +2,57 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <div className="">
-    </div>
+    <section
+      id="hero"
+      className="relative bg-linear-to-b from-purple-400 to-black"
+    >
+      <Image
+        src="/imgs/bg1.png"
+        alt="background"
+        width={500}
+        height={500}
+        className="absolute opacity-25 z-0 bottom-0 left-0"
+      />
+      <Image
+        src="/imgs/bg2.png"
+        alt="background"
+        width={500}
+        height={500}
+        className="absolute opacity-25 z-0 top-0 right-0"
+      />
+      <div className="z-1 pt-[15rem] md:pt-[29rem] wrapper text-white flex max-md:flex-col">
+        <div className="max-w-[47rem] max-md:m-auto md:mr-[9rem]">
+          <h2 className="mb-[.8rem]">
+            The editing team that scales with your ambition
+          </h2>
+          <p className="text-small font-medium">
+            Publish faster, maintain exceptional quality, and turn your content
+            into revenue with expert on-demand editing. <br /> With Ophis, you
+            get precision and speed without bottlenecks - all the benefits of a
+            full editorial team, without the overhead.
+          </p>
+        </div>
+        <div className="max-md:grid max-md:gap-[4rem] md:top-[-11rem] relative w-full md:w-[60rem] h-[50rem] block scale-90 xl:scale-100">
+          <div className="max-md:w-full text-center md:absolute top-0 left-0 w-[28rem] p-[3rem] rounded-[1rem] border-[.3rem] border-white bg-white/25">
+            <h2 className="text-[3.2rem] font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">
+              10X Views
+            </h2>
+            <p className="text-body">Faster lead times</p>
+          </div>
+          <div className="max-md:w-full text-center md:absolute top-[5rem] left-[37rem] w-[32rem] p-[3rem] rounded-[1rem] border-[.3rem] border-white bg-white/25 z-20">
+            <h2 className="text-[3.2rem] font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">
+              Cancel anytime
+            </h2>
+            <p className="text-body">No commitment, no stress</p>
+          </div>
+          <div className="max-md:w-full text-center md:absolute top-[25rem] left-[5rem] w-[28rem] p-[3rem] rounded-[1rem] border-[.3rem] border-white bg-white/25 z-10">
+            <h2 className="text-[3.2rem] font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">
+              4-10 days
+            </h2>
+            <p className="text-body">Video delivery</p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

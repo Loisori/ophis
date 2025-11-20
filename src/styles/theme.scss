@@ -1,0 +1,87 @@
+@use "tailwindcss";
+@use "./main.scss";
+
+@theme {
+  /* Font sizes */
+
+  --text-small: 1.6rem;
+  --text-body: 2rem;
+  --text-h3: 2.4rem;
+  --text-h2: 3.2rem;
+  --text-h1: 4rem;
+
+  /* Colors */
+  /* --color-primary: #; */
+  --color-purple-100: #8f1eae;
+  --color-purple-200: #6a0571;
+  --color-purple-300: #480568;
+  --color-purple-400: #430465;
+  --color-purple-500: #c0b0ee;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray-100: #eeeeee;
+  --color-gray-200: #e3e3e3;
+  --color-gray-300: #bcbcbc;
+  --color-transparent: transparent;
+
+  /* Radius */
+  --radius-0: 0;
+  --radius-2: 0.4rem;
+  --radius-4: 0.8rem;
+  --radius-5: 1rem;
+  --radius-6: 1.2rem;
+  --radius-full: 100rem;
+
+  /* Spacing */
+  --space-0: 0;
+  --space-1: 0.4rem;
+  --space-2: 0.8rem;
+  --space-3: 1.2rem;
+  --space-4: 1.6rem;
+  --space-5: 2rem;
+  --space-6: 2.4rem;
+  --space-7: 2.8rem;
+  --space-8: 3.2rem;
+  --space-9: 3.6rem;
+  --space-10: 4rem;
+  --space-11: 4.4rem;
+  --space-12: 4.8rem;
+  --space-13: 5.2rem;
+  --space-14: 5.6rem;
+  --space-15: 6rem;
+  --space-16: 6.4rem;
+  --space-17: 6.8rem;
+  --space-20: 8rem;
+  --space-25: 10rem;
+  --space-rem: 1rem;
+  --space-unset: unset;
+
+  /* Line-height */
+  --leading-base: 1;
+  --leading-tight: 1.1;
+  --leading-snug: 1.125;
+  --leading-normal: 1.2;
+  --leading-relaxed: 1.25;
+  /* --leading-loose: 2; */
+
+  /* Font-weight */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* Breakpoints */
+  /* --breakpoint-sm: 769px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1440px;   */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 960px;
+  --breakpoint-xmd: 1280px;
+  --breakpoint-lg: 1440px;
+}

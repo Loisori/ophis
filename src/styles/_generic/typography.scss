@@ -1,44 +1,33 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a,
-span {
-  font-family: "Poppins", sans-serif;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// p,
+// a,
+// span {
+//   font-family: "Poppins", sans-serif;
+// }
 
 h1,
+.h1 {
+  @apply text-h1 font-bold;
+}
 h2,
+.h2 {
+  @apply text-h2 font-bold;
+}
 h3,
-h4,
-h5,
-h6 {
-  @apply text-h1;
+.h3 {
+  @apply text-h3 font-normal;
 }
 
-p,
-span {
-  @apply text-secondary;
-}
-h1 {
-  @apply text-h2 lg:text-h1 font-bold leading-base tracking-tighter;
-}
-h2 {
-  @apply text-h2 font-bold leading-base;
-}
-h3 {
-  @apply text-h3 font-bold;
-}
-h4 {
-  @apply text-h4 font-bold;
-}
-h5 {
-  @apply text-h5;
-}
-p,
-span {
-  @apply text-body;
-}
+// a,
+// p {
+//   @apply text-body;
+// }
+
+// span {
+//   @apply text-small;
+// }
