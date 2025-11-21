@@ -5,7 +5,18 @@ import { useEffect, useMemo } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 
-const PARTNERS = [
+export type CarouselItem = {
+  name: string;
+  logo: string;
+  category: string;
+};
+
+export type CarouselData = {
+  title?: string;
+  items?: CarouselItem[];
+};
+
+const FALLBACK_ITEMS: CarouselItem[] = [
   {
     name: "Snooppi",
     logo: "/imgs/partners/snooppi.png",
@@ -28,7 +39,11 @@ const PARTNERS = [
   },
 ];
 
-export default function AutoCarousel() {
+interface AutoCarouselProps {
+  data: CarouselData | null;
+}
+
+export default function AutoCarousel({ data }: AutoCarouselProps) {
   const autoplayOptions = useMemo(
     () =>
       Autoplay({
@@ -59,14 +74,16 @@ export default function AutoCarousel() {
     }
   }, [emblaApi]);
 
-  const slides = Array.from({ length: 4 }).flatMap(() => PARTNERS);
+  const items = data?.items && data.items.length > 0 ? data.items : FALLBACK_ITEMS;
+  const title =
+    data?.title ?? "Trusted by Industry-leading Founders & Creators";
+
+  const slides = Array.from({ length: 4 }).flatMap(() => items);
 
   return (
     <section className="auto-carousel bg-[#2C0343] text-white">
       <div className="">
-        <h2 className="text-center mb-[3rem]">
-          Trusted by Industry-leading Founders & Creators
-        </h2>
+        <h2 className="text-center mb-[3rem]">{title}</h2>
         <div className="embla overflow-hidden w-full" ref={emblaRef}>
           <div className="embla__container flex flex-nowrap">
             {slides.map((partner, index) => (

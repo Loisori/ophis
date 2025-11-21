@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-type HeroData = {
+export type HeroData = {
   headline?: string;
   subheadline?: string;
 };
@@ -31,11 +31,7 @@ export default function Hero({ data }: HeroProps) {
       <div className="z-1 pt-[15rem] md:pt-[21rem] wrapper text-white flex max-md:flex-col">
         <div className="max-w-[47rem] max-md:m-auto md:mr-[9rem] max-md:mb-[4rem]">
           <h2 className="mb-[.8rem]">{headline}</h2>
-          <p className="text-small font-medium">
-            {subheadline} <br /> With Ophis, you get precision and speed
-            without bottlenecks - all the benefits of a full editorial team,
-            without the overhead.
-          </p>
+          <p className="text-small font-medium">{subheadline}</p>
         </div>
         <div className="max-md:grid max-md:gap-[4rem] md:top-[-11rem] relative w-full md:w-[60rem] md:h-[29rem] block">
           <div className="max-md:w-full text-center md:absolute top-0 left-0 w-[28rem] p-[3rem] rounded-[1rem] border-[.3rem] border-white bg-white/25">

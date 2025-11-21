@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import HeroEditor from "@/components/admin/HeroEditor";
+import AutoCarouselEditor from "@/components/admin/AutoCarouselEditor";
 
 export default async function AdminHome() {
   // Ensure a basic home page exists so the dashboard has something to show.
@@ -31,6 +32,28 @@ export default async function AdminHome() {
               create: {
                 data: {
                   title: "Trusted by Industry-leading Founders & Creators",
+                  items: [
+                    {
+                      name: "Snooppi",
+                      logo: "/imgs/partners/snooppi.png",
+                      category: "461K subscribers",
+                    },
+                    {
+                      name: "Misthy",
+                      logo: "/imgs/partners/misthy.png",
+                      category: "8M subscribers",
+                    },
+                    {
+                      name: "Ser Andy",
+                      logo: "/imgs/partners/serandy.png",
+                      category: "210K subscribers",
+                    },
+                    {
+                      name: "Jason Cabin",
+                      logo: "/imgs/partners/jasoncabin.png",
+                      category: "1.08K subscribers",
+                    },
+                  ],
                 },
               },
             },
@@ -47,6 +70,9 @@ export default async function AdminHome() {
   });
 
   const heroSection = page.sections.find((s: any) => s.type === "hero");
+  const autoCarouselSection = page.sections.find(
+    (s: any) => s.type === "autoCarousel"
+  );
 
   return (
     <main className="min-h-screen bg-purple-950 text-white">
@@ -101,7 +127,21 @@ export default async function AdminHome() {
             </p>
             <HeroEditor
               sectionId={heroSection.id}
-              initialData={heroSection.content?.data ?? null}
+              initialData={heroSection.content?.data as any}
+            />
+          </section>
+        )}
+
+        {autoCarouselSection && (
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold">Auto carousel</h2>
+            <p className="text-sm text-white/70">
+              Manage the title and partner items shown in the scrolling
+              carousel.
+            </p>
+            <AutoCarouselEditor
+              sectionId={autoCarouselSection.id}
+              initialData={autoCarouselSection.content?.data as any}
             />
           </section>
         )}
