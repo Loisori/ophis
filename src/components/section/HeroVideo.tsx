@@ -1,14 +1,23 @@
+"use client";
+
 import Image from "next/image";
 
 export default function HeroVideo() {
   return (
     <section
       id="heroVideo"
-      className=""
+      className="relative bg-linear-to-b from-[#2C0343] to-black z-20"
     >
-      <div className="wrapper py-[8rem]">
+      <Image
+        src="/imgs/bg1.png"
+        alt="background"
+        width={500}
+        height={500}
+        className="absolute opacity-25 z-0 bottom-0 left-0"
+      />
+      <div className="wrapper">
         <video
-          className="w-full h-auto"
+          className="w-full h-auto p-[.6rem] md:p-[1rem] bg-gray-300 rounded-[1rem]"
           autoPlay
           loop
           muted

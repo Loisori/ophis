@@ -17,9 +17,9 @@ export default function Home() {
     <main>
       <Header />
       <Hero />
+      <AutoCarousel />
       <HeroVideo />
-      {/* <AutoCarousel />
-      <Timeline />
+      {/* <Timeline />
       <Projects />
       <Testimonials />
       <Services />

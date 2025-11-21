@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { useState, MouseEvent } from "react";
 
@@ -13,8 +14,8 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 w-full z-1">
-      <div className="wrapper flex w-full py-[2rem] xmd:py-[4rem] items-center text-white ">
+    <header className="fixed top-0 w-full z-1 backdrop-blur-xl z-50">
+      <div className="wrapper flex w-full py-[2rem] xmd:py-[4rem] items-center text-white">
         <a href="#" className="flex justify-center items-center">
           <Image
             src="/imgs/logo.png"

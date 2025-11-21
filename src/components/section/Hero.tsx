@@ -1,18 +1,13 @@
+"use client";
+
 import Image from "next/image";
 
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative bg-linear-to-b from-purple-400 to-black"
+      className="relative bg-linear-to-b from-purple-400 to-[#2C0343]"
     >
-      <Image
-        src="/imgs/bg1.png"
-        alt="background"
-        width={500}
-        height={500}
-        className="absolute opacity-25 z-0 bottom-0 left-0"
-      />
       <Image
         src="/imgs/bg2.png"
         alt="background"
@@ -20,8 +15,8 @@ export default function Hero() {
         height={500}
         className="absolute opacity-25 z-0 top-0 right-0"
       />
-      <div className="z-1 pt-[15rem] md:pt-[29rem] wrapper text-white flex max-md:flex-col">
-        <div className="max-w-[47rem] max-md:m-auto md:mr-[9rem]">
+      <div className="z-1 pt-[15rem] md:pt-[21rem] wrapper text-white flex max-md:flex-col">
+        <div className="max-w-[47rem] max-md:m-auto md:mr-[9rem] max-md:mb-[4rem]">
           <h2 className="mb-[.8rem]">
             The editing team that scales with your ambition
           </h2>
@@ -32,7 +27,7 @@ export default function Hero() {
             full editorial team, without the overhead.
           </p>
         </div>
-        <div className="max-md:grid max-md:gap-[4rem] md:top-[-11rem] relative w-full md:w-[60rem] h-[50rem] block scale-90 xl:scale-100">
+        <div className="max-md:grid max-md:gap-[4rem] md:top-[-11rem] relative w-full md:w-[60rem] md:h-[29rem] block">
           <div className="max-md:w-full text-center md:absolute top-0 left-0 w-[28rem] p-[3rem] rounded-[1rem] border-[.3rem] border-white bg-white/25">
             <h2 className="text-[3.2rem] font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">
               10X Views
