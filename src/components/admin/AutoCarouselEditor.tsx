@@ -186,7 +186,7 @@ export default function AutoCarouselEditor({
           disabled={saving}
           className="rounded-lg bg-purple-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60"
         >
-          {saving ? "Saving..." : "Save carousel"}
+          {saving ? "Saving..." : "Save"}
         </button>
 
         <div className="text-xs">

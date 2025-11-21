@@ -2,8 +2,10 @@ import { prisma } from "@/lib/prisma";
 import HeroEditor from "@/components/admin/HeroEditor";
 import AutoCarouselEditor from "@/components/admin/AutoCarouselEditor";
 
+import Image from "next/image";
+
+
 export default async function AdminHome() {
-  // Ensure a basic home page exists so the dashboard has something to show.
   const page = await prisma.page.upsert({
     where: { slug: "/" },
     update: {},
@@ -21,6 +23,14 @@ export default async function AdminHome() {
                   headline: "The editing team that scales with your ambition",
                   subheadline:
                     "Publish faster, maintain exceptional quality, and turn your content into revenue with expert on-demand editing.",
+                  cards: [
+                    { title: "10X Views", subtitle: "Faster lead times" },
+                    {
+                      title: "Cancel anytime",
+                      subtitle: "No commitment, no stress",
+                    },
+                    { title: "4-10 days", subtitle: "Video delivery" },
+                  ],
                 },
               },
             },
@@ -78,10 +88,13 @@ export default async function AdminHome() {
     <main className="min-h-screen bg-purple-950 text-white">
       <div className="wrapper py-12 space-y-8">
         <header className="space-y-2">
-          <h1 className="text-3xl font-semibold">Admin dashboard</h1>
-          <p className="text-sm text-white/70">
-            You&apos;re editing the content for the home page (<code>/</code>).
-          </p>
+          <Image
+            src="/imgs/logo.png"
+            alt="Ophis Logo"
+            width={160}
+            height={70}
+            className="mr-[.8rem]"
+          />
         </header>
 
         <section className="space-y-4">
@@ -121,10 +134,6 @@ export default async function AdminHome() {
         {heroSection && (
           <section className="space-y-4">
             <h2 className="text-xl font-semibold">Hero content</h2>
-            <p className="text-sm text-white/70">
-              Edit the hero copy for the home page. Changes are saved instantly to
-              the database and will appear on the live landing page.
-            </p>
             <HeroEditor
               sectionId={heroSection.id}
               initialData={heroSection.content?.data as any}
@@ -135,10 +144,6 @@ export default async function AdminHome() {
         {autoCarouselSection && (
           <section className="space-y-4">
             <h2 className="text-xl font-semibold">Auto carousel</h2>
-            <p className="text-sm text-white/70">
-              Manage the title and partner items shown in the scrolling
-              carousel.
-            </p>
             <AutoCarouselEditor
               sectionId={autoCarouselSection.id}
               initialData={autoCarouselSection.content?.data as any}
