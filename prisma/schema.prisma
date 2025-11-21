@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:/Users/loisori/Working/Personal/Ophis/prisma/dev.db"
+}
+
+model Page {
+  id       String   @id @default(cuid())
+  slug     String   @unique
+  title    String
+  status   String   @default("published")
+  sections Section[]
+}
+
+model Section {
+  id        String          @id @default(cuid())
+  page      Page            @relation(fields: [pageId], references: [id])
+  pageId    String
+  type      String
+  position  Int
+  visible   Boolean         @default(true)
+  content   SectionContent?
+}
+
+model SectionContent {
+  id        String   @id @default(cuid())
+  section   Section  @relation(fields: [sectionId], references: [id])
+  sectionId String   @unique
+  data      Json
+}

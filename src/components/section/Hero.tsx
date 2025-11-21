@@ -1,8 +1,21 @@
-"use client";
-
 import Image from "next/image";
 
-export default function Hero() {
+type HeroData = {
+  headline?: string;
+  subheadline?: string;
+};
+
+interface HeroProps {
+  data: HeroData | null;
+}
+
+export default function Hero({ data }: HeroProps) {
+  const headline =
+    data?.headline ?? "The editing team that scales with your ambition";
+  const subheadline =
+    data?.subheadline ??
+    "Publish faster, maintain exceptional quality, and turn your content into revenue with expert on-demand editing.";
+
   return (
     <section
       id="hero"
@@ -17,14 +30,11 @@ export default function Hero() {
       />
       <div className="z-1 pt-[15rem] md:pt-[21rem] wrapper text-white flex max-md:flex-col">
         <div className="max-w-[47rem] max-md:m-auto md:mr-[9rem] max-md:mb-[4rem]">
-          <h2 className="mb-[.8rem]">
-            The editing team that scales with your ambition
-          </h2>
+          <h2 className="mb-[.8rem]">{headline}</h2>
           <p className="text-small font-medium">
-            Publish faster, maintain exceptional quality, and turn your content
-            into revenue with expert on-demand editing. <br /> With Ophis, you
-            get precision and speed without bottlenecks - all the benefits of a
-            full editorial team, without the overhead.
+            {subheadline} <br /> With Ophis, you get precision and speed
+            without bottlenecks - all the benefits of a full editorial team,
+            without the overhead.
           </p>
         </div>
         <div className="max-md:grid max-md:gap-[4rem] md:top-[-11rem] relative w-full md:w-[60rem] md:h-[29rem] block">

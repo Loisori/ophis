@@ -63,3 +63,4 @@ Thumbs.db
 # Compiled JavaScript files (if not using .next)
 *.js.map
 *.d.ts
+/src/generated/prisma

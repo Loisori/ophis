@@ -1,35 +1,29 @@
-"use client";
-
 import Hero from "@/components/section/Hero";
 import Header from "@/components/section/Header";
 import HeroVideo from "@/components/section/HeroVideo";
-import Footer from "@/components/section/Footer";
-import Timeline from "@/components/section/Timeline";
 import AutoCarousel from "@/components/section/AutoCarousel";
-import Projects from "@/components/section/Projects";
-import Testimonials from "@/components/section/Testimonials";
-import Reasons from "@/components/section/Reasons";
-import Team from "@/components/section/Team";
-import Pricing from "@/components/section/Pricing";
-import Faqs from "@/components/section/Faqs";
-import Services from "@/components/section/Services";
+import { prisma } from "@/lib/prisma";
 
-export default function Home() {
+export default async function Home() {
+  const page = await prisma.page.findUnique({
+    where: { slug: "/" },
+    include: {
+      sections: {
+        include: { content: true },
+        orderBy: { position: "asc" },
+      },
+    },
+  });
+
+  const heroData = page?.sections.find((section: any) => section.type === "hero")
+    ?.content?.data;
+
   return (
     <main>
       <Header />
-      <Hero />
+      <Hero data={heroData} />
       <AutoCarousel />
       <HeroVideo />
-      <Timeline />
-      {/* <Projects />
-      <Testimonials />
-      <Services />
-      <Reasons />
-      <Team />
-      <Pricing />
-      <Faqs />
-      <Footer /> */}
     </main>
   );
 }
