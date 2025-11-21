@@ -19,8 +19,8 @@ export default function AdminHome() {
       <Hero />
       <AutoCarousel />
       <HeroVideo />
-      {/* <Timeline />
-      <Projects />
+      <Timeline />
+      {/* <Projects />
       <Testimonials />
       <Services />
       <Reasons />
