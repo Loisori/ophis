@@ -2,43 +2,49 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client"; 
 
-// Next.js 15+ Requirement: Dynamic route parameters are now Promises.
 interface RouteContext {
   params: Promise<{ id: string }>;
 }
 
 export async function PATCH(request: Request, { params }: RouteContext) {
   try {
-    // 1. UNWRAP PARAMS (Next.js 15 Specific):
     const { id } = await params;
-
-    // 2. PARSE REQUEST BODY:
     const body = await request.json();
 
-    // 3. DESTRUCTURE INPUTS:
-    const { position, visible, data } = body as {
-      position?: number;
-      visible?: boolean;
-      data?: unknown;
-    };
+    console.log(`[PATCH] Updating Section ${id}`);
 
-    // 4. PERFORM UPDATE:
+    // 1. ROBUST EXTRACTION:
+    // The frontend might send { data: {...} } OR { content: { data: {...} } }
+    // We check both places to ensure we catch the payload.
+    let payloadData = body.data;
+    
+    // If not found at root, check inside 'content' object
+    if (payloadData === undefined && body.content && body.content.data) {
+      payloadData = body.content.data;
+    }
+
+    const { position, visible } = body;
+
+    // DEBUG LOG: See exactly what we are about to save
+    if (payloadData !== undefined) {
+      console.log(`[PATCH] Found data to update:`, JSON.stringify(payloadData).slice(0, 100) + "...");
+    } else {
+      console.log(`[PATCH] No 'data' found. Skipping content update.`);
+    }
+
     const section = await prisma.section.update({
       where: { id },
       data: {
-        // --- CONDITIONAL SPREAD SYNTAX ---
         ...(typeof position === "number" ? { position } : {}),
         ...(typeof visible === "boolean" ? { visible } : {}),
         
-        // --- NESTED UPSERT ---
-        ...(data !== undefined
+        // 2. USE THE EXTRACTED PAYLOAD (payloadData):
+        ...(payloadData !== undefined
           ? {
               content: {
                 upsert: {
-                  // FIX: Use 'any' to bypass the "InputJsonValue" error.
-                  // This is safe because Prisma runtime will still validate it's valid JSON.
-                  create: { data: data as any }, 
-                  update: { data: data as any }, 
+                  create: { data: payloadData as any }, 
+                  update: { data: payloadData as any }, 
                 },
               },
             }
@@ -46,7 +52,7 @@ export async function PATCH(request: Request, { params }: RouteContext) {
       },
       include: {
         content: true,
-      },  
+      },
     });
 
     return NextResponse.json(section);
