@@ -3,7 +3,6 @@ import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
 // 1. FORCE DYNAMIC: This ensures Vercel never caches the response.
-// You will see fresh data immediately after a reload.
 export const dynamic = 'force-dynamic';
 
 export async function GET(
@@ -27,7 +26,6 @@ export async function GET(
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  // 2. Add Cache-Control Header explicitly for browsers
   return NextResponse.json(page, {
     headers: {
       'Cache-Control': 'no-store, max-age=0',
@@ -35,7 +33,6 @@ export async function GET(
   });
 }
 
-// ... PUT handler remains the same (it inherits dynamic config) ...
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
@@ -63,7 +60,8 @@ export async function PUT(
           visible: section.visible ?? true,
           content: {
             create: {
-              data: contentData as Prisma.InputJsonValue,
+              // FIX: Cast to 'any' to resolve the Type Error
+              data: contentData as any,
             }
           }
         },
@@ -73,10 +71,12 @@ export async function PUT(
           content: {
             upsert: {
               create: {
-                data: contentData as Prisma.InputJsonValue,
+                // FIX: Cast to 'any' to resolve the Type Error
+                data: contentData as any,
               },
               update: {
-                data: contentData as Prisma.InputJsonValue,
+                // FIX: Cast to 'any' to resolve the Type Error
+                data: contentData as any,
               }
             }
           }
