@@ -1,4 +1,6 @@
-import { PrismaClient } from "@/generated/prisma/client";
+// import { PrismaClient } from "@/generated/prisma/client";
+import { PrismaClient } from "@prisma/client"; // <--- CHANGED THIS LINE
+
 
 // 1. HANDLE GLOBAL SCOPE FOR TYPESCRIPT:
 // We access the global `globalThis` object (which exists in Node.js environment).
