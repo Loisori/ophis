@@ -5,6 +5,15 @@ import AutoCarousel, {
   type CarouselData,
 } from "@/components/section/AutoCarousel";
 import { prisma } from "@/lib/prisma";
+import Footer from "@/components/section/Footer";
+import Timeline from "@/components/section/Timeline";
+import Projects from "@/components/section/Projects";
+import Testimonials from "@/components/section/Testimonials";
+import Services from "@/components/section/Services";
+import Reasons from "@/components/section/Reasons";
+import Team from "@/components/section/Team";
+import Pricing from "@/components/section/Pricing";
+import Faqs from "@/components/section/Faqs";
 
 // This is an Async Server Component.
 // It runs entirely on the server, fetches data from the DB, and sends the final HTML to the browser.
@@ -54,6 +63,15 @@ export default async function Home() {
       
       {/* This component appears to be static (no data passed) or handles its own fetching. */}
       <HeroVideo />
+      <Timeline />
+      <Projects />
+      <Testimonials />
+      <Services />
+      <Reasons />
+      <Team />
+      <Pricing />
+      <Faqs />
+      <Footer />
     </main>
   );
 }
