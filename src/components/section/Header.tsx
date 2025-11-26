@@ -27,27 +27,27 @@ export default function Header() {
         </a>
         <ul className="hidden xmd:flex size-fit bg-[#1C022B] gap-[3.5rem] rounded-5 py-[1.5rem] px-10 ml-auto mr-[5.7rem]">
           <li>
-            <a className="text-body font-medium" href="#about">
+            <a className="text-body font-medium" href="#how">
               How it work?
             </a>
           </li>
           <li>
-            <a className="text-body font-medium" href="#works">
+            <a className="text-body font-medium" href="#projects">
               Projects
             </a>
           </li>
           <li>
-            <a className="text-body font-medium" href="#case">
+            <a className="text-body font-medium" href="#testimonials">
               Testimonials
             </a>
           </li>
           <li>
-            <a className="text-body font-medium" href="#case">
+            <a className="text-body font-medium" href="#service">
               Service
             </a>
           </li>
           <li>
-            <a className="text-body font-medium" href="#case">
+            <a className="text-body font-medium" href="#pricing">
               Pricing
             </a>
           </li>

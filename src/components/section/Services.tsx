@@ -1,64 +1,62 @@
-// "use client";
+"use client";
 
-// import { RefreshCw, TrendingUp, Smartphone } from "lucide-react";
+import Image from "next/image";
+import { Reveal } from "@/components/animations/Reveal";
 
-// const services = [
-//   {
-//     title: "Convert",
-//     subtitle: "with Video",
-//     description: "Strategic editing for Ads & VSLs that hook viewers and turn clicks into customers",
-//     icon: RefreshCw,
-//   },
-//   {
-//     title: "Grow",
-//     subtitle: "your Channel",
-//     description: "High-impact YouTube editing that drives longer watch time and faster channel growth",
-//     icon: TrendingUp,
-//   },
-//   {
-//     title: "Multi-Platform",
-//     subtitle: "ready",
-//     description: "We craft attention-grabbing TikToks, Reels & Shorts built for reach and engagement",
-//     icon: Smartphone,
-//   },
-// ];
+interface ServicesProps {
+  data?: {
+    headline?: string;
+    subheadline?: string;
+    services?: Array<{
+      title: string;
+      description: string;
+      icon: string;
+    }>;
+  } | null;
+}
 
-// export default function Services() {
-//   return (
-//     <section className="py-20 px-4 bg-white text-black">
-//       <div className="max-w-7xl mx-auto">
-//         {/* Section Title */}
-//         <div className="text-center mb-16">
-//           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-black">
-//             Our Services
-//           </h2>
-//         </div>
+export default function Services({ data }: ServicesProps) {
+  // Use DB data or defaults
+  const headline = data?.headline ?? "Our Services";
+  const subheadline = data?.subheadline ?? "Consistent, Seamless & On-brand";
+  const services = data?.services || [];
 
-//         {/* Services Grid */}
-//         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-//           {services.map((service, index) => (
-//             <div
-//               key={index}
-//               className="bg-[#4a0b75] text-white p-10 rounded-3xl flex flex-col items-start text-left shadow-xl transition-transform hover:-translate-y-2 duration-300"
-//             >
-//               {/* Icon Container */}
-//               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-8 shrink-0">
-//                 <service.icon className="w-8 h-8 text-[#4a0b75]" strokeWidth={2.5} />
-//               </div>
+  if (services.length === 0) {
+    return null;
+  }
 
-//               {/* Title Group */}
-//               <h3 className="text-2xl font-bold mb-4">
-//                 {service.title} <span className="font-light opacity-90">{service.subtitle}</span>
-//               </h3>
+  return (
+    <section id="services" className="">
+      <div className="wrapper">
+        <Reveal className="w-full! mb-[3rem]">
+          <h2 className="text-center font-bold leading-[135%]">{headline}</h2>
+          <p className="text-h1 font-bold text-center">{subheadline}</p>
+        </Reveal>
 
-//               {/* Description */}
-//               <p className="text-white/80 leading-relaxed text-sm md:text-base">
-//                 {service.description}
-//               </p>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[3rem]">
+          {services.map((service, index) => (
+            <Reveal
+              key={index}
+              className="bg-linear-to-b from-purple-200 to-purple-300 text-white p-[3rem] rounded-3xl flex flex-col items-start text-left"
+            >
+              {service.icon && (
+                <div className="relative w-[9.5rem] h-[9.5rem] mb-[1.4rem]">
+                  <Image
+                    src={service.icon}
+                    alt={service.title}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              )}
+              <p className="text-h2 font-bold mb-[1.4rem]">{service.title}</p>
+              <p className="text-small text-white/80 leading-relaxed">
+                {service.description}
+              </p>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

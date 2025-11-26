@@ -1,34 +1,28 @@
 "use client";
 
-// Sample YouTube Video IDs (Replace these with your actual video IDs)
-// You can find the ID in a YouTube URL after "v=" (e.g., youtube.com/watch?v=dQw4w9WgXcQ)
-const videoIds = [
-  "dQw4w9WgXcQ", // Replace with real project ID
-  "LXb3EKWsInQ", // Replace with real project ID
-  "jfKfPfyJRdk", // Replace with real project ID
-  "5qap5aO4i9A", // Replace with real project ID
-  "3JZ_D3ELwOQ", // Replace with real project ID
-  "ysz5S6P_bsU", // Replace with real project ID
-];
+import { Reveal } from "@/components/animations/Reveal";
 
-export default function Projects() {
+interface ProjectsProps {
+  data?: {
+    videoIds?: string[];
+  } | null;
+}
+
+export default function Projects({ data }: ProjectsProps) {
+  const videoIds = data?.videoIds || [];
+
+  if (videoIds.length === 0) return null;
+
   return (
     <section className="py-24 px-4 bg-linear-to-b from-[#2e0249] to-black text-white relative overflow-hidden">
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[600px] bg-purple-900/20 blur-[120px] rounded-full pointer-events-none" />
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-lg font-bold uppercase tracking-wider text-gray-400 mb-2">
-            Projects
-          </h2>
-          <p className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+      <div className="wrapper">
+        <Reveal className="w-full! mb-[3rem]">
+          <h2 className="text-center font-bold leading-[135%]">Projects</h2>
+          <p className="text-h1 font-bold text-center">
             Explore our Video Editing Portfolio
           </p>
-        </div>
+        </Reveal>
 
-        {/* Video Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-16">
           {videoIds.map((id, index) => (
             <div

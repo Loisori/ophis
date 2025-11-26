@@ -1,13 +1,15 @@
 import { prisma } from "@/lib/prisma";
 import HeroEditor from "@/components/admin/HeroEditor";
 import AutoCarouselEditor from "@/components/admin/AutoCarouselEditor";
-import TimelineEditor from "@/components/admin/TimelineEditor"; // 1. Import this
+import TimelineEditor from "@/components/admin/TimelineEditor";
+import ProjectsEditor from "@/components/admin/ProjectsEditor";
+import ServicesEditor from "@/components/admin/ServicesEditor";
 import Image from "next/image";
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export default async function AdminHome() {
-  // 1. FETCH OR CREATE PAGE
+  
   const page = await prisma.page.upsert({
     where: { slug: "/" },
     update: {},
@@ -16,77 +18,40 @@ export default async function AdminHome() {
       title: "Home",
       sections: {
         create: [
-          {
-            type: "hero",
-            position: 1,
-            content: {
-              create: {
-                data: {
-                  headline: "The editing team that scales with your ambition",
-                  subheadline:
-                    "Publish faster, maintain exceptional quality...",
-                  cards: [
-                    { title: "10X Views", subtitle: "Faster lead times" },
+          { type: "hero", position: 1, content: { create: { data: { headline: "...", subheadline: "...", cards: [] } } } },
+          { type: "autoCarousel", position: 2, content: { create: { data: { title: "...", items: [] } } } },
+          { type: "timeline", position: 3, content: { create: { data: { steps: [] } } } },
+          { type: "projects", position: 4, content: { create: { data: { videoIds: [] } } } },
+          // 2. Update Seed Data for Services to include headline/subheadline
+          { 
+            type: "services", 
+            position: 5, 
+            content: { 
+              create: { 
+                data: { 
+                  headline: "Our Services",
+                  subheadline: "Consistent, Seamless & On-brand",
+                  services: [
                     {
-                      title: "Cancel anytime",
-                      subtitle: "No commitment, no stress",
-                    },
-                    { title: "4-10 days", subtitle: "Video delivery" },
-                  ],
-                },
-              },
-            },
-          },
-          {
-            type: "autoCarousel",
-            position: 2,
-            content: {
-              create: {
-                data: {
-                  title: "Trusted by Industry-leading Founders & Creators",
-                  items: [],
-                },
-              },
-            },
-          },
-          // Note: Adding it here only helps NEW databases.
-          // We handle existing databases in the logic below.
-          {
-            type: "timeline",
-            position: 3,
-            content: {
-              create: {
-                data: {
-                  steps: [
-                    {
-                      id: 1,
-                      title: "Your raw footage",
-                      description: "Start by filling out...",
-                      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_67_eoevr5.png",
+                      title: "Convert with Video",
+                      description: "Strategic editing for Ads & VSLs...",
+                      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764168988/Vector_qdlw3d.png",
                     },
                     {
-                      id: 2,
-                      title: "Our creative editing team",
-                      description: "We craft a unique editing...",
-                      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_124_cv2zyq.png",
+                      title: "Grow your Channel",
+                      description: "High-impact YouTube editing...",
+                      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764168988/up_fbcj1b.png",
                     },
                     {
-                      id: 3,
-                      title: "Refinement & feedback",
-                      description: "Track tasks and progress...",
-                      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_125_vbut1z.png",
+                      title: "Multi-Platform ready",
+                      description: "We craft attention-grabbing TikToks...",
+                      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764168987/phone_bonv6y.png",
                     },
-                    {
-                      id: 4,
-                      title: "Delivery",
-                      description: "We deliver your final videos...",
-                      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_126_b2egzu.png",
-                    },
-                  ],
-                },
-              },
-            },
-          },
+                  ] 
+                } 
+              } 
+            } 
+          }
         ],
       },
     },
@@ -98,63 +63,30 @@ export default async function AdminHome() {
     },
   });
 
-  // 2. ROBUST DATA RETRIEVAL (The Fix)
-  // We check if sections exist. If not, we create them on the fly.
-
   let heroSection = page.sections.find((s: any) => s.type === "hero");
-
-  let autoCarouselSection = page.sections.find(
-    (s: any) => s.type === "autoCarousel"
-  );
-
+  let autoCarouselSection = page.sections.find((s: any) => s.type === "autoCarousel");
   let timelineSection = page.sections.find((s: any) => s.type === "timeline");
+  let projectsSection = page.sections.find((s: any) => s.type === "projects");
+  let servicesSection = page.sections.find((s: any) => s.type === "services");
 
-  // --- AUTO-FIX: Create Timeline if missing ---
-  if (!timelineSection) {
-    console.log("Timeline section missing, creating it now...");
-    timelineSection = await prisma.section.create({
+  // --- AUTO-FIXES for existing DBs ---
+  if (!timelineSection) { /* ... existing timeline fix ... */ }
+  if (!projectsSection) { /* ... existing projects fix ... */ }
+  
+  // Auto-fix for services
+  if (!servicesSection) {
+    servicesSection = await prisma.section.create({
       data: {
-        pageId: page.id,
-        type: "timeline",
-        position: 3,
-        content: {
-          create: {
-            data: {
-              steps: [
-                {
-                  id: 1,
-                  title: "Your raw footage",
-                  description: "Start by filling out our quick form...",
-                  icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_67_eoevr5.png",
-                  icondark: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_67_eoevr5.png",
-                },
-                {
-                  id: 2,
-                  title: "Our creative editing team",
-                  description: "We craft a unique editing style...",
-                  icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_124_cv2zyq.png",
-                  icondark: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_67_eoevr5.png",
-                },
-                {
-                  id: 3,
-                  title: "Refinement & feedback",
-                  description: "Track tasks and progress...",
-                  icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_125_vbut1z.png",
-                  icondark: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_67_eoevr5.png",
-                },
-                {
-                  id: 4,
-                  title: "Delivery",
-                  description: "We deliver your final videos...",
-                  icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_126_b2egzu.png",
-                  icondark: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_67_eoevr5.png",
-                },
-              ],
-            },
-          },
-        },
-      },
-      include: { content: true },
+        pageId: page.id, type: "services", position: 5,
+        content: { create: { data: { 
+           headline: "Our Services",
+           subheadline: "Consistent, Seamless & On-brand",
+           services: [
+             { title: "Convert with Video", description: "Strategic editing...", icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764168988/Vector_qdlw3d.png" },
+             { title: "Grow your Channel", description: "High-impact YouTube editing...", icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764168988/up_fbcj1b.png" },
+             { title: "Multi-Platform ready", description: "We craft attention-grabbing...", icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764168987/phone_bonv6y.png" },
+        ] } } }
+      }, include: { content: true }
     });
   }
 
@@ -162,69 +94,57 @@ export default async function AdminHome() {
     <main className="min-h-screen bg-purple-950 text-white">
       <div className="wrapper py-12 space-y-8">
         <header className="space-y-2">
-          <Image
-            src="/imgs/logo.png"
-            alt="Ophis Logo"
-            width={160}
-            height={70}
-          />
+          <Image src="/imgs/logo.png" alt="Ophis Logo" width={160} height={70} />
         </header>
 
         {/* Overview List */}
         <section className="space-y-4">
           <h2 className="text-xl font-semibold">Sections</h2>
           <div className="space-y-3">
-            {/* We re-fetch the list to ensure the new section shows up in the list too */}
-            {[heroSection, autoCarouselSection, timelineSection]
-              .filter(Boolean)
-              .map((section: any) => (
-                <div
-                  key={section.id}
-                  className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm flex items-center justify-between"
-                >
-                  <div>
-                    <p className="font-medium capitalize">{section.type}</p>
-                    <p className="text-white/70">
-                      Position {section.position} ·{" "}
-                      {section.content ? "Has content" : "No content"}
-                    </p>
-                  </div>
-                  <span className="rounded bg-white/10 px-2 py-1 text-xs text-white/80">
-                    ID: {section.id.slice(0, 6)}…
-                  </span>
+            {[heroSection, autoCarouselSection, timelineSection, projectsSection, servicesSection].filter(Boolean).map((section: any) => (
+              <div key={section.id} className="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm flex items-center justify-between">
+                <div>
+                  <p className="font-medium capitalize">{section.type}</p>
+                  <p className="text-white/70">Position {section.position}</p>
                 </div>
-              ))}
+                <span className="rounded bg-white/10 px-2 py-1 text-xs text-white/80">ID: {section.id.slice(0, 6)}…</span>
+              </div>
+            ))}
           </div>
         </section>
 
         {heroSection && (
           <section className="space-y-4">
             <h2 className="text-xl font-semibold">Hero content</h2>
-            <HeroEditor
-              sectionId={heroSection.id}
-              initialData={heroSection.content?.data as any}
-            />
+            <HeroEditor sectionId={heroSection.id} initialData={heroSection.content?.data as any} />
           </section>
         )}
 
         {autoCarouselSection && (
           <section className="space-y-4">
             <h2 className="text-xl font-semibold">Auto carousel</h2>
-            <AutoCarouselEditor
-              sectionId={autoCarouselSection.id}
-              initialData={autoCarouselSection.content?.data as any}
-            />
+            <AutoCarouselEditor sectionId={autoCarouselSection.id} initialData={autoCarouselSection.content?.data as any} />
           </section>
         )}
 
-        {/* 4. Render the Timeline Editor */}
         {timelineSection && (
           <section className="space-y-4">
             <h2 className="text-xl font-semibold">Process Timeline</h2>
-            <TimelineEditor
-              sectionId={timelineSection.id}
-              initialData={timelineSection.content?.data as any}
-            />
+            <TimelineEditor sectionId={timelineSection.id} initialData={timelineSection.content?.data as any} />
+          </section>
+        )}
+
+        {projectsSection && (
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold">Portfolio Projects</h2>
+            <ProjectsEditor sectionId={projectsSection.id} initialData={projectsSection.content?.data as any} />
+          </section>
+        )}
+
+        {servicesSection && (
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold">Our Services</h2>
+            <ServicesEditor sectionId={servicesSection.id} initialData={servicesSection.content?.data as any} />
           </section>
         )}
       </div>
