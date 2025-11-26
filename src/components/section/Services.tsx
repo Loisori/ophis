@@ -42,7 +42,7 @@ export default function Services() {
               className="bg-[#4a0b75] text-white p-10 rounded-3xl flex flex-col items-start text-left shadow-xl transition-transform hover:-translate-y-2 duration-300"
             >
               {/* Icon Container */}
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-8 flex-shrink-0">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-8 shrink-0">
                 <service.icon className="w-8 h-8 text-[#4a0b75]" strokeWidth={2.5} />
               </div>
 

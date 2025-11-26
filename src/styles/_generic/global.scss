@@ -7,18 +7,5 @@ body {
 }
 
 section{
-  @apply py-[4rem] md:py-[8rem] overflow-hidden;
+  @apply py-10 md:py-16 lg:py-20 overflow-hidden;
 }
-
-// section {
-//     @apply py-[4.8rem];
-//     // @media (min-width: 960px) {
-//     //     @apply py-[8rem];
-//     // }
-//     // @media (min-width: 1440) {
-//     //     @apply py-[10rem];
-//     // }
-// }
-// @media (min-width: 768px) {
-//     @apply pl-[2rem] pr-[2rem] px-[2rem] ;  // Padding left and right (32px) for 'lg' breakpoint
-// }

@@ -17,14 +17,14 @@ export default function HeroVideo() {
       />
       <div className="wrapper">
         <video
-          className="w-full h-auto p-[.6rem] md:p-[1rem] bg-gray-300 rounded-[1rem]"
+          className="w-full h-auto p-[.6rem] md:p-rem bg-gray-300 rounded-5"
           autoPlay
           loop
           muted
           playsInline
           controls
         >
-          <source src="/videos/herovideo.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dhxrsiqip/video/upload/v1764155115/Ophis_Intro_v01_xqoqrd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>

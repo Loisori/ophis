@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/animations/Reveal";
+
 export type HeroCard = {
   title: string;
   subtitle: string;
@@ -28,7 +30,8 @@ export default function Hero({ data }: HeroProps) {
   ];
 
   // Use DB data if available, otherwise defaults
-  const cards = data?.cards && data.cards.length === 3 ? data.cards : defaultCards;
+  const cards =
+    data?.cards && data.cards.length === 3 ? data.cards : defaultCards;
 
   return (
     <section
@@ -44,35 +47,38 @@ export default function Hero({ data }: HeroProps) {
         className="absolute opacity-25 z-0 top-0 right-0"
       />
       <div className="z-1 pt-[15rem] md:pt-[21rem] wrapper text-white flex max-md:flex-col">
-        <div className="max-w-[47rem] max-md:m-auto md:mr-[9rem] max-md:mb-[4rem]">
-          <h2 className="mb-[.8rem]">{headline}</h2>
-          <p className="text-small font-medium">{subheadline}</p>
+        <div className="max-w-[47rem] max-md:m-auto md:mr-[9rem] max-md:mb-10">
+          <Reveal animation="fade-up">
+            <h2 className="mb-2">{headline}</h2>
+            <p className="text-small font-medium">{subheadline}</p>
+          </Reveal>
         </div>
-        
-        <div className="max-md:grid max-md:gap-[4rem] md:top-[-11rem] relative w-full md:w-[60rem] md:h-[29rem] block">
+
+        <div className="max-md:grid max-md:gap-10 md:top-[-11rem] relative w-full md:w-[60rem] md:h-[29rem] block">
           {/* Card 1: Top Left */}
-          <div className="max-md:w-full text-center md:absolute top-0 left-0 w-[28rem] p-[3rem] rounded-[1rem] border-[.3rem] border-white bg-white/25">
-            <h2 className="text-[3.2rem] font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">
+          
+          <Reveal className="max-md:w-full text-center md:absolute top-0 left-0 w-[28rem] p-[3rem] rounded-5 border-[.3rem] border-white bg-white/25">
+            <h2 className="text-8 font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">
               {cards[0].title}
             </h2>
             <p className="text-body">{cards[0].subtitle}</p>
-          </div>
+          </Reveal>
 
           {/* Card 2: Middle Right */}
-          <div className="max-md:w-full text-center md:absolute top-[5rem] left-[37rem] w-[32rem] p-[3rem] rounded-[1rem] border-[.3rem] border-white bg-white/25 z-20">
-            <h2 className="text-[3.2rem] font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">
+          <Reveal delay={0.25} className="max-md:w-full text-center md:absolute top-[5rem] left-[37rem] w-[32rem] p-[3rem] rounded-5 border-[.3rem] border-white bg-white/25 z-20">
+            <h2 className="text-8 font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">
               {cards[1].title}
             </h2>
             <p className="text-body">{cards[1].subtitle}</p>
-          </div>
+          </Reveal>
 
           {/* Card 3: Bottom Left */}
-          <div className="max-md:w-full text-center md:absolute top-[25rem] left-[5rem] w-[28rem] p-[3rem] rounded-[1rem] border-[.3rem] border-white bg-white/25 z-10">
-            <h2 className="text-[3.2rem] font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">
+          <Reveal delay={0.5} className="max-md:w-full text-center md:absolute top-[25rem] left-[5rem] w-[28rem] p-[3rem] rounded-5 border-[.3rem] border-white bg-white/25 z-10">
+            <h2 className="text-8 font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">
               {cards[2].title}
             </h2>
             <p className="text-body">{cards[2].subtitle}</p>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

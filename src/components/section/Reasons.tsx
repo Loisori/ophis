@@ -24,7 +24,7 @@ export default function Reasons() {
   ];
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-[#2e0249] to-black text-white relative overflow-hidden">
+    <section className="py-24 px-4 bg-linear-to-b from-[#2e0249] to-black text-white relative overflow-hidden">
       {/* Background Ambient Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-purple-900/30 blur-[120px] rounded-full pointer-events-none" />
 
@@ -46,7 +46,7 @@ export default function Reasons() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto mb-16">
           
           {/* Ophis Card (Dark & Glowing) */}
-          <div className="relative p-8 md:p-10 rounded-3xl bg-gradient-to-b from-[#4a0b75] to-[#24063d] border-2 border-cyan-500 shadow-[0_0_40px_rgba(6,182,212,0.15)] flex flex-col items-center text-center">
+          <div className="relative p-8 md:p-10 rounded-3xl bg-linear-to-b from-[#4a0b75] to-[#24063d] border-2 border-cyan-500 shadow-[0_0_40px_rgba(6,182,212,0.15)] flex flex-col items-center text-center">
             {/* Logo Placeholder */}
             <div className="mb-8 flex items-center justify-center gap-2">
                <div className="w-4 h-4 rounded-full bg-white" /> {/* Dot logo mark */}
@@ -58,7 +58,7 @@ export default function Reasons() {
             <ul className="space-y-4 w-full text-left pl-4 md:pl-12">
               {ophisFeatures.map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm md:text-base font-medium">
-                  <span className="w-1.5 h-1.5 bg-white rounded-full flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 bg-white rounded-full shrink-0" />
                   {item}
                 </li>
               ))}
@@ -74,7 +74,7 @@ export default function Reasons() {
             <ul className="space-y-4 w-full text-left pl-4 md:pl-12">
               {othersFeatures.map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm md:text-base text-gray-700">
-                  <span className="w-1.5 h-1.5 bg-gray-800 rounded-full flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 bg-gray-800 rounded-full shrink-0" />
                   {item}
                 </li>
               ))}

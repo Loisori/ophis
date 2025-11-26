@@ -48,6 +48,7 @@ export default async function Home() {
     (section: any) => section.type === "autoCarousel"
   )?.content?.data as CarouselData | null;
 
+  
   // 3. RENDER:
   // Pass the extracted data down to the components.
   return (
@@ -64,14 +65,14 @@ export default async function Home() {
       {/* This component appears to be static (no data passed) or handles its own fetching. */}
       <HeroVideo />
       <Timeline />
-      <Projects />
+      {/* <Projects />
       <Testimonials />
       <Services />
       <Reasons />
       <Team />
       <Pricing />
       <Faqs />
-      <Footer />
+      <Footer /> */}
     </main>
   );
 }

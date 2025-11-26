@@ -112,7 +112,7 @@ export default function Pricing() {
                 <ul className="space-y-3">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-gray-300">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-white shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}

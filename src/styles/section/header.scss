@@ -1,8 +1,8 @@
 .nav {
   &--link {
-    @apply border-b-[1px] block border-[#dee2e6] relative;
+    @apply border-b block border-[#dee2e6] relative;
     &::before {
-      @apply bg-black content-[''] absolute bottom-[-1px] h-[.1rem] w-0 transition-[width] duration-600 ease-out;
+      @apply bg-black content-[''] absolute bottom-[-1px] h-px w-0 transition-[width] duration-600 ease-out;
     }
     &:hover {
       &::before {

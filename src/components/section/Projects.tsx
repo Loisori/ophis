@@ -13,7 +13,7 @@ const videoIds = [
 
 export default function Projects() {
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-[#2e0249] to-black text-white relative overflow-hidden">
+    <section className="py-24 px-4 bg-linear-to-b from-[#2e0249] to-black text-white relative overflow-hidden">
       {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[600px] bg-purple-900/20 blur-[120px] rounded-full pointer-events-none" />
 

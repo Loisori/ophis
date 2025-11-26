@@ -122,7 +122,7 @@ export default function AutoCarouselEditor({
               className="grid gap-2 rounded-lg border border-white/15 bg-black/20 p-3 md:grid-cols-[1.2fr_1.6fr_1fr_auto]"
             >
               <div className="space-y-1">
-                <label className="block text-[0.7rem] font-semibold uppercase tracking-wide text-white/60">
+                <label className="block text-[.7rem] font-semibold uppercase tracking-wide text-white/60">
                   Name
                 </label>
                 <input
@@ -137,7 +137,7 @@ export default function AutoCarouselEditor({
               </div>
 
               <div className="space-y-1">
-                <label className="block text-[0.7rem] font-semibold uppercase tracking-wide text-white/60">
+                <label className="block text-[.7rem] font-semibold uppercase tracking-wide text-white/60">
                   Logo path
                 </label>
                 <input
@@ -152,7 +152,7 @@ export default function AutoCarouselEditor({
               </div>
 
               <div className="space-y-1">
-                <label className="block text-[0.7rem] font-semibold uppercase tracking-wide text-white/60">
+                <label className="block text-[.7rem] font-semibold uppercase tracking-wide text-white/60">
                   Subtitle
                 </label>
                 <input
@@ -170,7 +170,7 @@ export default function AutoCarouselEditor({
                 <button
                   type="button"
                   onClick={() => removeItem(index)}
-                  className="rounded border border-red-400/60 px-2 py-1 text-[0.7rem] font-semibold uppercase tracking-wide text-red-200 hover:bg-red-500/20"
+                  className="rounded border border-red-400/60 px-2 py-1 text-[.7rem] font-semibold uppercase tracking-wide text-red-200 hover:bg-red-500/20"
                 >
                   Remove
                 </button>

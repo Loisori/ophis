@@ -58,7 +58,7 @@ export default function Team() {
                 <div className={`w-full md:w-1/2 ${isEven ? 'text-left' : 'text-right'}`}>
                   <div className={`flex gap-6 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
                     {/* Vertical Accent Line */}
-                    <div className="w-1.5 bg-[#4a0b75] rounded-full flex-shrink-0 min-h-[100px]" />
+                    <div className="w-1.5 bg-[#4a0b75] rounded-full shrink-0 min-h-[100px]" />
                     
                     <div>
                       <h3 className="text-3xl font-bold mb-4">{member.name}</h3>

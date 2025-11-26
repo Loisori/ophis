@@ -66,7 +66,7 @@ export default function Faqs() {
               }`}
             >
               {/* Icon Circle */}
-              <div className="flex-shrink-0 w-8 h-8 bg-[#2D1B4E] rounded-full flex items-center justify-center text-white">
+              <div className="shrink-0 w-8 h-8 bg-[#2D1B4E] rounded-full flex items-center justify-center text-white">
                 {openIndex === index ? (
                   <Minus className="w-4 h-4" />
                 ) : (

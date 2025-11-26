@@ -14,18 +14,18 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 w-full z-1 backdrop-blur-xl z-50">
-      <div className="wrapper flex w-full py-[2rem] xmd:py-[4rem] items-center text-white">
+    <header className="fixed top-0 w-full backdrop-blur-xl z-50">
+      <div className="wrapper flex w-full py-5 xmd:py-10 items-center text-white">
         <a href="#" className="flex justify-center items-center">
           <Image
-            src="/imgs/logo.png"
+            src="https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155227/logo_c3erzu.png"
             alt="Ophis Logo"
             width={160}
             height={70}
-            className="mr-[.8rem]"
+            className="mr-2"
           />
         </a>
-        <ul className="hidden xmd:flex size-fit bg-[#1C022B] gap-[3.5rem] rounded-5 py-[1.5rem] px-[4rem] ml-auto mr-[5.7rem]">
+        <ul className="hidden xmd:flex size-fit bg-[#1C022B] gap-[3.5rem] rounded-5 py-[1.5rem] px-10 ml-auto mr-[5.7rem]">
           <li>
             <a className="text-body font-medium" href="#about">
               How it work?
@@ -53,7 +53,7 @@ export default function Header() {
           </li>
         </ul>
         <a
-          className="max-sm:hidden max-xmd:ml-auto size-fit rounded-5 py-[1.5rem] px-[1.6rem] text-body font-bold bg-purple-100"
+          className="max-sm:hidden max-xmd:ml-auto size-fit rounded-5 py-[1.5rem] px-4 text-body font-bold bg-purple-100"
           href="#contact"
         >
           Book a 30-min call
@@ -61,7 +61,7 @@ export default function Header() {
         <a
           href="#"
           onClick={toggleMenu}
-          className="block xmd:hidden max-sm:ml-auto ml-[2rem] relative z-50"
+          className="block xmd:hidden max-sm:ml-auto ml-5 relative z-50"
           aria-label="Toggle navigation"
           aria-controls="header"
           aria-expanded={isOpen}
@@ -75,7 +75,7 @@ export default function Header() {
         </a>
       </div>
       {isOpen && (
-        <div className="xmd:hidden absolute top-[10rem] left-0 w-full bg-[#1C022B] p-8 rounded-b-3xl border-t border-white/10 shadow-2xl animate-in slide-in-from-top-4">
+        <div className="xmd:hidden absolute top-25 left-0 w-full bg-[#1C022B] p-8 rounded-b-3xl border-t border-white/10 shadow-2xl animate-in slide-in-from-top-4">
           <ul className="flex flex-col gap-6 text-center">
             <li>
               <a href="#about" onClick={() => setIsOpen(false)}>
