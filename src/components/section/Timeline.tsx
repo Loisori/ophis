@@ -2,46 +2,26 @@
 import { Reveal } from "@/components/animations/Reveal";
 import Image from "next/image";
 
-const steps = [
-  {
-    id: 1,
-    title: "Your raw footage",
-    description:
-      "Start by filling out our quick form so we can understand your needs and how we can best support your content goals.",
-    icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_67_eoevr5.png",
-    icondark:
-      "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155930/Group_128_svaimc.png",
-  },
-  {
-    id: 2,
-    title: "Our creative editing team",
-    description:
-      "We craft a unique editing style that reflects your brand's identity and keeps it consistent across every video.",
-    icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_124_cv2zyq.png",
-    icondark:
-      "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155949/Group_130_a8fskc.png",
-  },
-  {
-    id: 3,
-    title: "Refinement & feedback",
-    description:
-      "Track tasks and progress in Notion. Share feedback and review edits through Frame.io for fast, streamlined revisions.",
-    icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_125_vbut1z.png",
-    icondark:
-      "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_127_l2kaoe.png",
-  },
-  {
-    id: 4,
-    title: "Delivery",
-    description:
-      "We deliver your final videos in all required formats or directly to your internal library.",
-    icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_126_b2egzu.png",
-    icondark:
-      "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155930/Group_129_bjwbls.png",
-  },
-];
+// Interface for props from DB
+interface TimelineProps {
+  data?: {
+    steps?: Array<{
+      id: number;
+      title: string;
+      description: string;
+      icon: string;
+      icondark: string;
+    }>;
+  } | null;
+}
 
-export default function Timeline() {
+export default function Timeline({ data }: TimelineProps) {
+  // Use data from DB if available, otherwise fallback to empty array (or default const if you prefer)
+  // But since we seeded the DB, data should be there.
+  const activeSteps = data?.steps || [];
+
+  if (activeSteps.length === 0) return null;
+
   return (
     <section className="" id="timeline">
       <div className="wrapper">
@@ -60,14 +40,14 @@ export default function Timeline() {
         <div className="relative">
           <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[3px] bg-[#E5E5E5] hidden md:block" />
           <div className="space-y-12 md:space-y-[5rem] relative">
-            {steps.map((step, index) => {
+            {activeSteps.map((step, index) => {
               const isEven = (index + 1) % 2 === 0;
               return (
                 <div
-                  key={step.id}
+                  key={step.id || index}
                   className="relative flex flex-row items-center md:justify-between gap-8 md:gap-15"
                 >
-                  {/* --- LEFT SIDE CONTENT --- */}
+                  {/* --- LEFT SIDE --- */}
                   <div
                     className={`w-full md:w-[45%] ${
                       isEven
@@ -75,22 +55,25 @@ export default function Timeline() {
                         : "md:text-right order-1 flex md:justify-end"
                     }`}
                   >
-                    {/* If Odd: Show Icon here on Desktop */}
                     {!isEven && (
                       <Reveal
                         animation="slide-left"
                         className="size-15 md:size-20 lg:size-25 rounded-full flex items-center justify-center z-10"
                       >
-                        <Image
-                          src={step.icon}
-                          alt="Ophis Logo"
-                          width={100}
-                          height={100}
-                        />
+                        <div className="relative w-full h-full">
+                          {step.icon && (
+                            <Image
+                              src={step.icon}
+                              alt={step.title}
+                              width={100}
+                              height={100}
+                              className="object-contain"
+                            />
+                          )}
+                        </div>
                       </Reveal>
                     )}
 
-                    {/* If Even: Show Text here */}
                     {isEven && (
                       <Reveal animation="slide-left">
                         <div>
@@ -108,7 +91,7 @@ export default function Timeline() {
                     )}
                   </div>
 
-                  {/* --- RIGHT SIDE CONTENT --- */}
+                  {/* --- RIGHT SIDE --- */}
                   <div
                     className={`w-full md:w-[45%] ${
                       isEven
@@ -116,22 +99,25 @@ export default function Timeline() {
                         : "md:text-left order-2"
                     }`}
                   >
-                    {/* If Even: Show Icon here on Desktop */}
                     {isEven && (
                       <Reveal
                         animation="slide-right"
                         className="size-15 md:size-20 lg:size-25 rounded-full flex items-center justify-center z-10"
                       >
-                        <Image
-                          src={step.icon}
-                          alt="Ophis Logo"
-                          width={100}
-                          height={100}
-                        />
+                        <div className="relative w-full h-full">
+                          {step.icon && (
+                            <Image
+                              src={step.icon}
+                              alt={step.title}
+                              width={100}
+                              height={100}
+                              className="object-contain"
+                            />
+                          )}
+                        </div>
                       </Reveal>
                     )}
 
-                    {/* If Odd: Show Text here */}
                     {!isEven && (
                       <Reveal animation="slide-right">
                         <div className="text-left">
@@ -156,12 +142,13 @@ export default function Timeline() {
         <div className="mt-32 text-center max-w-3xl mx-auto">
           <Reveal>
             <h3 className="text-2xl md:text-3xl font-normal text-gray-900 mb-4">
-              The way editing should have been done from the start.
+              The way editing should have{" "}
+              <span className="font-bold text-[#4a0b75]">
+                been done from the start.
+              </span>
             </h3>
             <p className="text-gray-500 text-sm md:text-base leading-relaxed">
-              By understanding your brand's tone and visual identity, we build a
-              streamlined editing workflow that keeps every video consistent -
-              from the first cut to the final export.
+              By understanding your brand&apos;s tone and visual identity...
             </p>
           </Reveal>
         </div>

@@ -79,6 +79,7 @@ type TimelineStep = {
   title: string;
   description: string;
   icon: string;
+  icondark: string;
 };
 
 type TimelineData = {
@@ -96,10 +97,10 @@ export default function TimelineEditor({
 }: TimelineEditorProps) {
   const [steps, setSteps] = useState<TimelineStep[]>(
     initialData?.steps || [
-      { id: 1, title: "", description: "", icon: "" },
-      { id: 2, title: "", description: "", icon: "" },
-      { id: 3, title: "", description: "", icon: "" },
-      { id: 4, title: "", description: "", icon: "" },
+      { id: 1, title: "", description: "", icon: "", icondark: "" },
+      { id: 2, title: "", description: "", icon: "", icondark: "" },
+      { id: 3, title: "", description: "", icon: "", icondark: "" },
+      { id: 4, title: "", description: "", icon: "", icondark: "" },
     ]
   );
 
@@ -118,7 +119,7 @@ export default function TimelineEditor({
       steps.length > 0 ? Math.max(...steps.map((s) => s.id)) + 1 : 1;
     setSteps((prev) => [
       ...prev,
-      { id: newId, title: "", description: "", icon: "" },
+      { id: newId, title: "", description: "", icon: "", icondark: "" },
     ]);
   }
 
@@ -184,7 +185,7 @@ export default function TimelineEditor({
               {index + 1}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <div className="space-y-1.5">
                 <label className="block text-[0.7rem] font-semibold uppercase tracking-wide text-white/60">
                   Step Title
@@ -197,18 +198,31 @@ export default function TimelineEditor({
                   placeholder="e.g. Delivery"
                 />
               </div>
-
-              <div className="space-y-1.5">
-                <label className="block text-[0.7rem] font-semibold uppercase tracking-wide text-white/60">
-                  Icon URL
-                </label>
-                <input
-                  type="text"
-                  value={step.icon}
-                  onChange={(e) => updateStep(index, "icon", e.target.value)}
-                  className="w-full rounded-lg border border-white/20 bg-black/40 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-white/20"
-                  placeholder="https://..."
-                />
+              <div className="grid grid-cols-2 gap-2">
+                <div className="space-y-1.5">
+                  <label className="block text-[0.7rem] font-semibold uppercase tracking-wide text-white/60">
+                    Icon dark URL
+                  </label>
+                  <input
+                    type="text"
+                    value={step.icondark}
+                    onChange={(e) => updateStep(index, "icondark", e.target.value)}
+                    className="w-full rounded-lg border border-white/20 bg-black/40 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-white/20"
+                    placeholder="https://..."
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="block text-[0.7rem] font-semibold uppercase tracking-wide text-white/60">
+                    Icon URL
+                  </label>
+                  <input
+                    type="text"
+                    value={step.icon}
+                    onChange={(e) => updateStep(index, "icon", e.target.value)}
+                    className="w-full rounded-lg border border-white/20 bg-black/40 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-white/20"
+                    placeholder="https://..."
+                  />
+                </div>
               </div>
             </div>
 
