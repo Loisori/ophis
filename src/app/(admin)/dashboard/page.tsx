@@ -91,7 +91,7 @@ export default async function AdminHome() {
             alt="Ophis Logo"
             width={160}
             height={70}
-            className="mr-[.8rem]"
+            className="mr-2"
           />
         </header>
 
