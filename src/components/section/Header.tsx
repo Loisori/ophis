@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useState, MouseEvent } from "react";
+import { Reveal } from "@/components/animations/Reveal";
+
 
 export default function Header() {
   // State to track if the menu is open

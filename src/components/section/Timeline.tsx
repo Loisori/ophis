@@ -1,6 +1,6 @@
 "use client";
-import { Reveal } from "@/components/animations/Reveal";
 import Image from "next/image";
+import { Reveal } from "@/components/animations/Reveal";
 
 interface TimelineProps {
   data?: {

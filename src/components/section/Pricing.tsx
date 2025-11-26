@@ -1,6 +1,7 @@
 "use client";
 
-// Pricing Data
+import { Reveal } from "@/components/animations/Reveal";
+
 const plans = [
   {
     name: "BASIC",

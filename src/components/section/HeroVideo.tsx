@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Reveal } from "@/components/animations/Reveal";
 
 export default function HeroVideo() {
   return (

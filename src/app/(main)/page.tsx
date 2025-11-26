@@ -44,19 +44,15 @@ export default async function Home() {
       <Hero data={heroData ?? null} />
       <AutoCarousel data={autoCarouselData ?? null} />
       <HeroVideo />
-
       <Timeline data={timelineData ?? null} />
-
       <Projects data={projectsData ?? null} />
-
-      {/* 3. Render Services */}
       <Services data={servicesData ?? null} />
 
-      <Testimonials />
+      {/* <Testimonials />
       <Reasons />
       <Team />
       <Pricing />
-      {/* <Faqs /> */}
+      <Faqs /> */}
       <Footer />
     </main>
   );

@@ -1,6 +1,7 @@
 // "use client";
 
 // import { useState } from "react";
+// import { Reveal } from "@/components/animations/Reveal";
 // import { Plus, Minus } from "lucide-react";
 
 // // 1. FAQ Data

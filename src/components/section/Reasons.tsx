@@ -1,5 +1,7 @@
 "use client";
 
+import { Reveal } from "@/components/animations/Reveal";
+
 export default function Reasons() {
   const ophisFeatures = [
     "Fair, transparent pricing",
