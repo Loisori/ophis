@@ -80,8 +80,8 @@ type ServiceItem = {
 };
 
 type ServicesData = {
-  headline?: string;
-  subheadline?: string;
+  title?: string;
+  subtitle?: string;
   services?: ServiceItem[];
 };
 
@@ -94,12 +94,9 @@ export default function ServicesEditor({
   sectionId,
   initialData,
 }: ServicesEditorProps) {
-  // New State for Headline & Subheadline
-  const [headline, setHeadline] = useState(
-    initialData?.headline ?? "Our Services"
-  );
-  const [subheadline, setSubheadline] = useState(
-    initialData?.subheadline ?? "Consistent, Seamless & On-brand"
+  const [title, setTitle] = useState(initialData?.title ?? "Our Services");
+  const [subtitle, setSubtitle] = useState(
+    initialData?.subtitle ?? "Consistent, Seamless & On-brand"
   );
 
   const [services, setServices] = useState<ServiceItem[]>(
@@ -144,8 +141,8 @@ export default function ServicesEditor({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           data: {
-            headline, // Save headline
-            subheadline, // Save subheadline
+            title,
+            subtitle,
             services,
           },
         }),
@@ -170,28 +167,27 @@ export default function ServicesEditor({
       onSubmit={handleSubmit}
       className="space-y-6 rounded-xl border border-white/15 bg-white/5 p-6 text-sm"
     >
-      {/* Section Header Inputs */}
       <div className="space-y-4 border-b border-white/10 pb-6">
         <div className="space-y-1">
           <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
-            Main Headline
+            title
           </label>
           <input
             type="text"
-            value={headline}
-            onChange={(e) => setHeadline(e.target.value)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             className="w-full rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-400"
             placeholder="Our Services"
           />
         </div>
         <div className="space-y-1">
           <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
-            Subheadline
+            subtitle
           </label>
           <input
             type="text"
-            value={subheadline}
-            onChange={(e) => setSubheadline(e.target.value)}
+            value={subtitle}
+            onChange={(e) => setSubtitle(e.target.value)}
             className="w-full rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-400"
             placeholder="Consistent, Seamless & On-brand"
           />

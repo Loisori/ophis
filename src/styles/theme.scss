@@ -3,7 +3,8 @@
 
 @theme {
   /* Font sizes */
-
+  --text-smallest: 1.2rem;
+  --text-smaller: 1.4rem;
   --text-small: 1.6rem;
   --text-body: 2rem;
   --text-h3: 2.4rem;
@@ -91,4 +92,9 @@
   --breakpoint-md: 960px;
   --breakpoint-xmd: 1280px;
   --breakpoint-lg: 1440px;
+  //-480-640:mobile
+  //640-960:tablet
+  //960-1440:laptop
+  //1440+:desktop
+  //480-960-1440
 }

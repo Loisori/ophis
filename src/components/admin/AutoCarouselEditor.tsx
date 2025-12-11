@@ -92,7 +92,7 @@ export default function AutoCarouselEditor({
     >
       <div className="space-y-2">
         <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
-          Carousel title
+          main title
         </label>
         <input
           type="text"

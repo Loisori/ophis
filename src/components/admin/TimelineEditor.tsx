@@ -1,5 +1,6 @@
 "use client";
 
+import { sub } from "framer-motion/client";
 import { useState, FormEvent } from "react";
 
 // --- Inline Icons for Admin UI ---
@@ -83,6 +84,10 @@ type TimelineStep = {
 };
 
 type TimelineData = {
+  title?: string;
+  subtitle?: string;
+  quote?: string;
+  subquote?: string;
   steps?: TimelineStep[];
 };
 
@@ -95,6 +100,18 @@ export default function TimelineEditor({
   sectionId,
   initialData,
 }: TimelineEditorProps) {
+  const [title, setTitle] = useState(initialData?.title ?? "How it works");
+  const [subtitle, setSubTitle] = useState(
+    initialData?.subtitle ?? "Consistent, Seamless & On-brand"
+  );
+  const [quote, setQuote] = useState(
+    initialData?.quote ??
+      "The way editing should have been done from the start."
+  );
+  const [subquote, setSubQuote] = useState(
+    initialData?.subquote ??
+      "By understanding your brand’s tone and visual identity, we build a streamlined editing workflow that keeps every video consistent - from the first cut to the final export."
+  );
   const [steps, setSteps] = useState<TimelineStep[]>(
     initialData?.steps || [
       { id: 1, title: "", description: "", icon: "", icondark: "" },
@@ -139,6 +156,10 @@ export default function TimelineEditor({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           data: {
+            title,
+            subtitle,
+            quote,
+            subquote,
             steps,
           },
         }),
@@ -163,6 +184,56 @@ export default function TimelineEditor({
       onSubmit={handleSubmit}
       className="space-y-6 rounded-xl border border-white/15 bg-white/5 p-6 text-sm"
     >
+      <div className="space-y-4 border-b border-white/10 pb-6">
+        <div className="space-y-1">
+          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+            Title
+          </label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-400"
+            placeholder="Our Services"
+          />
+        </div>
+        <div className="space-y-1">
+          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+            SubTitle
+          </label>
+          <input
+            type="text"
+            value={subtitle}
+            onChange={(e) => setSubTitle(e.target.value)}
+            className="w-full rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-400"
+            placeholder="How it works"
+          />
+        </div>
+        <div className="space-y-1">
+          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+            Quote
+          </label>
+          <input
+            type="text"
+            value={quote}
+            onChange={(e) => setQuote(e.target.value)}
+            className="w-full rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-400"
+            placeholder="Consistent, Seamless & On-brand"
+          />
+        </div>
+        <div className="space-y-1">
+          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+            SubQuote
+          </label>
+          <input
+            type="text"
+            value={subquote}
+            onChange={(e) => setSubQuote(e.target.value)}
+            className="w-full rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-400"
+            placeholder="By understanding your brand’s tone and visual identity, we build a streamlined editing workflow that keeps every video consistent - from the first cut to the final export."
+          />
+        </div>
+      </div>
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold text-white/90">Process Steps</h3>
         <button
@@ -206,7 +277,9 @@ export default function TimelineEditor({
                   <input
                     type="text"
                     value={step.icondark}
-                    onChange={(e) => updateStep(index, "icondark", e.target.value)}
+                    onChange={(e) =>
+                      updateStep(index, "icondark", e.target.value)
+                    }
                     className="w-full rounded-lg border border-white/20 bg-black/40 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-white/20"
                     placeholder="https://..."
                   />

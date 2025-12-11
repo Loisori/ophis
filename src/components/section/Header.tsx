@@ -4,12 +4,9 @@ import Image from "next/image";
 import { useState, MouseEvent } from "react";
 import { Reveal } from "@/components/animations/Reveal";
 
-
 export default function Header() {
-  // State to track if the menu is open
   const [isOpen, setIsOpen] = useState(false);
 
-  // Toggle function
   const toggleMenu = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsOpen(!isOpen);
@@ -77,30 +74,30 @@ export default function Header() {
         </a>
       </div>
       {isOpen && (
-        <div className="xmd:hidden absolute top-25 left-0 w-full bg-[#1C022B] p-8 rounded-b-3xl border-t border-white/10 shadow-2xl animate-in slide-in-from-top-4">
-          <ul className="flex flex-col gap-6 text-center">
+        <div className="xmd:hidden absolute top-25 left-0 w-full bg-black p-8">
+          <ul className="flex flex-col gap-6 text-center text-body text-white">
             <li>
-              <a href="#about" onClick={() => setIsOpen(false)}>
+              <a href="#timeline" onClick={() => setIsOpen(false)}>
                 How it works?
               </a>
             </li>
             <li>
-              <a href="#works" onClick={() => setIsOpen(false)}>
+              <a href="#projects" onClick={() => setIsOpen(false)}>
                 Projects
               </a>
             </li>
             <li>
-              <a href="#case" onClick={() => setIsOpen(false)}>
+              <a href="#testimonials" onClick={() => setIsOpen(false)}>
                 Testimonials
               </a>
             </li>
             <li>
-              <a href="#contact" onClick={() => setIsOpen(false)}>
+              <a href="#service" onClick={() => setIsOpen(false)}>
                 Service
               </a>
             </li>
             <li>
-              <a href="#contact" onClick={() => setIsOpen(false)}>
+              <a href="#pricing" onClick={() => setIsOpen(false)}>
                 Pricing
               </a>
             </li>

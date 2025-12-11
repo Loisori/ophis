@@ -8,8 +8,8 @@ type HeroCard = {
 };
 
 type HeroData = {
-  headline?: string;
-  subheadline?: string;
+  title?: string;
+  subtitle?: string;
   cards?: HeroCard[];
 };
 
@@ -18,14 +18,17 @@ interface HeroEditorProps {
   initialData: HeroData | null;
 }
 
-export default function HeroEditor({ sectionId, initialData }: HeroEditorProps) {
-  const [headline, setHeadline] = useState(initialData?.headline ?? "");
-  const [subheadline, setSubheadline] = useState(initialData?.subheadline ?? "");
-  
+export default function HeroEditor({
+  sectionId,
+  initialData,
+}: HeroEditorProps) {
+  const [title, setTitle] = useState(initialData?.title ?? "");
+  const [subtitle, setSubTitle] = useState(initialData?.subtitle ?? "");
+
   // Initialize cards with DB data or defaults if missing
   const [cards, setCards] = useState<HeroCard[]>(
-    initialData?.cards && initialData.cards.length === 3 
-      ? initialData.cards 
+    initialData?.cards && initialData.cards.length === 3
+      ? initialData.cards
       : [
           { title: "10X Views", subtitle: "Faster lead times" },
           { title: "Cancel anytime", subtitle: "No commitment, no stress" },
@@ -37,7 +40,6 @@ export default function HeroEditor({ sectionId, initialData }: HeroEditorProps) 
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Helper to update a specific card's field
   const updateCard = (index: number, field: keyof HeroCard, value: string) => {
     setCards((prev) => {
       const newCards = [...prev];
@@ -58,9 +60,9 @@ export default function HeroEditor({ sectionId, initialData }: HeroEditorProps) 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           data: {
-            headline,
-            subheadline,
-            cards, // Include the cards in the update
+            title,
+            subtitle,
+            cards,
           },
         }),
       });
@@ -88,12 +90,12 @@ export default function HeroEditor({ sectionId, initialData }: HeroEditorProps) 
       <div className="space-y-4">
         <div className="space-y-1">
           <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
-            Headline
+            title
           </label>
           <input
             type="text"
-            value={headline}
-            onChange={(e) => setHeadline(e.target.value)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             className="w-full rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-400"
             placeholder="Hero headline"
           />
@@ -101,11 +103,11 @@ export default function HeroEditor({ sectionId, initialData }: HeroEditorProps) 
 
         <div className="space-y-1">
           <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
-            Subheadline
+            subtitle
           </label>
           <textarea
-            value={subheadline}
-            onChange={(e) => setSubheadline(e.target.value)}
+            value={subtitle}
+            onChange={(e) => setSubTitle(e.target.value)}
             rows={4}
             className="w-full resize-none rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-400"
             placeholder="Hero subheadline"
@@ -115,19 +117,23 @@ export default function HeroEditor({ sectionId, initialData }: HeroEditorProps) 
 
       <hr className="border-white/10" />
 
-      {/* Cards Section */}
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold">
-          Glass Cards (3 Items)
-        </h3>
-        
+        <h3 className="text-xl font-semibold">Glass Cards (3 Items)</h3>
+
         <div className="grid gap-4 sm:grid-cols-3">
           {cards.map((card, index) => (
-            <div key={index} className="space-y-2 rounded-lg bg-white/5 p-3 border border-white/10">
-              <div className="text-xs text-white/50 font-mono mb-2">Card #{index + 1}</div>
-              
+            <div
+              key={index}
+              className="space-y-2 rounded-lg bg-white/5 p-3 border border-white/10"
+            >
+              <div className="text-xs text-white/50 font-mono mb-2">
+                Card #{index + 1}
+              </div>
+
               <div className="space-y-1">
-                <label className="block text-[0.65rem] uppercase text-white/60">Title</label>
+                <label className="block text-[0.65rem] uppercase text-white/60">
+                  Title
+                </label>
                 <input
                   type="text"
                   value={card.title}
@@ -137,11 +143,15 @@ export default function HeroEditor({ sectionId, initialData }: HeroEditorProps) 
               </div>
 
               <div className="space-y-1">
-                <label className="block text-[0.65rem] uppercase text-white/60">Subtitle</label>
+                <label className="block text-[0.65rem] uppercase text-white/60">
+                  Subtitle
+                </label>
                 <input
                   type="text"
                   value={card.subtitle}
-                  onChange={(e) => updateCard(index, "subtitle", e.target.value)}
+                  onChange={(e) =>
+                    updateCard(index, "subtitle", e.target.value)
+                  }
                   className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-xs outline-none focus:ring-1 focus:ring-purple-400"
                 />
               </div>
@@ -161,8 +171,14 @@ export default function HeroEditor({ sectionId, initialData }: HeroEditorProps) 
         </button>
 
         <div className="text-xs font-medium">
-          {message && <span className="text-emerald-400 animate-in fade-in">{message}</span>}
-          {error && <span className="text-red-400 animate-in fade-in">{error}</span>}
+          {message && (
+            <span className="text-emerald-400 animate-in fade-in">
+              {message}
+            </span>
+          )}
+          {error && (
+            <span className="text-red-400 animate-in fade-in">{error}</span>
+          )}
         </div>
       </div>
     </form>

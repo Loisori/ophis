@@ -1,63 +1,89 @@
 "use client";
 
 import Image from "next/image";
+
 import { Reveal } from "@/components/animations/Reveal";
+import { sub } from "framer-motion/client";
 
-const teamMembers = [
-  {
-    name: "Nam Nguyen",
-    description:
-      "Senior editor with 4+ years turning raw footage into revenue-driving content. Specializes in diverse video styles that convert viewers into customers and grow brands faster.",
-    image:
-      "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764172931/Nam_Nguyen_1_oad1gh.png",
-    bgColor: "bg-[#4a0b75]",
-  },
-  {
-    name: "Simon",
-    description:
-      "With a background that spans from gaming content to brand storytelling, has led editing teams, designed motion graphics, and produced standout visuals under tight deadlines.",
-    image:
-      "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764172931/Simon_da4ogc.png",
-    bgColor: "bg-gray-200",
-  },
-];
+export type TeamMember = {
+  name: string;
+  description: string;
+  image: string;
+};
 
-export default function Team() {
+export type TeamData = {
+  title?: string;
+  subtitle?: string;
+  members?: TeamMember[];
+};
+
+interface TeamProps {
+  data: TeamData | null;
+}
+
+export default function Team({ data }: TeamProps) {
+  const title = data?.title ?? "Meet our brains";
+  const subtitle = data?.subtitle ?? "The people behind Ophis";
+
+  const defaultMembers: TeamMember[] = [
+    {
+      name: "Nam Nguyen",
+      description:
+        "Senior editor with 4+ years turning raw footage into revenue-driving content. Specializes in diverse video styles that convert viewers into customers and grow brands faster.",
+      image:
+        "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764172931/Nam_Nguyen_1_oad1gh.png",
+    },
+    {
+      name: "Simon",
+      description:
+        "With a background that spans from gaming content to brand storytelling, has led editing teams, designed motion graphics, and produced standout visuals under tight deadlines.",
+      image:
+        "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764172931/Simon_da4ogc.png",
+    },
+  ];
+
+  const members =
+    data?.members && data.members.length > 0 ? data.members : defaultMembers;
+
   return (
     <section className="py-24 px-4 bg-white text-black overflow-hidden">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-black">
-            Meet our brains
-          </h2>
-        </div>
+      <div className="max-w-[106rem] mx-auto">
+        <Reveal className="w-full! mb-[3rem]">
+          <h2 className="text-center font-bold leading-[135%]">{title}</h2>
+
+          <p className="text-body lg:text-h1 font-bold text-center">
+            {subtitle}
+          </p>
+        </Reveal>
 
         <div className="space-y-24">
-          {teamMembers.map((member, index) => {
+          {members.map((member, index) => {
             const isEven = index % 2 === 0;
 
             return (
               <div
-                key={member.name}
+                key={index}
                 className={`flex flex-col ${
                   isEven ? "md:flex-row" : "md:flex-row-reverse"
                 } items-center gap-8 md:gap-16`}
               >
+                {/* Image Side */}
                 <div
                   className={`w-full md:w-1/2 flex justify-center ${
                     isEven ? "md:justify-end" : "md:justify-start"
                   }`}
                 >
                   <div
-                    className={`relative w-full max-w-md aspect-square ${member.bgColor} rounded-[2rem] overflow-hidden shadow-2xl`}
+                    className={`relative w-full max-w-md aspect-square rounded-[2rem] overflow-hidden shadow-2xl`}
                   >
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover object-center"
-                    />
+                    {member.image && (
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover object-center"
+                      />
+                    )}
                   </div>
                 </div>
 
@@ -67,19 +93,16 @@ export default function Team() {
                   }`}
                 >
                   <div
-                    className={`flex gap-6 ${
+                    className={`flex gap-10 ${
                       isEven ? "flex-row" : "flex-row-reverse"
                     }`}
                   >
+                    {/* The colored bar */}
                     <div className="w-1.5 bg-[#4a0b75] rounded-full shrink-0 min-h-[100px]" />
 
                     <div>
-                      <h3 className="text-3xl font-bold mb-4">{member.name}</h3>
-                      <p
-                        className={`text-gray-700 leading-relaxed text-sm md:text-base max-w-md ${
-                          !isEven && "ml-auto"
-                        }`}
-                      >
+                      <h2 className="font-bold">{member.name}</h2>
+                      <p className={`text-small ${!isEven && "ml-auto"}`}>
                         {member.description}
                       </p>
                     </div>

@@ -7,11 +7,58 @@ import AutoCarouselEditor from "@/components/admin/AutoCarouselEditor";
 import TimelineEditor from "@/components/admin/TimelineEditor";
 import ProjectsEditor from "@/components/admin/ProjectsEditor";
 import ServicesEditor from "@/components/admin/ServicesEditor";
-
+import PricingEditor from "@/components/admin/PricingEditor";
+import FaqsEditor from "@/components/admin/FaqsEditor";
+import ReasonsEditor from "@/components/admin/Reasons";
+import HeroVideoEditor from "@/components/admin/HeroVideoEditor";
+import TeamEditor from "@/components/admin/TeamEditor";
+import TestimonialsEditor from "@/components/admin/TestimonialsEditor";
 // --- Inline Icons ---
-const BackIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>;
-const EditIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>;
-const ChevronRight = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>;
+const BackIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="m15 18-6-6 6-6" />
+  </svg>
+);
+const EditIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
+  </svg>
+);
+const ChevronRight = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="m9 18 6-6-6-6" />
+  </svg>
+);
 
 interface DashboardClientProps {
   heroSection: any;
@@ -19,6 +66,12 @@ interface DashboardClientProps {
   timelineSection: any;
   projectsSection: any;
   servicesSection: any;
+  pricingSection: any;
+  faqsSection: any;
+  reasonsSection: any;
+  heroVideoSection: any;
+  teamSection: any;
+  testimonialsSection: any;
 }
 
 export default function DashboardClient({
@@ -27,31 +80,176 @@ export default function DashboardClient({
   timelineSection,
   projectsSection,
   servicesSection,
+  pricingSection,
+  faqsSection,
+  reasonsSection,
+  heroVideoSection,
+  teamSection,
+  testimonialsSection,
 }: DashboardClientProps) {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   // Helper to define the list structure
   const sectionsList = [
-    { id: "hero", label: "Hero Section", data: heroSection, position: 1, description: "Main landing banner" },
-    { id: "autoCarousel", label: "Auto Carousel", data: autoCarouselSection, position: 2, description: "Partner logos slider" },
-    { id: "timeline", label: "Timeline", data: timelineSection, position: 3, description: "Process steps flow" },
-    { id: "projects", label: "Projects", data: projectsSection, position: 4, description: "Video portfolio grid" },
-    { id: "services", label: "Services", data: servicesSection, position: 5, description: "Service offerings cards" },
+    {
+      id: "hero",
+      label: "Hero",
+      data: heroSection,
+      position: 1,
+      description: "Main landing banner",
+    },
+    {
+      id: "autoCarousel",
+      label: "AutoCarousel",
+      data: autoCarouselSection,
+      position: 2,
+      description: "Partner logos slider",
+    },
+    {
+      id: "heroVideo",
+      label: "HeroVideo",
+      data: heroVideoSection,
+      position: 3,
+      description: "Background video settings",
+    },
+    {
+      id: "timeline",
+      label: "Timeline",
+      data: timelineSection,
+      position: 4,
+      description: "Process steps flow",
+    },
+    {
+      id: "projects",
+      label: "Projects",
+      data: projectsSection,
+      position: 5,
+      description: "Video portfolio grid",
+    },
+    {
+      id: "testimonials",
+      label: "Testimonials",
+      data: testimonialsSection,
+      position: 6,
+      description: "Client testimonials section",
+    },
+    {
+      id: "services",
+      label: "Services",
+      data: servicesSection,
+      position: 7,
+      description: "Service offerings cards",
+    },
+    {
+      id: "reasons",
+      label: "Reasons",
+      data: reasonsSection,
+      position: 8,
+      description: "Service offerings cards",
+    },
+    {
+      id: "team",
+      label: "Team",
+      data: teamSection,
+      position: 7,
+      description: "Meet our brains section",
+    },
+    {
+      id: "pricing",
+      label: "Pricing",
+      data: pricingSection,
+      position: 10,
+      description: "Service offerings cards",
+    },
+    {
+      id: "faqs",
+      label: "Faqs",
+      data: faqsSection,
+      position: 11,
+      description: "Service offerings cards",
+    },
   ];
 
   // Render the correct editor based on selection
   const renderEditor = () => {
     switch (activeSection) {
       case "hero":
-        return <HeroEditor sectionId={heroSection.id} initialData={heroSection.content?.data} />;
+        return (
+          <HeroEditor
+            sectionId={heroSection.id}
+            initialData={heroSection.content?.data}
+          />
+        );
       case "autoCarousel":
-        return <AutoCarouselEditor sectionId={autoCarouselSection.id} initialData={autoCarouselSection.content?.data} />;
+        return (
+          <AutoCarouselEditor
+            sectionId={autoCarouselSection.id}
+            initialData={autoCarouselSection.content?.data}
+          />
+        );
       case "timeline":
-        return <TimelineEditor sectionId={timelineSection.id} initialData={timelineSection.content?.data} />;
+        return (
+          <TimelineEditor
+            sectionId={timelineSection.id}
+            initialData={timelineSection.content?.data}
+          />
+        );
       case "projects":
-        return <ProjectsEditor sectionId={projectsSection.id} initialData={projectsSection.content?.data} />;
+        return (
+          <ProjectsEditor
+            sectionId={projectsSection.id}
+            initialData={projectsSection.content?.data}
+          />
+        );
       case "services":
-        return <ServicesEditor sectionId={servicesSection.id} initialData={servicesSection.content?.data} />;
+        return (
+          <ServicesEditor
+            sectionId={servicesSection.id}
+            initialData={servicesSection.content?.data}
+          />
+        );
+      case "testimonials":
+        return (
+          <TestimonialsEditor
+            sectionId={testimonialsSection.id}
+            initialData={testimonialsSection.content?.data}
+          />
+        );
+      case "pricing":
+        return (
+          <PricingEditor
+            sectionId={pricingSection.id}
+            initialData={pricingSection.content?.data}
+          />
+        );
+      case "reasons":
+        return (
+          <ReasonsEditor
+            sectionId={reasonsSection.id}
+            initialData={reasonsSection.content?.data}
+          />
+        );
+      case "heroVideo":
+        return (
+          <HeroVideoEditor
+            sectionId={heroVideoSection.id}
+            initialData={heroVideoSection.content?.data}
+          />
+        );
+      case "team":
+        return (
+          <TeamEditor
+            sectionId={teamSection.id}
+            initialData={teamSection.content?.data}
+          />
+        );
+      case "faqs":
+        return (
+          <FaqsEditor
+            sectionId={faqsSection.id}
+            initialData={faqsSection.content?.data}
+          />
+        );
       default:
         return null;
     }
@@ -60,16 +258,22 @@ export default function DashboardClient({
   return (
     <div className="min-h-screen bg-[#0f0518] text-white font-sans selection:bg-purple-500/30">
       {/* Ambient Background */}
-      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-[#0f0518] to-[#0f0518] pointer-events-none" />
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-purple-900/20 via-[#0f0518] to-[#0f0518] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 py-12">
-        
         {/* Header */}
         <header className="flex items-center justify-between mb-12">
           <div className="flex items-center gap-4">
-             <Image src="/imgs/logo.png" alt="Ophis Logo" width={120} height={50} />
-             <div className="h-6 w-px bg-white/10" />
-             <span className="text-sm font-medium text-white/40 uppercase tracking-widest">Admin</span>
+            <Image
+              src="/imgs/logo.png"
+              alt="Ophis Logo"
+              width={120}
+              height={50}
+            />
+            <div className="h-6 w-px bg-white/10" />
+            <span className="text-sm font-medium text-white/40 uppercase tracking-widest">
+              Admin
+            </span>
           </div>
         </header>
 
@@ -77,18 +281,24 @@ export default function DashboardClient({
         {activeSection ? (
           // EDITOR VIEW
           <div className="animate-in fade-in slide-in-from-right-4 duration-300">
-            <button 
+            <button
               onClick={() => setActiveSection(null)}
               className="flex items-center gap-2 text-sm text-purple-300 hover:text-white mb-6 transition-colors group"
             >
               <BackIcon />
-              <span className="group-hover:-translate-x-1 transition-transform">Back to Sections</span>
+              <span className="group-hover:-translate-x-1 transition-transform">
+                Back to Sections
+              </span>
             </button>
 
             <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold">{sectionsList.find(s => s.id === activeSection)?.label}</h2>
-                <p className="text-white/50">Edit the content and settings for this section.</p>
+                <h2 className="text-3xl font-bold">
+                  {sectionsList.find((s) => s.id === activeSection)?.label}
+                </h2>
+                <p className="text-white/50">
+                  Edit the content and settings for this section.
+                </p>
               </div>
               {renderEditor()}
             </div>
@@ -97,7 +307,7 @@ export default function DashboardClient({
           // LIST VIEW (The "Overview List")
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <h1 className="text-3xl font-bold mb-8">Sections</h1>
-            
+
             <div className="space-y-3">
               {sectionsList.map((section) => (
                 <button
@@ -126,7 +336,7 @@ export default function DashboardClient({
                         Missing Data
                       </span>
                     )}
-                    
+
                     <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/40 group-hover:bg-purple-500 group-hover:text-white transition-all">
                       <ChevronRight />
                     </div>
@@ -136,7 +346,6 @@ export default function DashboardClient({
             </div>
           </div>
         )}
-
       </div>
     </div>
   );

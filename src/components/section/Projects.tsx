@@ -4,22 +4,26 @@ import { Reveal } from "@/components/animations/Reveal";
 
 interface ProjectsProps {
   data?: {
+    title?: string;
+    subtitle?: string;
     videoIds?: string[];
   } | null;
 }
 
 export default function Projects({ data }: ProjectsProps) {
+  const title = data?.title ?? "Projects";
+  const subtitile = data?.subtitle ?? "Explore our Video Editing Portfolio";
   const videoIds = data?.videoIds || [];
 
   if (videoIds.length === 0) return null;
 
   return (
-    <section className="py-24 px-4 bg-linear-to-b from-[#2e0249] to-black text-white relative overflow-hidden">
+    <section className="bg-linear-to-b from-[#2e0249] to-black text-white relative overflow-hidden">
       <div className="wrapper">
         <Reveal className="w-full! mb-[3rem]">
-          <h2 className="text-center font-bold leading-[135%]">Projects</h2>
-          <p className="text-h1 font-bold text-center">
-            Explore our Video Editing Portfolio
+          <h2 className="text-center font-bold leading-[135%]">{title}</h2>
+          <p className="text-body lg:text-h1 font-bold text-center">
+            {subtitile}
           </p>
         </Reveal>
 
@@ -40,12 +44,9 @@ export default function Projects({ data }: ProjectsProps) {
           ))}
         </div>
 
-        {/* CTA Button */}
-        <div className="text-center">
-          <button className="px-8 py-4 bg-[#9d34da] hover:bg-[#8a2cc0] text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-purple-500/25 hover:-translate-y-0.5">
-            Watch more our work
-          </button>
-        </div>
+        <button className="block m-auto px-4 py-5 bg-purple-100 text-white rounded-5 text-body">
+          Work with us
+        </button>
       </div>
     </section>
   );

@@ -5,8 +5,8 @@ import { Reveal } from "@/components/animations/Reveal";
 
 interface ServicesProps {
   data?: {
-    headline?: string;
-    subheadline?: string;
+    title?: string;
+    subtitle?: string;
     services?: Array<{
       title: string;
       description: string;
@@ -17,8 +17,8 @@ interface ServicesProps {
 
 export default function Services({ data }: ServicesProps) {
   // Use DB data or defaults
-  const headline = data?.headline ?? "Our Services";
-  const subheadline = data?.subheadline ?? "Consistent, Seamless & On-brand";
+  const title = data?.title ?? "Our Services";
+  const subtitle = data?.subtitle ?? "Consistent, Seamless & On-brand";
   const services = data?.services || [];
 
   if (services.length === 0) {
@@ -29,18 +29,21 @@ export default function Services({ data }: ServicesProps) {
     <section id="services" className="">
       <div className="wrapper">
         <Reveal className="w-full! mb-[3rem]">
-          <h2 className="text-center font-bold leading-[135%]">{headline}</h2>
-          <p className="text-h1 font-bold text-center">{subheadline}</p>
+          <h2 className="text-center font-bold leading-[135%]">{title}</h2>
+
+          <p className="text-body lg:text-h1 font-bold text-center">
+            {subtitle}
+          </p>
         </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[3rem]">
           {services.map((service, index) => (
             <Reveal
               key={index}
-              className="bg-linear-to-b from-purple-200 to-purple-300 text-white p-[3rem] rounded-3xl flex flex-col items-start text-left"
+              className="bg-linear-to-b from-purple-200 to-purple-300 text-white p-[3rem] rounded-3xl flex! flex-row! md:flex-col! items-start text-left"
             >
               {service.icon && (
-                <div className="relative w-[9.5rem] h-[9.5rem] mb-[1.4rem]">
+                <div className="relative size-[9.5rem] mb-[1.4rem]">
                   <Image
                     src={service.icon}
                     alt={service.title}
@@ -49,10 +52,12 @@ export default function Services({ data }: ServicesProps) {
                   />
                 </div>
               )}
-              <p className="text-h2 font-bold mb-[1.4rem]">{service.title}</p>
-              <p className="text-small text-white/80 leading-relaxed">
-                {service.description}
-              </p>
+              <div>
+                <p className="text-h2 font-bold mb-[1.4rem]">{service.title}</p>
+                <p className="text-small text-white/80 leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
             </Reveal>
           ))}
         </div>

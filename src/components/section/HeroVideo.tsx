@@ -1,9 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { Reveal } from "@/components/animations/Reveal";
 
-export default function HeroVideo() {
+export type HeroVideoData = {
+  videoUrl?: string;
+};
+
+interface HeroVideoProps {
+  data: HeroVideoData | null;
+}
+
+export default function HeroVideo({ data }: HeroVideoProps) {
+  const defaultVideo =
+    "https://res.cloudinary.com/dhxrsiqip/video/upload/v1764155115/Ophis_Intro_v01_xqoqrd.mp4";
+
+  const videoUrl = data?.videoUrl || defaultVideo;
+
   return (
     <section
       id="heroVideo"
@@ -16,16 +28,16 @@ export default function HeroVideo() {
         height={500}
         className="absolute opacity-25 z-0 bottom-0 left-0"
       />
-      <div className="wrapper">
+      <div className="wrapper relative z-10">
         <video
-          className="w-full h-auto p-[.6rem] md:p-rem bg-gray-300 rounded-5"
+          className="w-full h-auto p-[.6rem] md:p-rem bg-gray-300 rounded-5 shadow-2xl"
           autoPlay
           loop
           muted
           playsInline
           controls
+          src={videoUrl}
         >
-          <source src="https://res.cloudinary.com/dhxrsiqip/video/upload/v1764155115/Ophis_Intro_v01_xqoqrd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>

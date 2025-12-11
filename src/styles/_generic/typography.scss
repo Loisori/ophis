@@ -10,16 +10,13 @@
 //   font-family: "Poppins", sans-serif;
 // }
 
-h1,
-.h1 {
+h1 {
   @apply text-h1;
 }
-h2,
-.h2 {
-  @apply text-h2;
+h2 {
+  @apply text-smaller sm:text-h3 lg:text-h2;
 }
-h3,
-.h3 {
+h3 {
   @apply text-h3;
 }
 
