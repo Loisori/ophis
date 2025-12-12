@@ -70,17 +70,17 @@ export default function AutoCarousel({ data }: AutoCarouselProps) {
     >
       <div className="wrapper text-center">
         <Reveal>
-          <h2 className="mb-[3rem] font-bold">{title}</h2>
+          <h2 className="mb-5 sm:mb-8 font-bold">{title}</h2>
         </Reveal>
       </div>
-      <div className="embla overflow-hidden w-full" ref={emblaRef}>
+      <div className="wrapper embla overflow-hidden w-full" ref={emblaRef}>
         <div className="embla__container flex flex-nowrap">
           {slides.map((partner, index) => (
             <div
-              className="embla__slide p-[.6rem] mr-10 md:mr-25 border-solid border-[.1rem] border-[#6A0571] rounded-[1.5rem]"
+              className="embla__slide p-[.6rem] mr-5 sm:mr-10 md:mr-25 border-solid border-[.1rem] border-[#6A0571] rounded-[1.5rem]"
               key={`${partner.name}-${index}`}
             >
-              <div className="flex px-[2.5rem] py-rem rounded-[1.5rem] items-center gap-5 bg-linear-to-r from-purple-300 to-purple-200">
+              <div className="flex p-rem sm:px-[2.5rem] py-rem rounded-[1.5rem] items-center gap-1 sm:gap-5 bg-linear-to-r from-purple-300 to-purple-200">
                 {partner.logo && (
                   <Image
                     src={partner.logo}
@@ -91,8 +91,12 @@ export default function AutoCarousel({ data }: AutoCarouselProps) {
                   />
                 )}
                 <div className="whitespace-nowrap">
-                  <p className="text-body font-bold">{partner.name}</p>
-                  <p className="text-small">{partner.category}</p>
+                  <p className="text-smaller sm:text-body font-bold">
+                    {partner.name}
+                  </p>
+                  <p className="text-smallest sm:text-small">
+                    {partner.category}
+                  </p>
                 </div>
               </div>
             </div>

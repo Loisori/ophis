@@ -49,14 +49,16 @@ export default function Hero({ data }: HeroProps) {
         <div className="max-w-[47rem] max-xmd:m-auto xmd:mr-[9rem]">
           <Reveal animation="fade-up">
             <h2 className="mb-2 font-bold">{title}</h2>
-            <p className="text-smallest sm:text-small font-medium">{subtitle}</p>
+            <p className="text-smallest sm:text-small max-sm:text-center font-medium">
+              {subtitle}
+            </p>
           </Reveal>
         </div>
 
         <div className="block m-auto xmd:top-[-11rem] relative w-full xmd:w-[60rem] h-[39rem]">
           {/* Card 1: Top Left */}
 
-          <Reveal className="text-center absolute top-0 left-0 w-[28rem] p-5 md:p-[3rem] rounded-5 border-[.3rem] border-white bg-white/25">
+          <Reveal className="text-center absolute top-0 left-0 w-[28rem] p-5 md:p-8 rounded-5 border-[.3rem] border-white bg-white/25">
             <h2 className=" font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">
               {cards[0].title}
             </h2>
@@ -66,7 +68,7 @@ export default function Hero({ data }: HeroProps) {
           {/* Card 2: Middle Right */}
           <Reveal
             delay={0.25}
-            className="text-center absolute top-[27%] sm:top-[13%] left-[41%] sm:left-[62%] w-[32rem] p-5 md:p-[3rem] rounded-5 border-[.3rem] border-white bg-white/25 z-20"
+            className="text-center absolute top-[27%] sm:top-[13%] left-[41%] sm:left-[62%] w-[32rem] p-5 md:p-8 rounded-5 border-[.3rem] border-white bg-white/25 z-20"
           >
             {/* top-[5rem] left-[37rem] */}
             <h2 className=" font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">
@@ -78,7 +80,7 @@ export default function Hero({ data }: HeroProps) {
           {/* Card 3: Bottom Left */}
           <Reveal
             delay={0.5}
-            className="text-center absolute top-[53%] sm:top-[64%] left-[4%] sm:left-[8%] w-[28rem] p-5 md:p-[3rem] rounded-5 border-[.3rem] border-white bg-white/25 z-10"
+            className="text-center absolute top-[53%] sm:top-[64%] left-[4%] sm:left-[8%] w-[28rem] p-5 md:p-8 rounded-5 border-[.3rem] border-white bg-white/25 z-10"
           >
             {/* top-[25rem] left-[5rem] */}
             <h2 className=" font-bold leading-[1.5] mb-[0.5rem] whitespace-nowrap">

@@ -48,10 +48,9 @@ export default function Team({ data }: TeamProps) {
   return (
     <section className="py-24 px-4 bg-white text-black overflow-hidden">
       <div className="max-w-[106rem] mx-auto">
-        <Reveal className="w-full! mb-[3rem]">
+        <Reveal className="w-full! mb-4 lg:mb-8">
           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
-
-          <p className="text-body lg:text-h1 font-bold text-center">
+          <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">
             {subtitle}
           </p>
         </Reveal>
@@ -64,13 +63,13 @@ export default function Team({ data }: TeamProps) {
               <div
                 key={index}
                 className={`flex flex-col ${
-                  isEven ? "md:flex-row" : "md:flex-row-reverse"
+                  isEven ? "flex-row" : "flex-row-reverse"
                 } items-center gap-8 md:gap-16`}
               >
                 {/* Image Side */}
                 <div
                   className={`w-full md:w-1/2 flex justify-center ${
-                    isEven ? "md:justify-end" : "md:justify-start"
+                    isEven ? "justify-end" : "justify-start"
                   }`}
                 >
                   <div
@@ -101,8 +100,14 @@ export default function Team({ data }: TeamProps) {
                     <div className="w-1.5 bg-[#4a0b75] rounded-full shrink-0 min-h-[100px]" />
 
                     <div>
-                      <h2 className="font-bold">{member.name}</h2>
-                      <p className={`text-small ${!isEven && "ml-auto"}`}>
+                      <p className="text-small sm:text-h3 lg:text-h2 font-bold">
+                        {member.name}
+                      </p>
+                      <p
+                        className={` text-smallest sm:text-smaller lg:text-small ${
+                          !isEven && "ml-auto"
+                        }`}
+                      >
                         {member.description}
                       </p>
                     </div>

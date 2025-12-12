@@ -28,19 +28,19 @@ export default function Services({ data }: ServicesProps) {
   return (
     <section id="services" className="">
       <div className="wrapper">
-        <Reveal className="w-full! mb-[3rem]">
+        <Reveal className="w-full! mb-8">
           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
 
-          <p className="text-body lg:text-h1 font-bold text-center">
+          <p className="text-body lg:text-body sm:text-h2 lg:text-h1 font-bold text-center">
             {subtitle}
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-[3rem]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <Reveal
               key={index}
-              className="bg-linear-to-b from-purple-200 to-purple-300 text-white p-[3rem] rounded-3xl flex! flex-row! md:flex-col! items-start text-left"
+              className="bg-linear-to-b from-purple-200 to-purple-300 text-white p-8 rounded-3xl flex! flex-row! md:flex-col! items-start text-left"
             >
               {service.icon && (
                 <div className="relative size-[9.5rem] mb-[1.4rem]">

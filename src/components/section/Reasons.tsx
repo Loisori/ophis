@@ -74,21 +74,23 @@ export default function Reasons({ data }: ReasonsProps) {
 
       <div className="wrapper relative z-10">
         <Reveal className="text-center mb-16">
-          <h2 className="font-medium">
+          <h2 className="mb-rem font-medium">
             {/* Simple check to preserve the 'white' text color style if using default */}
             {headline === defaultHeadline ? (
               <>
-                Why Ophis is the <span className="text-h1">right choice?</span>
+                Why Ophis is the <span className="text-body lg:text-h1">right choice?</span>
               </>
             ) : (
               headline
             )}
           </h2>
-          <p className="text-small">{description}</p>
+          <p className="text-smallest sm:text-smaller lg:text-small">
+            {description}
+          </p>
         </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-[7rem] max-w-[81rem] mx-auto mb-16">
-          <Reveal className="relative p-5 md:p-[3rem] rounded-3xl bg-linear-to-r from-purple-300 to-purple-200 flex flex-col items-center text-center">
+          <Reveal className="relative p-5 md:p-8 rounded-3xl bg-linear-to-r from-purple-300 to-purple-200 flex flex-col items-center text-center">
             <h2 className="font-bold mb-3">Ophis</h2>
             <div className="w-full h-px bg-white mb-6" />
             <ul className="space-y-4 w-full text-left pl-4 md:pl-7">
@@ -104,7 +106,7 @@ export default function Reasons({ data }: ReasonsProps) {
             </ul>
           </Reveal>
 
-          <Reveal className="p-5 md:p-[3rem] rounded-3xl bg-gray-200 text-gray-900 flex flex-col items-center text-center shadow-xl">
+          <Reveal className="p-5 md:p-8 rounded-3xl bg-gray-200 text-gray-900 flex flex-col items-center text-center shadow-xl">
             <h2 className="font-bold mb-3">Other Agencies</h2>
             <div className="w-full h-px bg-black mb-6" />
             <ul className="space-y-4 w-full text-left pl-4 md:pl-7">
@@ -120,7 +122,7 @@ export default function Reasons({ data }: ReasonsProps) {
             </ul>
           </Reveal>
         </div>
-        <button className="block m-auto px-4 py-5 bg-purple-100 text-white rounded-5 text-body hover:bg-purple-200 transition-colors">
+        <button className="block m-auto px-4 py-5 bg-purple-100 text-smaller sm:text-small lg:text-white rounded-5 text-body hover:bg-purple-200 transition-colors">
           Work with us
         </button>
       </div>

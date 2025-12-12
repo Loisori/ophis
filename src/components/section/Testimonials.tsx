@@ -82,23 +82,23 @@ export default function Testimonials({ data }: TestimonialsProps) {
   return (
     <section className="">
       <div className="wrapper">
-        <Reveal className="w-full! mb-[3rem]">
+        <Reveal className="w-full! mb-8">
           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
-          <p className="text-body lg:text-h1 font-bold text-center">
+          <p className="text-body lg:text-body sm:text-h2 lg:text-h1 font-bold text-center">
             {subtitle}
           </p>
         </Reveal>
       </div>
-      <div className="embla w-full wrapper" >
+      <div className="embla w-full wrapper">
         <div className="embla w-full" ref={emblaRef}>
-          <div className="embla__container flex gap-22 py-10">
+          <div className="embla__container flex gap-8 lg:gap-22 py-10">
             {items.map((item, index) => (
               <div
                 className="embla__slide min-w-[80%] md:min-w-[45%] lg:min-w-[56rem]"
                 key={index}
               >
-                <div className="rounded-5 border-l-2 border-purple-300 p-5 h-full flex flex-col justify-between shadow-xl bg-white text-black">
-                  <ul className="flex gap-rem mb-5">
+                <div className="rounded-5 border-l-2 border-purple-300 p-5 lg:p-9 h-full justify-between shadow-xl bg-white text-black">
+                  <ul className="flex gap-rem mb-rem lg:mb-6">
                     <li>{star}</li>
                     <li>{star}</li>
                     <li>{star}</li>
@@ -106,8 +106,10 @@ export default function Testimonials({ data }: TestimonialsProps) {
                     <li>{star}</li>
                     <li className="ml-auto">{comma}</li>
                   </ul>
-                  <p className="text-small mb-20">"{item.content}"</p>
-                  <h3 className="text-body font-bold">- {item.name}</h3>
+                  <p className="mb-16 lg:mb-21 lg:text-small">"{item.content}"</p>
+                  <p className="text-smallest sm:text-small lg:text-body font-bold">
+                    - {item.name}
+                  </p>
                 </div>
               </div>
             ))}

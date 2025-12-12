@@ -94,29 +94,30 @@ export default function Pricing({ data }: PricingProps) {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-purple-900/20 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="wrapper mx-auto relative z-10">
-        <Reveal className="w-full! mb-[3rem]">
+        <Reveal className="w-full! mb-5 sm:mb-8">
           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
 
-          <p className="text-body lg:text-h1 font-bold text-center">
+          <p className="text-body lg:text-body sm:text-h2 lg:text-h1 font-bold text-center">
             {subtitle}
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-16">
           {plans.map((plan, i) => {
             const style = PLAN_STYLES[i] || PLAN_STYLES[0];
 
             return (
               <div
                 key={i}
-                className={`
-                relative flex flex-col p-8 rounded-2xl border-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl
+                className={`relative flex flex-col p-5 md:p-8 rounded-2xl border-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl
                 ${style.bgColor} ${style.glowColor}
               `}
               >
                 <div className="mb-8">
                   <div className="flex items-center gap-3 mb-2">
-                    <h2 className="font-medium uppercase">{plan.name}</h2>
+                    <p className="text-small sm:text-h3 lg:text-h2 font-medium uppercase">
+                      {plan.name}
+                    </p>
                     {plan.popular && (
                       <span className="bg-white/20 text-white text-[10px] px-2 py-0.5 rounded backdrop-blur-sm">
                         Most popular
@@ -125,15 +126,15 @@ export default function Pricing({ data }: PricingProps) {
                   </div>
                 </div>
 
-                <div className="flex-1 mb-10">
-                  <p className="text-small font-bold text-white mb-4">
+                <div className="text-smallest sm:text-smaller lg:text-small flex-1 mb-10">
+                  <p className="font-bold text-white mb-4">
                     What&apos;s included:
                   </p>
                   <ul className="space-y-3">
                     {plan.features.map((feature, fIndex) => (
                       <li
                         key={fIndex}
-                        className="flex items-start gap-3 text-small text-white "
+                        className="flex items-start gap-3 text-white "
                       >
                         <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-white shrink-0" />
                         <span>{feature}</span>
@@ -144,7 +145,7 @@ export default function Pricing({ data }: PricingProps) {
 
                 <div className="mt-auto">
                   {plan.price ? (
-                    <div className="text-[4.8rem] font-bold mb-6">
+                    <div className="text-h2 sm:text-h1 lg:text-[4.8rem] font-bold mb-6">
                       {plan.price}
                     </div>
                   ) : (

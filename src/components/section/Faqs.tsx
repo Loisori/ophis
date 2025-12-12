@@ -70,17 +70,17 @@ export default function Faqs({ data }: FaqsProps) {
   return (
     <section id="faps">
       <div className="wrapper">
-        <Reveal className="w-full! mb-[3rem]">
+        <Reveal className="w-full! mb-5 sm:mb-8">
           <h2 className="text-center font-bold leading-[135%]">
             {subheadline}
           </h2>
 
-          <p className="text-body lg:text-h1 font-bold text-center">
+          <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">
             {headline}
           </p>
         </Reveal>
 
-        <div className="space-y-4">
+        <div className="space-y-rem sm:space-y-5">
           {items.map((item, index) => {
             const isOpen = openIndex === index;
 
@@ -91,12 +91,12 @@ export default function Faqs({ data }: FaqsProps) {
               >
                 <button
                   onClick={() => toggleFaq(index)}
-                  className={`rounded-t-5 w-full flex items-center gap-5 px-6 py-4 text-left transition-colors ${
+                  className={`rounded-t-5 w-full flex items-center gap-rem sm:gap-5 px-5 sm:px-6 py-rem sm:py-4 text-left transition-colors ${
                     isOpen ? "bg-gray-200" : "bg-gray-200 hover:bg-gray-300"
                   }`}
                 >
                   {/* Icon Circle */}
-                  <div className="shrink-0 w-8 h-8 bg-[#2D1B4E] rounded-full flex items-center justify-center text-white">
+                  <div className="shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center text-white">
                     {isOpen ? (
                       // Minus Icon
                       <svg
@@ -105,7 +105,7 @@ export default function Faqs({ data }: FaqsProps) {
                         height="14"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke="currentColor"
+                        stroke="#2D1B4E"
                         strokeWidth="3"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -120,7 +120,7 @@ export default function Faqs({ data }: FaqsProps) {
                         height="14"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke="currentColor"
+                        stroke="#2D1B4E"
                         strokeWidth="3"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -145,7 +145,7 @@ export default function Faqs({ data }: FaqsProps) {
                       : "max-h-0 opacity-0"
                   }`}
                 >
-                  <div className="bg-purple-400 px-[5rem] py-8 bg-gray-50 text-smallest md:text-small text-white leading-relaxed border-t border-gray-200 whitespace-pre-wrap">
+                  <div className="bg-purple-400 p-5 sm:px-[5rem] sm:py-8 bg-gray-50 text-smallest md:text-small text-white leading-relaxed border-t border-gray-200 whitespace-pre-wrap">
                     {item.answer}
                   </div>
                 </div>

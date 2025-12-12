@@ -34,9 +34,9 @@
 //   return (
 //     <section className="" id="timeline">
 //       <div className="wrapper">
-//         <Reveal className="w-full! mb-[3rem]">
+//         <Reveal className="w-full! mb-8">
 //           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
-//           <p className="text-h1 font-bold text-center">{subtitile}</p>
+//           <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">{subtitile}</p>
 //           <button className="block m-auto px-4 py-5 bg-purple-100 text-white rounded-5 text-body">
 //             Work with us
 //           </button>
@@ -78,13 +78,13 @@
 
 //                     {isEven && (
 //                       <div>
-//                         <div className="size-12 inline-flex items-center justify-center rounded-full bg-purple-200 text-white font-bold text-h2">
+//                         <div className="size-8 sm:size-12 inline-flex mb-3 sm:mb-5 items-center justify-center rounded-full bg-purple-200 text-white font-bold text-body sm:text-h2">
 //                           {step.id}
 //                         </div>
 //                         <h3 className="text-body font-bold mb-[.5rem]">
 //                           {step.title}
 //                         </h3>
-//                         <p className="text-body font-normal">
+//                         <p className="text-smallest sm:text-small lg:text-body font-normal">
 //                           {step.description}
 //                         </p>
 //                       </div>
@@ -117,13 +117,13 @@
 
 //                     {!isEven && (
 //                       <div className="text-left">
-//                         <div className="size-12 inline-flex items-center justify-center rounded-full bg-purple-200 text-white font-bold text-h2">
+//                         <div className="size-8 sm:size-12 inline-flex mb-3 sm:mb-5 items-center justify-center rounded-full bg-purple-200 text-white font-bold text-body sm:text-h2">
 //                           {step.id}
 //                         </div>
 //                         <h3 className="text-body font-bold mb-[.5rem]">
 //                           {step.title}
 //                         </h3>
-//                         <p className="text-body font-normal">
+//                         <p className="text-smallest sm:text-small lg:text-body font-normal">
 //                           {step.description}
 //                         </p>
 //                       </div>
@@ -144,12 +144,6 @@
 //     </section>
 //   );
 // }
-
-
-
-
-
-
 
 // "use client";
 
@@ -232,13 +226,13 @@
 
 //         {isEven && (
 //           <div>
-//             <div className="size-12 inline-flex items-center justify-center rounded-full bg-purple-200 text-white font-bold text-h2">
+//             <div className="size-8 sm:size-12 inline-flex mb-3 sm:mb-5 items-center justify-center rounded-full bg-purple-200 text-white font-bold text-body sm:text-h2">
 //               {step.id}
 //             </div>
-//             <h3 className="text-body font-bold mb-[.5rem] transition-colors duration-300">
+//             <p className="text-smallest sm:text-small lg:text-body font-bold mb-[.5rem] transition-colors duration-300">
 //               {step.title}
-//             </h3>
-//             <p className="text-body font-normal">{step.description}</p>
+//             </p>
+//             <p className="text-smallest sm:text-small lg:text-body font-normal">{step.description}</p>
 //           </div>
 //         )}
 //       </div>
@@ -283,13 +277,13 @@
 
 //         {!isEven && (
 //           <div className="text-left">
-//             <div className="size-12 inline-flex items-center justify-center rounded-full bg-purple-200 text-white font-bold text-h2">
+//             <div className="size-8 sm:size-12 inline-flex mb-3 sm:mb-5 items-center justify-center rounded-full bg-purple-200 text-white font-bold text-body sm:text-h2">
 //               {step.id}
 //             </div>
-//             <h3 className="text-body font-bold mb-[.5rem] transition-colors duration-300">
+//             <p className="text-smallest sm:text-small lg:text-body font-bold mb-[.5rem] transition-colors duration-300">
 //               {step.title}
-//             </h3>
-//             <p className="text-body font-normal">{step.description}</p>
+//             </p>
+//             <p className="text-smallest sm:text-small lg:text-body font-normal">{step.description}</p>
 //           </div>
 //         )}
 //       </div>
@@ -314,9 +308,9 @@
 //   return (
 //     <section className="" id="timeline">
 //       <div className="wrapper">
-//         <Reveal className="w-full! mb-[3rem]">
+//         <Reveal className="w-full! mb-8">
 //           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
-//           <p className="text-h1 font-bold text-center">{subtitile}</p>
+//           <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">{subtitile}</p>
 //           <button className="block m-auto px-4 py-5 bg-purple-100 text-white rounded-5 text-body">
 //             Work with us
 //           </button>
@@ -382,12 +376,12 @@ const TimelineStep = ({ step, index }: { step: Step; index: number }) => {
     <div
       ref={ref}
       // Added py-12 to create spacing between items while keeping the 'box' continuous for the line
-      className="relative flex flex-row items-center md:justify-between gap-8 md:gap-15 py-[5rem]"
+      className="relative flex flex-row items-center md:justify-between gap-11 md:gap-17 py-1 lg:py-6"
     >
       {/* --- THE DYNAMIC LINE SEGMENT --- */}
       {/* This line sits behind the content and changes color */}
       <div
-        className={`absolute left-1/2 transform -translate-x-1/2 w-[3px] h-full hidden md:block transition-colors duration-700 ease-in-out -z-10
+        className={`absolute left-1/2 transform -translate-x-1/2 w-[3px] h-full block transition-colors duration-700 ease-in-out -z-10
           ${isInView ? "bg-[#4a0b75]" : "bg-[#E5E5E5]"}
         `}
       />
@@ -395,9 +389,7 @@ const TimelineStep = ({ step, index }: { step: Step; index: number }) => {
       {/* --- LEFT SIDE --- */}
       <div
         className={`w-full md:w-[45%] ${
-          isEven
-            ? "md:text-right order-2 md:order-1"
-            : "md:text-right order-1 flex md:justify-end"
+          isEven ? "text-right order-1" : "text-right order-1 flex justify-end"
         }`}
       >
         {!isEven && (
@@ -429,13 +421,15 @@ const TimelineStep = ({ step, index }: { step: Step; index: number }) => {
 
         {isEven && (
           <div>
-            <div className="size-12 inline-flex items-center justify-center rounded-full bg-purple-200 text-white font-bold text-h2">
+            <div className="size-8 sm:size-12 inline-flex mb-3 sm:mb-5 items-center justify-center rounded-full bg-purple-200 text-white font-bold text-body sm:text-h2">
               {step.id}
             </div>
-            <h3 className="text-body font-bold mb-[.5rem] transition-colors duration-300">
+            <p className="text-smallest sm:text-small lg:text-body font-bold mb-[.5rem] transition-colors duration-300">
               {step.title}
-            </h3>
-            <p className="text-body font-normal">{step.description}</p>
+            </p>
+            <p className="text-smallest sm:text-small lg:text-body font-normal">
+              {step.description}
+            </p>
           </div>
         )}
       </div>
@@ -477,13 +471,15 @@ const TimelineStep = ({ step, index }: { step: Step; index: number }) => {
 
         {!isEven && (
           <div className="text-left">
-            <div className="size-12 inline-flex items-center justify-center rounded-full bg-purple-200 text-white font-bold text-h2">
+            <div className="size-8 sm:size-12 inline-flex mb-3 sm:mb-5 items-center justify-center rounded-full bg-purple-200 text-white font-bold text-body sm:text-h2">
               {step.id}
             </div>
-            <h3 className="text-body font-bold mb-[.5rem] transition-colors duration-300">
+            <p className="text-smallest sm:text-small lg:text-body font-bold mb-[.5rem] transition-colors duration-300">
               {step.title}
-            </h3>
-            <p className="text-body font-normal">{step.description}</p>
+            </p>
+            <p className="text-smallest sm:text-small lg:text-body font-normal">
+              {step.description}
+            </p>
           </div>
         )}
       </div>
@@ -508,10 +504,12 @@ export default function Timeline({ data }: TimelineProps) {
   return (
     <section className="" id="timeline">
       <div className="wrapper">
-        <Reveal className="w-full! mb-[3rem]">
+        <Reveal className="w-full! mb-8">
           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
-          <p className="text-h1 font-bold text-center">{subtitile}</p>
-          <button className="block m-auto px-4 py-5 bg-purple-100 text-white rounded-5 text-body">
+          <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">
+            {subtitile}
+          </p>
+          <button className="block m-auto px-4 py-5 bg-purple-100 text-smaller sm:text-small lg:text-body text-white rounded-5 hover:bg-purple-200 transition-colors">
             Work with us
           </button>
         </Reveal>
@@ -524,11 +522,13 @@ export default function Timeline({ data }: TimelineProps) {
             ))}
           </div>
         </div>
-        
+
         <div className="mt-32 text-center mx-auto">
           <Reveal>
             <h2 className="font-normal">{quote}</h2>
-            <p className="text-small">{subquote}</p>
+            <p className="text-smallest sm:text-smaller lg:text-small">
+              {subquote}
+            </p>
           </Reveal>
         </div>
       </div>
