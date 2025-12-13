@@ -138,7 +138,7 @@ export default function Projects({ data }: ProjectsProps) {
   if (videoIds.length === 0) return null;
 
   return (
-    <section className="bg-gradient-to-b from-[#2e0249] to-black text-white relative overflow-hidden py-20">
+    <section className="bg-linear-to-b from-[#2e0249] to-black text-white relative overflow-hidden py-20">
       <div className="wrapper">
         <Reveal className="w-full! mb-8">
           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
