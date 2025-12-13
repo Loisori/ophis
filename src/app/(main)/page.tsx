@@ -47,8 +47,9 @@ export default async function Home() {
     ?.content?.data as any | null;
   const teamData = page?.sections.find((s: any) => s.type === "team")?.content
     ?.data as any | null;
-    const testimonialsData = page?.sections.find((s: any) => s.type === "testimonials")?.content
-    ?.data as any | null;
+  const testimonialsData = page?.sections.find(
+    (s: any) => s.type === "testimonials"
+  )?.content?.data as any | null;
   return (
     <main>
       <Header />
@@ -59,9 +60,9 @@ export default async function Home() {
       <Projects data={projectsData ?? null} />
       <Services data={servicesData ?? null} />
 
-      <Testimonials data={testimonialsData ?? null}/>
+      <Testimonials data={testimonialsData ?? null} />
       <Reasons data={reasonsData ?? null} />
-      <Team data={teamData ?? null} />
+      {/* <Team data={teamData ?? null} /> */}
       <Pricing data={pricingData ?? null} />
       <Faqs data={faqsData ?? null} />
       <Footer />

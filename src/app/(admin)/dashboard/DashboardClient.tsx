@@ -147,13 +147,13 @@ export default function DashboardClient({
       position: 8,
       description: "Service offerings cards",
     },
-    {
-      id: "team",
-      label: "Team",
-      data: teamSection,
-      position: 7,
-      description: "Meet our brains section",
-    },
+    // {
+    //   id: "team",
+    //   label: "Team",
+    //   data: teamSection,
+    //   position: 9,
+    //   description: "Meet our brains section",
+    // },
     {
       id: "pricing",
       label: "Pricing",
@@ -236,13 +236,13 @@ export default function DashboardClient({
             initialData={heroVideoSection.content?.data}
           />
         );
-      case "team":
-        return (
-          <TeamEditor
-            sectionId={teamSection.id}
-            initialData={teamSection.content?.data}
-          />
-        );
+      // case "team":
+      //   return (
+      //     <TeamEditor
+      //       sectionId={teamSection.id}
+      //       initialData={teamSection.content?.data}
+      //     />
+      //   );
       case "faqs":
         return (
           <FaqsEditor
@@ -257,11 +257,9 @@ export default function DashboardClient({
 
   return (
     <div className="min-h-screen bg-[#0f0518] text-white font-sans selection:bg-purple-500/30">
-      {/* Ambient Background */}
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-purple-900/20 via-[#0f0518] to-[#0f0518] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 py-12">
-        {/* Header */}
         <header className="flex items-center justify-between mb-12">
           <div className="flex items-center gap-4">
             <Image
@@ -277,9 +275,7 @@ export default function DashboardClient({
           </div>
         </header>
 
-        {/* --- MAIN CONTENT --- */}
         {activeSection ? (
-          // EDITOR VIEW
           <div className="animate-in fade-in slide-in-from-right-4 duration-300">
             <button
               onClick={() => setActiveSection(null)}
@@ -304,7 +300,6 @@ export default function DashboardClient({
             </div>
           </div>
         ) : (
-          // LIST VIEW (The "Overview List")
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <h1 className="text-3xl font-bold mb-8">Sections</h1>
 

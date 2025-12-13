@@ -6,7 +6,6 @@ import Reasons from "@/components/section/Reasons";
 export const dynamic = "force-dynamic";
 
 export default async function AdminHome() {
-  // 1. Fetch / Ensure Data Exists
   const page = await prisma.page.upsert({
     where: { slug: "/" },
     update: {},
