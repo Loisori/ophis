@@ -122,7 +122,7 @@ export default function Reasons({ data }: ReasonsProps) {
             </ul>
           </Reveal>
         </div>
-        <button className="block m-auto px-4 py-5 bg-purple-100 text-smaller sm:text-small lg:text-white rounded-5 text-body hover:bg-purple-200 transition-colors">
+        <button className="block m-auto px-4 py-5 bg-purple-100 text-smaller sm:text-small lg:text-white rounded-5 hover:bg-purple-200 transition-colors">
           Work with us
         </button>
       </div>

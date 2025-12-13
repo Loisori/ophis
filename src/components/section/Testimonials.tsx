@@ -84,7 +84,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
       <div className="wrapper">
         <Reveal className="w-full! mb-8">
           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
-          <p className="text-body lg:text-body sm:text-h2 lg:text-h1 font-bold text-center">
+          <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">
             {subtitle}
           </p>
         </Reveal>
@@ -106,7 +106,9 @@ export default function Testimonials({ data }: TestimonialsProps) {
                     <li>{star}</li>
                     <li className="ml-auto">{comma}</li>
                   </ul>
-                  <p className="mb-16 lg:mb-21 lg:text-small">"{item.content}"</p>
+                  <p className="mb-16 lg:mb-21 lg:text-small">
+                    "{item.content}"
+                  </p>
                   <p className="text-smallest sm:text-small lg:text-body font-bold">
                     - {item.name}
                   </p>

@@ -33,7 +33,6 @@ export default function HeroVideo({ data }: HeroVideoProps) {
           className="w-full h-auto p-[.6rem] md:p-rem bg-gray-300 rounded-5 shadow-2xl"
           autoPlay
           loop
-          muted
           playsInline
           controls
           src={videoUrl}

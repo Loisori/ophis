@@ -31,7 +31,7 @@ export default function Services({ data }: ServicesProps) {
         <Reveal className="w-full! mb-8">
           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
 
-          <p className="text-body lg:text-body sm:text-h2 lg:text-h1 font-bold text-center">
+          <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">
             {subtitle}
           </p>
         </Reveal>

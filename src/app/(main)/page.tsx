@@ -1,19 +1,21 @@
 import Hero, { type HeroData } from "@/components/section/Hero";
-import Header from "@/components/section/Header";
-import HeroVideo from "@/components/section/HeroVideo";
+import dynamic from "next/dynamic";
 import AutoCarousel, {
   type CarouselData,
 } from "@/components/section/AutoCarousel";
 import { prisma } from "@/lib/prisma";
-import Footer from "@/components/section/Footer";
-import Timeline from "@/components/section/Timeline";
-import Projects from "@/components/section/Projects";
-import Services from "@/components/section/Services";
-import Testimonials from "@/components/section/Testimonials";
-import Reasons from "@/components/section/Reasons";
-import Team from "@/components/section/Team";
-import Faqs from "@/components/section/Faqs";
-import Pricing from "@/components/section/Pricing";
+
+const Header = dynamic(() => import("@/components/section/Header"));
+const Footer = dynamic(() => import("@/components/section/Footer"));
+const HeroVideo = dynamic(() => import("@/components/section/HeroVideo"));
+const Timeline = dynamic(() => import("@/components/section/Timeline"));
+const Projects = dynamic(() => import("@/components/section/Projects"));
+const Services = dynamic(() => import("@/components/section/Services"));
+const Testimonials = dynamic(() => import("@/components/section/Testimonials"));
+const Reasons = dynamic(() => import("@/components/section/Reasons"));
+const Team = dynamic(() => import("@/components/section/Team"));
+const Faqs = dynamic(() => import("@/components/section/Faqs"));
+const Pricing = dynamic(() => import("@/components/section/Pricing"));
 
 export default async function Home() {
   const page = await prisma.page.findUnique({
