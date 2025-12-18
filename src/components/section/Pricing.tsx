@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/animations/Reveal";
+import Link from "next/link";
 
 export type PricingPlan = {
   name: string;
@@ -90,14 +91,16 @@ export default function Pricing({ data }: PricingProps) {
     data?.plans && data.plans.length === 3 ? data.plans : defaultPlans;
 
   return (
-    <section className="py-20 px-4 bg-linear-to-b from-purple-400 to-black text-white overflow-hidden relative">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-purple-900/20 blur-[120px] rounded-full pointer-events-none" />
-
+    <section
+      id="pricing"
+      className="py-20 px-4  text-white overflow-hidden relative"
+    >
+      {/* bg-linear-to-b from-purple-400 to-black text-white */}
       <div className="wrapper mx-auto relative z-10">
-        <Reveal className="w-full! mb-5 sm:mb-8">
-          <h2 className="text-center font-bold leading-[135%]">{title}</h2>
+        <Reveal className="w-full mb-5 sm:mb-8 text-black text-center">
+          <h2 className="font-bold leading-[135%]">{title}</h2>
 
-          <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">
+          <p className="text-body sm:text-h2 lg:text-h1 font-bold">
             {subtitle}
           </p>
         </Reveal>
@@ -107,9 +110,10 @@ export default function Pricing({ data }: PricingProps) {
             const style = PLAN_STYLES[i] || PLAN_STYLES[0];
 
             return (
-              <div
+              <Reveal
                 key={i}
-                className={`relative flex flex-col p-5 md:p-8 rounded-2xl border-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl
+                delay={i * 0.2}
+                className={`relative w-full flex flex-col p-5 md:p-8 rounded-2xl border-2
                 ${style.bgColor} ${style.glowColor}
               `}
               >
@@ -119,7 +123,7 @@ export default function Pricing({ data }: PricingProps) {
                       {plan.name}
                     </p>
                     {plan.popular && (
-                      <span className="bg-white/20 text-white text-[10px] px-2 py-0.5 rounded backdrop-blur-sm">
+                      <span className="bg-white text-purple-400 font-bold text-[13px] px-2 py-0.5 rounded backdrop-blur-sm">
                         Most popular
                       </span>
                     )}
@@ -134,16 +138,16 @@ export default function Pricing({ data }: PricingProps) {
                     {plan.features.map((feature, fIndex) => (
                       <li
                         key={fIndex}
-                        className="flex items-start gap-3 text-white "
+                        className="flex items-start gap-3 text-white"
                       >
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                        <span className="mt-rem size-1 rounded-full bg-white shrink-0" />
                         <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="mt-auto">
+                <div className="mt-auto!">
                   {plan.price ? (
                     <div className="text-h2 sm:text-h1 lg:text-[4.8rem] font-bold mb-6">
                       {plan.price}
@@ -152,11 +156,15 @@ export default function Pricing({ data }: PricingProps) {
                     <div className="h-10 mb-6" />
                   )}
 
-                  <button className="w-full py-3 px-6 bg-white text-purple-900 font-bold rounded-lg hover:bg-gray-100 transition-colors shadow-lg active:scale-95 duration-200">
+                  <Link
+                    href="https://calendly.com/theophisediting/30min"
+                    target="_blank"
+                    className="button--secondary"
+                  >
                     {plan.cta}
-                  </button>
+                  </Link>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

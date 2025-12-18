@@ -21,8 +21,7 @@ interface TestimonialsProps {
 
 const star = (
   <svg
-    width="30"
-    height="29"
+    className="size-full"
     viewBox="0 0 30 29"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -36,8 +35,7 @@ const star = (
 
 const comma = (
   <svg
-    width="53"
-    height="40"
+    className="size-full"
     viewBox="0 0 53 40"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -80,9 +78,9 @@ export default function Testimonials({ data }: TestimonialsProps) {
   }
 
   return (
-    <section className="">
+    <section id="testimonials" className="">
       <div className="wrapper">
-        <Reveal className="w-full! mb-8">
+        <Reveal className="w-full mb-8">
           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
           <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">
             {subtitle}
@@ -94,19 +92,32 @@ export default function Testimonials({ data }: TestimonialsProps) {
           <div className="embla__container flex gap-8 lg:gap-22 py-10">
             {items.map((item, index) => (
               <div
+                // delay={index < 2 ? index * 0.2 : 0}
                 className="embla__slide min-w-[80%] md:min-w-[45%] lg:min-w-[56rem]"
                 key={index}
               >
-                <div className="rounded-5 border-l-2 border-purple-300 p-5 lg:p-9 h-full justify-between shadow-xl bg-white text-black">
-                  <ul className="flex gap-rem mb-rem lg:mb-6">
-                    <li>{star}</li>
-                    <li>{star}</li>
-                    <li>{star}</li>
-                    <li>{star}</li>
-                    <li>{star}</li>
-                    <li className="ml-auto">{comma}</li>
+                <div className="rounded-5 border-l-5 border-purple-300 p-5 lg:p-9 h-full justify-between shadow-[3px_5px_10px_0px_rgba(0,0,0,0.25)] bg-white text-black">
+                  <ul className="flex gap-1 sm:gap-rem mb-rem lg:mb-6">
+                    <li>
+                      <div className="size-4 sm:size-8">{star}</div>
+                    </li>
+                    <li>
+                      <div className="size-4 sm:size-8">{star}</div>
+                    </li>
+                    <li>
+                      <div className="size-4 sm:size-8">{star}</div>
+                    </li>
+                    <li>
+                      <div className="size-4 sm:size-8">{star}</div>
+                    </li>
+                    <li>
+                      <div className="size-4 sm:size-8">{star}</div>
+                    </li>
+                    <li className="ml-auto">
+                      <div className="w-7 h-5 sm:w-12 sm:h-10">{comma}</div>
+                    </li>
                   </ul>
-                  <p className="mb-16 lg:mb-21 lg:text-small">
+                  <p className="mb-16 lg:mb-21 text-smallest sm:text-small lg:text-small">
                     "{item.content}"
                   </p>
                   <p className="text-smallest sm:text-small lg:text-body font-bold">

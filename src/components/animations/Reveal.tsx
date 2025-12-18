@@ -13,7 +13,7 @@ type AnimationType =
 
 interface RevealProps {
   children: React.ReactNode;
-  width?: "fit-content" | "100%";
+  // width?: "fit-content" | "100%";
   animation?: AnimationType;
   duration?: number;
   delay?: number;
@@ -22,7 +22,7 @@ interface RevealProps {
 
 export const Reveal = ({ 
   children, 
-  width = "fit-content", 
+  // width = "fit-content", 
   animation = "fade-up", 
   duration = 0.5, 
   delay = 0.25,
@@ -63,10 +63,10 @@ export const Reveal = ({
     <motion.div
       className={className}
       style={{ 
-        width, 
+        // width, 
         // Note: We removed 'overflow: hidden' because we are no longer masking text inside a box.
         // We are moving the whole box itself.
-        display: width === "fit-content" ? "inline-block" : "block" 
+        // display: width === "fit-content" ? "inline-block" : "block" 
       }}
       variants={variants[animation]}
       initial="hidden"

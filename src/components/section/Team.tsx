@@ -48,7 +48,7 @@ export default function Team({ data }: TeamProps) {
   return (
     <section className="py-24 px-4 bg-white text-black overflow-hidden">
       <div className="max-w-[106rem] mx-auto">
-        <Reveal className="w-full! mb-4 lg:mb-8">
+        <Reveal className="w-full mb-4 lg:mb-8">
           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
           <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">
             {subtitle}

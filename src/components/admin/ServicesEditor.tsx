@@ -277,7 +277,7 @@ export default function ServicesEditor({
         <div className="text-xs">
           {message && (
             <span className="text-emerald-400 font-medium flex items-center gap-1">
-              ✨ {message}
+              {message}
             </span>
           )}
           {error && (

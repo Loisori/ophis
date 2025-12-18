@@ -60,9 +60,8 @@ export default async function Home() {
       <HeroVideo data={heroVideoData ?? null} />
       <Timeline data={timelineData ?? null} />
       <Projects data={projectsData ?? null} />
-      <Services data={servicesData ?? null} />
-
       <Testimonials data={testimonialsData ?? null} />
+      <Services data={servicesData ?? null} />
       <Reasons data={reasonsData ?? null} />
       {/* <Team data={teamData ?? null} /> */}
       <Pricing data={pricingData ?? null} />

@@ -34,7 +34,7 @@
 //   return (
 //     <section className="" id="timeline">
 //       <div className="wrapper">
-//         <Reveal className="w-full! mb-8">
+//         <Reveal className="w-full mb-8">
 //           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
 //           <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">{subtitile}</p>
 //           <button className="block m-auto px-4 py-5 bg-purple-100 text-white rounded-5 text-body">
@@ -308,7 +308,7 @@
 //   return (
 //     <section className="" id="timeline">
 //       <div className="wrapper">
-//         <Reveal className="w-full! mb-8">
+//         <Reveal className="w-full mb-8">
 //           <h2 className="text-center font-bold leading-[135%]">{title}</h2>
 //           <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">{subtitile}</p>
 //           <button className="block m-auto px-4 py-5 bg-purple-100 text-white rounded-5 text-body">
@@ -341,6 +341,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/animations/Reveal";
 import { useInView } from "framer-motion";
+import Link from "next/link";
 
 // --- Types ---
 interface Step {
@@ -443,7 +444,7 @@ const TimelineStep = ({ step, index }: { step: Step; index: number }) => {
         }`}
       >
         {isEven && (
-          <div className="size-15 md:size-20 lg:size-25 rounded-full flex items-center justify-center z-10 bg-white">
+          <div className="size-15 md:size-20 lg:size-25 rounded-full flex  items-center justify-center z-10 bg-white">
             <div className="relative w-full h-full">
               {step.icon && (
                 <Image
@@ -504,14 +505,20 @@ export default function Timeline({ data }: TimelineProps) {
   return (
     <section className="" id="timeline">
       <div className="wrapper">
-        <Reveal className="w-full! mb-8">
-          <h2 className="text-center font-bold leading-[135%]">{title}</h2>
-          <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">
-            {subtitile}
-          </p>
-          <button className="block m-auto px-4 py-5 bg-purple-100 text-smaller sm:text-small lg:text-body text-white rounded-5 hover:bg-purple-200 transition-colors">
+        <Reveal className="w-full mb-8">
+          <div className="mb-8">
+            <h2 className="text-center font-bold leading-[135%]">{title}</h2>
+            <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">
+              {subtitile}
+            </p>
+          </div>
+          <Link
+            href="https://calendly.com/theophisediting/30min"
+            target="_blank"
+            className="button--primary"
+          >
             Work with us
-          </button>
+          </Link>
         </Reveal>
 
         <div className="relative">
@@ -525,10 +532,14 @@ export default function Timeline({ data }: TimelineProps) {
 
         <div className="mt-32 text-center mx-auto">
           <Reveal>
-            <h2 className="font-normal">{quote}</h2>
-            <p className="text-smallest sm:text-smaller lg:text-small">
+            <h2
+              className="font-normal "
+              dangerouslySetInnerHTML={{ __html: quote }}
+            />
+            <p className="max-w-[87rem] m-auto text-smallest sm:text-smaller lg:text-small">
               {subquote}
             </p>
+            <p className="text-purple-200"></p>
           </Reveal>
         </div>
       </div>

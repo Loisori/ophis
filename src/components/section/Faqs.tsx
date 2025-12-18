@@ -23,7 +23,6 @@ export default function Faqs({ data }: FaqsProps) {
   const headline = data?.headline ?? "Frequently asked questions";
   const subheadline = data?.subheadline ?? "FAQ's";
 
-  // Default hardcoded data if DB is empty
   const defaultItems: FaqItem[] = [
     {
       question: "Who is this service designed for?",
@@ -60,7 +59,6 @@ export default function Faqs({ data }: FaqsProps) {
   const items =
     data?.items && data.items.length > 0 ? data.items : defaultItems;
 
-  // State to track which FAQ is currently open (null = all closed)
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
@@ -68,9 +66,9 @@ export default function Faqs({ data }: FaqsProps) {
   };
 
   return (
-    <section id="faps">
+    <section id="faqs">
       <div className="wrapper">
-        <Reveal className="w-full! mb-5 sm:mb-8">
+        <Reveal className="w-full mb-5 sm:mb-8">
           <h2 className="text-center font-bold leading-[135%]">
             {subheadline}
           </h2>
@@ -85,20 +83,15 @@ export default function Faqs({ data }: FaqsProps) {
             const isOpen = openIndex === index;
 
             return (
-              <div
-                key={index}
-                className="overflow-hidden transition-all duration-200"
-              >
+              <Reveal key={index} className="overflow-hidden rounded-5">
                 <button
                   onClick={() => toggleFaq(index)}
-                  className={`rounded-t-5 w-full flex items-center gap-rem sm:gap-5 px-5 sm:px-6 py-rem sm:py-4 text-left transition-colors ${
+                  className={`w-full flex items-center gap-rem sm:gap-5 px-5 sm:px-6 py-rem sm:py-4 text-left transition-colors cursor-pointer ${
                     isOpen ? "bg-gray-200" : "bg-gray-200 hover:bg-gray-300"
                   }`}
                 >
-                  {/* Icon Circle */}
-                  <div className="shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center text-white">
+                  <div className="shrink-0 size-8 bg-white rounded-full flex items-center justify-center text-white">
                     {isOpen ? (
-                      // Minus Icon
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="14"
@@ -113,7 +106,6 @@ export default function Faqs({ data }: FaqsProps) {
                         <path d="M5 12h14" />
                       </svg>
                     ) : (
-                      // Plus Icon
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="14"
@@ -131,25 +123,21 @@ export default function Faqs({ data }: FaqsProps) {
                     )}
                   </div>
 
-                  {/* Question Text */}
                   <span className="text-smallest md:text-body font-normal text-black">
                     {item.question}
                   </span>
                 </button>
 
-                {/* Answer Content (Animated) */}
                 <div
-                  className={`rounded-b-5 overflow-hidden transition-all duration-300 ease-in-out ${
-                    isOpen
-                      ? "max-h-[100rem] opacity-100" // Increased max-h for longer answers
-                      : "max-h-0 opacity-0"
+                  className={`rounded-b-5 overflow-hidden transition-all duration-400 ease-in-out ${
+                    isOpen ? "max-h-[100rem] opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
                   <div className="bg-purple-400 p-5 sm:px-[5rem] sm:py-8 bg-gray-50 text-smallest md:text-small text-white leading-relaxed border-t border-gray-200 whitespace-pre-wrap">
                     {item.answer}
                   </div>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Reveal } from "@/components/animations/Reveal";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -17,11 +18,21 @@ export default function Footer() {
         className="mr-2"
       />
       <ul className="flex gap-8 text-smaller sm:text-body font-normal">
-        <li>About</li>
-        <li>Projects</li>
-        <li>Services</li>
-        <li>Pricing</li>
-        <li>FAQ’s</li>
+        <li>
+          <Link href="#about">About</Link>
+        </li>
+        <li>
+          <Link href="#projects">Projects</Link>
+        </li>
+        <li>
+          <Link href="#services">Services</Link>
+        </li>
+        <li>
+          <Link href="#pricing">Pricing</Link>
+        </li>
+        <li>
+          <Link href="#faqs">FAQ’s</Link>
+        </li>
       </ul>
     </footer>
   );

@@ -1,16 +1,16 @@
-// .button {
-//   &--primary {
-//     @apply px-[4.8rem] py-[2.4rem] bg-white text-white text-body w-fit cursor-pointer hover:bg-[#3f4449] transition-all duration-300;
-//   }
-// }
-
+.button {
+  &--primary {
+    @apply block w-fit m-auto px-8 py-5 bg-purple-100 text-white text-smaller sm:text-small lg:text-body rounded-5 hover:bg-purple-200 transition-colors cursor-pointer;
+  }
+  &--secondary {
+    @apply block w-full py-3 px-6 bg-white text-body text-center text-purple-900 rounded-lg hover:bg-gray-100 transition-colors shadow-lg active:scale-95 duration-200 cursor-pointer;
+  }
+}
 
 // // Hamburger menu icon
 
 #nav-icon3 {
-  width: 40px;
-  height: 30px;
-  position: relative;
+  @apply relative w-8 h-8;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -23,14 +23,7 @@
 }
 
 #nav-icon3 span {
-  display: block;
-  position: absolute;
-  height: 6px;
-  width: 100%;
-  background: #ffffff;
-  border-radius: 9px;
-  opacity: 1;
-  left: 0;
+  @apply block absolute h-1 w-full bg-white rounded-4 opacity-100 left-0;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -42,16 +35,16 @@
 }
 
 #nav-icon3 span:nth-child(1) {
-  top: 0px;
+  @apply top-0;
 }
 
 #nav-icon3 span:nth-child(2),
 #nav-icon3 span:nth-child(3) {
-  top: 12px;
+  @apply top-3;
 }
 
 #nav-icon3 span:nth-child(4) {
-  top: 24px;
+  @apply top-6;
 }
 
 #nav-icon3.open span:nth-child(1) {

@@ -211,7 +211,11 @@ export default function TimelineEditor({
         </div>
         <div className="space-y-1">
           <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
-            Quote
+            Quote{" "}
+            {
+              'put the words you want to highlight inside <span class="text-purple-200 font-bold">...</span>'
+            }
+            '
           </label>
           <input
             type="text"
@@ -331,7 +335,7 @@ export default function TimelineEditor({
         <div className="text-xs">
           {message && (
             <span className="text-emerald-400 font-medium flex items-center gap-1">
-              ✨ {message}
+              {message}
             </span>
           )}
           {error && (

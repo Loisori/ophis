@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, MouseEvent } from "react";
 import { Reveal } from "@/components/animations/Reveal";
+import Link from "next/link";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,54 +14,54 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 w-full backdrop-blur-xl z-50">
-      <div className="wrapper flex w-full py-5 xmd:py-10 items-center text-white">
+    <header className="max-md:px-5 fixed top-0 w-full z-50">
+      <div className="w-full md:w-fit justify-self-center flex mt-5 py-3 px-5 items-center bg-[#1C022B] rounded-full text-white">
         <a href="#" className="flex justify-center items-center">
           <Image
-            src="https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155227/logo_c3erzu.png"
+            src="/imgs/logo1.png"
             alt="Ophis Logo"
-            width={160}
-            height={70}
-            className="mr-2"
+            width={40}
+            height={40}
           />
         </a>
-        <ul className="hidden xmd:flex size-fit bg-[#1C022B] gap-[3.5rem] rounded-5 py-[1.5rem] px-10 ml-auto mr-[5.7rem]">
+        <ul className="hidden md:flex size-fit gap-[3.5rem]  py-[1.5rem] px-10">
           <li>
-            <a className="text-body font-medium" href="#how">
+            <Link className="text-body font-medium" href="#timeline">
               How it work?
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="text-body font-medium" href="#projects">
+            <Link className="text-body font-medium" href="#projects">
               Projects
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="text-body font-medium" href="#testimonials">
+            <Link className="text-body font-medium" href="#testimonials">
               Testimonials
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="text-body font-medium" href="#service">
+            <Link className="text-body font-medium" href="#services">
               Service
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="text-body font-medium" href="#pricing">
+            <Link className="text-body font-medium" href="#pricing">
               Pricing
-            </a>
+            </Link>
           </li>
         </ul>
-        <a
-          className="max-sm:hidden max-xmd:ml-auto size-fit rounded-5 py-[1.5rem] px-4 text-body font-bold bg-purple-100"
-          href="#contact"
+        <Link
+          href="https://calendly.com/theophisediting/30min"
+          className=" max-xmd:ml-auto size-fit rounded-full py-2 px-4 text-body font-bold bg-purple-100"
+          target="_blank"
         >
-          Book a 30-min call
-        </a>
+          Book a call
+        </Link>
         <a
           href="#"
           onClick={toggleMenu}
-          className="block xmd:hidden max-sm:ml-auto ml-5 relative z-50"
+          className="block md:hidden ml-5 relative z-50"
           aria-label="Toggle navigation"
           aria-controls="header"
           aria-expanded={isOpen}
@@ -74,32 +75,42 @@ export default function Header() {
         </a>
       </div>
       {isOpen && (
-        <div className="xmd:hidden absolute top-25 left-0 w-full bg-black p-8">
-          <ul className="flex flex-col gap-6 text-center text-body text-white">
+        <div className="md:hidden absolute top-0 left-0 pt-[30%] w-full h-screen bg-black p-8 -z-10">
+          <ul className="flex flex-col gap-6 text-start text-body text-white">
             <li>
-              <a href="#timeline" onClick={() => setIsOpen(false)}>
-                How it works?
-              </a>
+              <Reveal animation="slide-left">
+                <Link href="#timeline" onClick={() => setIsOpen(false)}>
+                  How it works?
+                </Link>
+              </Reveal>
             </li>
             <li>
-              <a href="#projects" onClick={() => setIsOpen(false)}>
-                Projects
-              </a>
+              <Reveal animation="slide-left" delay={0.1}>
+                <Link href="#projects" onClick={() => setIsOpen(false)}>
+                  Projects
+                </Link>
+              </Reveal>
             </li>
             <li>
-              <a href="#testimonials" onClick={() => setIsOpen(false)}>
-                Testimonials
-              </a>
+              <Reveal animation="slide-left" delay={0.2}>
+                <Link href="#testimonials" onClick={() => setIsOpen(false)}>
+                  Testimonials
+                </Link>
+              </Reveal>
             </li>
             <li>
-              <a href="#service" onClick={() => setIsOpen(false)}>
-                Service
-              </a>
+              <Reveal animation="slide-left" delay={0.3}>
+                <Link href="#services" onClick={() => setIsOpen(false)}>
+                  Service
+                </Link>
+              </Reveal>
             </li>
             <li>
-              <a href="#pricing" onClick={() => setIsOpen(false)}>
-                Pricing
-              </a>
+              <Reveal animation="slide-left" delay={0.4}>
+                <Link href="#pricing" onClick={() => setIsOpen(false)}>
+                  Pricing
+                </Link>
+              </Reveal>
             </li>
           </ul>
         </div>
