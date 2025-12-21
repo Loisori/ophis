@@ -16,13 +16,11 @@ export default function Header() {
   return (
     <header className="max-md:px-5 fixed top-0 w-full z-50">
       <div className="w-full md:w-fit justify-self-center flex mt-5 py-3 px-5 items-center bg-[#1C022B] rounded-full text-white">
-        <a href="#" className="flex justify-center items-center">
-          <Image
-            src="/imgs/logo1.png"
-            alt="Ophis Logo"
-            width={40}
-            height={40}
-          />
+        <a
+          href="#"
+          className="relative size-5 sm:size-10 flex justify-center items-center"
+        >
+          <Image src="/imgs/logocircle.png" alt="Ophis Logo" fill />
         </a>
         <ul className="hidden md:flex size-fit gap-[3.5rem]  py-[1.5rem] px-10">
           <li>
