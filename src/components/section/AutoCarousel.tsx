@@ -69,9 +69,7 @@ export default function AutoCarousel({ data }: AutoCarouselProps) {
       className="auto-carousel bg-[#2C0343] text-white"
     >
       <div className="wrapper text-center">
-        <Reveal>
-          <h2 className="mb-5 sm:mb-8 font-bold">{title}</h2>
-        </Reveal>
+        <h2 className="mb-5 sm:mb-8 font-bold">{title}</h2>
       </div>
       <div className="wrapper embla overflow-hidden w-full" ref={emblaRef}>
         <div className="embla__container flex flex-nowrap">

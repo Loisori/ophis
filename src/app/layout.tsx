@@ -10,7 +10,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Ophis",
+  title: "Ophis | Video Editing Agency",
   description:
     "Discover the video editing portfolio of Nam Nguyen – skilled in Adobe Premiere, After Effects, and DaVinci Resolve. Expert in cinematic editing, music videos, ads, and social media content.",
 };

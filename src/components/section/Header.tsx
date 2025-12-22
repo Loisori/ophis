@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <header className="max-md:px-5 fixed top-0 w-full z-50">
-      <div className="w-full md:w-fit justify-self-center flex mt-5 py-3 px-5 items-center bg-[#1C022B] rounded-full text-white">
+      <div className="w-full md:w-fit justify-self-center flex mt-rem sm:mt-5 py-3 px-5 items-center bg-[#1C022B] rounded-full text-white">
         <a
           href="#"
           className="relative size-5 sm:size-10 flex justify-center items-center"
@@ -51,7 +51,7 @@ export default function Header() {
         </ul>
         <Link
           href="https://calendly.com/theophisediting/30min"
-          className=" max-xmd:ml-auto size-fit rounded-full py-2 px-4 text-body font-bold bg-purple-100"
+          className="max-xmd:ml-auto size-fit rounded-full py-2 px-4 text-small sm:text-body font-bold bg-purple-100"
           target="_blank"
         >
           Book a call
