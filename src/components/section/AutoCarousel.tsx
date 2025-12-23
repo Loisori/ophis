@@ -71,7 +71,7 @@ export default function AutoCarousel({ data }: AutoCarouselProps) {
       <div className="wrapper text-center">
         <h2 className="mb-5 sm:mb-8 font-bold">{title}</h2>
       </div>
-      <div className="wrapper embla overflow-hidden w-full" ref={emblaRef}>
+      <div className="embla w-full" ref={emblaRef}>
         <div className="embla__container flex flex-nowrap">
           {slides.map((partner, index) => (
             <div

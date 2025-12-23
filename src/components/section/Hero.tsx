@@ -28,7 +28,6 @@ export default function Hero({ data }: HeroProps) {
     { title: "4-10 days", subtitle: "Video delivery" },
   ];
 
-  // Use DB data if available, otherwise defaults
   const cards =
     data?.cards && data.cards.length === 3 ? data.cards : defaultCards;
 
@@ -37,7 +36,6 @@ export default function Hero({ data }: HeroProps) {
       id="hero"
       className="relative bg-linear-to-b from-purple-400 to-[#2C0343]"
     >
-      {/* Using standard img tag to avoid next/image resolution errors in preview */}
       <img
         src="/imgs/bg2.png"
         alt="background"
