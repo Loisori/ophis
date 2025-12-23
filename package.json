@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",
+    "@wistia/wistia-player-react": "^0.3.19",
     "embla-carousel": "^8.6.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
