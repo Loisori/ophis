@@ -93,7 +93,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
             {items.map((item, index) => (
               <div
                 // delay={index < 2 ? index * 0.2 : 0}
-                className="embla__slide min-w-[80%] md:min-w-[45%] lg:min-w-[56rem]"
+                className="embla__slide min-w-[80%] md:min-w-[45%] lg:min-w-[56rem] select-none"
                 key={index}
               >
                 <div className="rounded-5 border-l-5 border-purple-300 p-5 lg:p-9 h-full justify-between shadow-[3px_5px_10px_0px_rgba(0,0,0,0.25)] bg-white text-black">

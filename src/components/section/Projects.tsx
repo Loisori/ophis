@@ -112,7 +112,7 @@ const CategorySection = ({
             onClick={() => setIsExpanded(!isExpanded)}
             className="button--primary"
           >
-            {isExpanded ? "Show Less" : "Watch more our work"}
+            {isExpanded ? "Show Less" : "Watch more"}
           </button>
         </div>
       )}
