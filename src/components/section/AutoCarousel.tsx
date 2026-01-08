@@ -5,6 +5,7 @@ import { useEffect, useMemo } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { Reveal } from "@/components/animations/Reveal";
+import AutoScroll from "embla-carousel-auto-scroll";
 
 export type CarouselItem = {
   name: string;
@@ -22,34 +23,17 @@ interface AutoCarouselProps {
 }
 
 export default function AutoCarousel({ data }: AutoCarouselProps) {
-  const autoplayOptions = useMemo(
-    () =>
-      Autoplay({
-        delay: 2000,
-        stopOnInteraction: false,
-        stopOnMouseEnter: false,
-        rootNode: (emblaRoot: HTMLElement) => emblaRoot.parentElement,
-      }),
-    []
-  );
-
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       align: "start",
       dragFree: false,
       loop: true,
     },
-    [autoplayOptions]
+    [AutoScroll({ playOnInit: true }), AutoScroll({ stopOnInteraction: false })]
   );
 
   useEffect(() => {
     if (!emblaApi) return;
-
-    const autoplay = emblaApi.plugins().autoplay;
-
-    if (autoplay) {
-      autoplay.play();
-    }
   }, [emblaApi]);
 
   const items = data?.items || [];
