@@ -40,7 +40,6 @@ export default function Reasons({ data }: ReasonsProps) {
     "Locked-in, inflexible contracts",
   ];
 
-  // --- Merge Data ---
   const headline = data?.headline ?? defaultHeadline;
   const description = data?.description ?? defaultDesc;
   const ophisFeatures =
@@ -54,7 +53,6 @@ export default function Reasons({ data }: ReasonsProps) {
 
   return (
     <section className="bg-linear-to-b from-[#2e0249] to-black text-white relative overflow-hidden">
-      {/* Background Blur */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-purple-900/30 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="wrapper relative z-10">

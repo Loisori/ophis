@@ -31,7 +31,7 @@ export default function HeroVideo({ data }: HeroVideoProps) {
       <div className="wrapper relative z-10">
         <div className="w-full h-auto p-[.6rem] md:p-rem bg-gray-300 rounded-5 shadow-2xl overflow-hidden">
           <div className="relative size-full bg-gray-300 rounded-[calc(1.25rem-0.6rem)] md:rounded-[calc(1.25rem-1rem)] overflow-hidden">
-            <WistiaPlayer mediaId={videoUrl} />
+            <WistiaPlayer mediaId={videoUrl} preload="auto" />
           </div>
         </div>
       </div>

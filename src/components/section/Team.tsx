@@ -3,7 +3,6 @@
 import Image from "next/image";
 
 import { Reveal } from "@/components/animations/Reveal";
-import { sub } from "framer-motion/client";
 
 export type TeamMember = {
   name: string;

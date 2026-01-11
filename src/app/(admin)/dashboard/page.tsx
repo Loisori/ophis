@@ -1,7 +1,5 @@
 import { prisma } from "@/lib/prisma";
 import DashboardClient from "./DashboardClient";
-import { p } from "framer-motion/client";
-import Reasons from "@/components/section/Reasons";
 
 export const dynamic = "force-dynamic";
 

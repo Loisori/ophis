@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
-// 1. FORCE DYNAMIC: This ensures Vercel never caches the response.
 export const dynamic = 'force-dynamic';
 
 export async function GET(
@@ -60,7 +59,6 @@ export async function PUT(
           visible: section.visible ?? true,
           content: {
             create: {
-              // FIX: Cast to 'any' to resolve the Type Error
               data: contentData as any,
             }
           }
@@ -71,11 +69,9 @@ export async function PUT(
           content: {
             upsert: {
               create: {
-                // FIX: Cast to 'any' to resolve the Type Error
                 data: contentData as any,
               },
               update: {
-                // FIX: Cast to 'any' to resolve the Type Error
                 data: contentData as any,
               }
             }

@@ -3,36 +3,28 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useState, Suspense } from "react";
 
-// 1. SUB-COMPONENT: Contains all your original logic
 function LoginForm() {
-  // HOOKS SETUP:
   const router = useRouter();
-  
-  // useSearchParams: Allows us to read the URL query string.
-  // This causes the build error if not wrapped in Suspense!
+
   const searchParams = useSearchParams();
 
-  // Local state for form handling
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    // Prevent the browser from reloading the page
     event.preventDefault();
-    
+
     setLoading(true);
     setError(null);
 
     try {
-      // API CALL:
       const res = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
       });
 
-      // ERROR HANDLING:
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         setError(data.error ?? "Login failed");
@@ -40,11 +32,9 @@ function LoginForm() {
         return;
       }
 
-      // INTELLIGENT REDIRECT:
       const redirectTo = searchParams.get("from") || "/dashboard";
-      
+
       router.push(redirectTo);
-      
     } catch (err) {
       console.error(err);
       setError("Something went wrong. Try again.");
@@ -63,7 +53,7 @@ function LoginForm() {
           Enter the admin password to access the dashboard.
         </p>
       </div>
-      
+
       <div className="space-y-2">
         <label className="block text-sm font-medium">Password</label>
         <input
@@ -74,7 +64,6 @@ function LoginForm() {
         />
       </div>
 
-      {/* Conditional Error Message */}
       {error && <p className="text-sm text-red-300">{error}</p>}
 
       <button
@@ -93,11 +82,12 @@ function LoginForm() {
   );
 }
 
-// 2. MAIN EXPORT: Wraps the form in Suspense
 export default function LoginPage() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-purple-950 text-white px-4">
-      <Suspense fallback={<div className="text-white/70">Loading login...</div>}>
+      <Suspense
+        fallback={<div className="text-white/70">Loading login...</div>}
+      >
         <LoginForm />
       </Suspense>
     </main>

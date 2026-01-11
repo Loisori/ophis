@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client"; 
-import { revalidatePath } from "next/cache"; // 1. IMPORT THIS
+import { revalidatePath } from "next/cache";
 
 interface RouteContext {
   params: Promise<{ id: string }>;
@@ -14,7 +14,6 @@ export async function PATCH(request: Request, { params }: RouteContext) {
 
     console.log(`[PATCH] Updating Section ${id}`);
 
-    // Robust extraction logic
     let payloadData = body.data;
     if (payloadData === undefined && body.content && body.content.data) {
       payloadData = body.content.data;
@@ -44,10 +43,8 @@ export async function PATCH(request: Request, { params }: RouteContext) {
       },
     });
 
-    // 2. ADD REVALIDATION HERE
-    // This tells Vercel: "The data for the homepage changed, please clear the cache!"
-    revalidatePath("/");          // Clear the public homepage cache
-    revalidatePath("/dashboard"); // Clear the admin dashboard cache
+    revalidatePath("/");         
+    revalidatePath("/dashboard"); 
     
     // Log for debugging
     console.log("[PATCH] Cache revalidated for '/' and '/dashboard'");
