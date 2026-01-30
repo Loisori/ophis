@@ -108,12 +108,14 @@ const CategorySection = ({
 
       {hasMoreVideos && (
         <div className="flex justify-center mt-8">
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="button--primary"
-          >
-            {isExpanded ? "Show Less" : "Watch more"}
-          </button>
+          <Reveal>
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="button--primary"
+            >
+              {isExpanded ? "Show Less" : "Watch more"}
+            </button>
+          </Reveal>
         </div>
       )}
     </div>

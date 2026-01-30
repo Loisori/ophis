@@ -29,7 +29,6 @@ export const Reveal = ({
   className = ""
 }: RevealProps) => {
 
-  // 2. Define the look for each animation type
   const variants = {
     "fade-up": {
       hidden: { opacity: 0, y: 75 },
@@ -58,8 +57,6 @@ export const Reveal = ({
   };
 
   return (
-    // MERGED: The outer div is now the motion.div
-    // This ensures that 'className' (borders, bg) and animations apply to the SAME element.
     <motion.div
       className={className}
       style={{ 

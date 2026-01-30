@@ -43,7 +43,7 @@ export default function Hero({ data }: HeroProps) {
         height={500}
         className="absolute opacity-25 z-0 top-0 right-0"
       />
-      <div className="z-1 pt-[15rem] xmd:pt-[21rem] wrapper text-white flex max-xmd:flex-col-reverse  ">
+      <div className="z-1 pt-15 sm:pt-[15rem] xmd:pt-[21rem] wrapper text-white flex max-xmd:flex-col-reverse  ">
         <div className="max-w-[47rem] max-xmd:m-auto xmd:mr-[9rem]">
           <Reveal animation="fade-up">
             <h2 className="mb-2 font-bold">{title}</h2>

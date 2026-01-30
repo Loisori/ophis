@@ -51,7 +51,7 @@ export default function Header() {
         </ul>
         <Link
           href="https://calendly.com/theophisediting/30min"
-          className="max-xmd:ml-auto size-fit rounded-full py-2 px-4 text-small sm:text-body font-bold bg-purple-100"
+          className="max-xmd:ml-auto size-fit rounded-full py-2 px-4 text-smaller sm:text-body font-bold bg-purple-100"
           target="_blank"
         >
           Book a call

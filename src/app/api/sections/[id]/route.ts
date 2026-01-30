@@ -46,7 +46,6 @@ export async function PATCH(request: Request, { params }: RouteContext) {
     revalidatePath("/");         
     revalidatePath("/dashboard"); 
     
-    // Log for debugging
     console.log("[PATCH] Cache revalidated for '/' and '/dashboard'");
 
     return NextResponse.json(section);

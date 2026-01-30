@@ -73,11 +73,6 @@ function LoginForm() {
       >
         {loading ? "Signing in..." : "Sign in"}
       </button>
-
-      <p className="text-xs text-white/60">
-        Change the password via <code>ADMIN_PASSWORD</code> env. Default is{" "}
-        <code>change-me</code>.
-      </p>
     </form>
   );
 }

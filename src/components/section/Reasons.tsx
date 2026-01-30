@@ -105,13 +105,15 @@ export default function Reasons({ data }: ReasonsProps) {
             </ul>
           </Reveal>
         </div>
-        <Link
-          href="https://calendly.com/theophisediting/30min"
-          target="_blank"
-          className="button--primary"
-        >
-          Work with us
-        </Link>
+        <Reveal>
+          <Link
+            href="https://calendly.com/theophisediting/30min"
+            target="_blank"
+            className="button--primary"
+          >
+            Work with us
+          </Link>
+        </Reveal>
       </div>
     </section>
   );
