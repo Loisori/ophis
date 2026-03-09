@@ -67,7 +67,7 @@ interface DashboardClientProps {
   autoCarouselSection: any;
   timelineSection: any;
   projectsSection: any;
-  caseStudySection: any;
+  // caseStudySection: any;
   servicesSection: any;
   pricingSection: any;
   faqsSection: any;
@@ -135,13 +135,13 @@ export default function DashboardClient({
       position: 5,
       description: "Video portfolio grid",
     },
-    {
-      id: "caseStudy",
-      label: "Case Study",
-      data: caseStudySection,
-      position: 6,
-      description: "In-depth project showcases",
-    },
+    // {
+    //   id: "caseStudy",
+    //   label: "Case Study",
+    //   data: caseStudySection,
+    //   position: 6,
+    //   description: "In-depth project showcases",
+    // },
     {
       id: "testimonials",
       label: "Testimonials",
