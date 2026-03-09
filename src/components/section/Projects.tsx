@@ -125,7 +125,38 @@ const CategorySection = ({
 export default function Projects({ data }: ProjectsProps) {
   const title = data?.title ?? "Projects";
   const subtitle = data?.subtitle ?? "Explore our Video Editing Portfolio";
-  const categories = data?.categories || [];
+  const categories = data?.categories || [
+    {
+      name: "Talking Head",
+      videos: [
+        "YY-GORHc_7E",
+        "vZQ8Uz4zZgI",
+        "ZYUoak42Zps",
+        "cESnJkaqFyA",
+        "26zY3VwPnng",
+        "pr41TlQGdSw",
+        "OTy_c2-edP0",
+        "r7acx4pcfG4",
+        "OnsYrZwMslg",
+        "Kxa9mYGpT1k",
+      ],
+    },
+    {
+      name: "Documentary",
+      videos: [
+        "3r6gqZ0aNoM",
+        "uMpBIF6tvR8",
+        "lg7Lz7PZe9o",
+        "-NlnTRYt2-U",
+        "DzlBWSitEB0",
+        "QkstywX0Dfo",
+      ],
+    },
+    {
+      name: "Podcast",
+      videos: ["VnJRsu9BTOk", "yB6EvcFqNz8", "KZ3S_20c5eA", "SuXKcuYzjsU"],
+    },
+  ];
 
   return (
     <section

@@ -12,7 +12,7 @@ interface HeroVideoProps {
 }
 
 export default function HeroVideo({ data }: HeroVideoProps) {
-  const defaultVideo = "xyeq3szm6m";
+  const defaultVideo = "21e8o6knns";
 
   const videoUrl = data?.videoUrl || defaultVideo;
 

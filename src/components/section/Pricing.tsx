@@ -36,8 +36,8 @@ const PLAN_STYLES = [
 ];
 
 export default function Pricing({ data }: PricingProps) {
-  const title = data?.title ?? "Pricing";
-  const subtitle = data?.subtitle ?? "subPricing";
+  const title = data?.title ?? "";
+  const subtitle = data?.subtitle ?? "Pricing";
 
   const defaultPlans: PricingPlan[] = [
     {
@@ -50,7 +50,7 @@ export default function Pricing({ data }: PricingProps) {
         "3-5 day turnaround",
         "Pause or cancel anytime",
       ],
-      cta: "Get started",
+      cta: "Book a call",
       popular: false,
     },
     {
@@ -67,7 +67,7 @@ export default function Pricing({ data }: PricingProps) {
         "Pause or cancel anytime",
         "Billed monthly",
       ],
-      cta: "Get started",
+      cta: "Book a call",
       popular: true,
     },
     {

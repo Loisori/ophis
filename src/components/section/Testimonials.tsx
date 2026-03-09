@@ -54,7 +54,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
       dragFree: false,
       loop: false,
     },
-    []
+    [],
   );
 
   useEffect(() => {
@@ -62,8 +62,41 @@ export default function Testimonials({ data }: TestimonialsProps) {
   }, [emblaApi]);
 
   const defaultItems: TestimonialItem[] = [
-    { name: "John Doe", content: "Great service!" },
-    { name: "Jane Smith", content: "Highly recommend Ophis." },
+    {
+      name: "Lina P., Creative Producer at Nova Studio",
+      content:
+        "They weren’t just editors - they were creative partners. They helped us rework the story flow and gave suggestions that made the final video so much stronger.",
+    },
+    {
+      name: "Sarah M., Brand Strategist",
+      content:
+        "I sent them a bunch of talking-head footage, and the final edit looked like a Netflix-level trailer. The pacing, color, and emotion were perfect. It felt like they really understood the message I was trying to share.",
+    },
+    {
+      name: "Mike Dee, CEO at Playstack",
+      content:
+        "“Video editors on YouTube are easy to find. GOOD video editors that know how to edit to optimise for audience retention are definitely NOT easy to find. On my new YouTube channel (started just 8 months ago), I'm averaging 15,000 views per video, largely thanks to Ophis's editing.”",
+    },
+    {
+      name: "James H., Marketing Director at Playstack",
+      content:
+        "We’ve worked with a lot of editors, but Ophis’s team stands out. They deliver on time every time, even when we throw in last-minute changes. The storytelling and polish are next-level.",
+    },
+    {
+      name: "Daniel “ReaperSix”, Gaming Creator",
+      content:
+        "As a YouTuber, I needed someone who could keep my style but elevate the pacing and visuals. They nailed it from the first draft - super clean transitions and great sound design.",
+    },
+    {
+      name: "Lina P., Creative Producer at Nova Studio",
+      content:
+        "Their editing made our campaign look like something produced by a top-tier agency. The team paid attention to every frame - color, motion, typography - all flawless.",
+    },
+    {
+      name: "Chloe R., Social Media Manager",
+      content:
+        "We send raw footage, and within days we get something that feels complete, polished, and on-brand. Their workflow is smooth and their taste is excellent.",
+    },
   ];
 
   const items =

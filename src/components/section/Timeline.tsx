@@ -161,7 +161,44 @@ export default function Timeline({ data }: TimelineProps) {
     data?.subquote ??
     "By understanding your brand’s tone and visual identity, we build a streamlined editing workflow that keeps every video consistent - from the first cut to the final export.";
 
-  const activeSteps = data?.steps || [];
+  const activeSteps = data?.steps || [
+    {
+      id: 1,
+      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_67_eoevr5.png",
+      title: "Your raw footage",
+      icondark:
+        "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155930/Group_128_svaimc.png",
+      description:
+        "Start by filling out our quick form so we can understand your needs and how we can best support your content goals.",
+    },
+    {
+      id: 2,
+      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_124_cv2zyq.png",
+      title: "Our creative editing team",
+      icondark:
+        "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155949/Group_130_a8fskc.png",
+      description:
+        "We craft a unique editing style that reflects your brand’s identity and keeps it consistent across every video.",
+    },
+    {
+      id: 3,
+      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_125_vbut1z.png",
+      title: "Refinement & feedback",
+      icondark:
+        "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_127_l2kaoe.png",
+      description:
+        "Track tasks and progress in Notion.\nShare feedback and review edits through Frame.io for fast, streamlined revisions.",
+    },
+    {
+      id: 4,
+      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_126_b2egzu.png",
+      title: "Delivery",
+      icondark:
+        "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155930/Group_129_bjwbls.png",
+      description:
+        "We deliver your final videos in all required formats or directly to your internal library.",
+    },
+  ];
 
   if (activeSteps.length === 0) return null;
 

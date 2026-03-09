@@ -25,34 +25,34 @@ export default function Faqs({ data }: FaqsProps) {
 
   const defaultItems: FaqItem[] = [
     {
+      answer:
+        "Ophis is built for founders, entrepreneurs, content creators, and marketing teams who need consistent, high-quality video editing without the overhead of hiring in-house or managing unreliable freelancers. Whether you're scaling YouTube, building a personal brand, or running paid ad campaigns, we handle the production so you can focus on growth.This service is perfect for content creators...",
       question: "Who is this service designed for?",
-      answer:
-        "This service is perfect for content creators, businesses, and agencies looking to scale their video production without hiring a full in-house team.",
     },
     {
+      answer:
+        "We specialize in:\nYouTube content (long-form, vlogs, educational, interviews)\nShort-form content (Reels, TikToks, YouTube Shorts)\nPaid ads (Facebook, Instagram, YouTube pre-roll)\nPodcasts (video podcasts, highlight clips, audiograms)\nCourse content (tutorials, lectures, modules)\nBrand videos (explainers, testimonials, product demos)\nSocial media content (LinkedIn, Twitter/X video)\nIf it needs to be edited, we handle it.",
       question: "What types of videos do you edit?",
-      answer:
-        "We edit everything from TikToks, Reels, and YouTube Shorts to long-form YouTube videos, podcasts, and corporate interviews.",
     },
     {
+      answer:
+        "You'll have a dedicated Account Manager assigned as your main point of contact to ensure smooth communication and brand consistency. The video editing itself is performed by our team of professional editors with 4+ years of experience across diverse video styles.\nThe specific editors working on your projects depend on your chosen subscription pack, but the process is overseen by your Account Manager to ensure high-quality results aligned with your needs.",
       question: "Who will be editing my videos?",
-      answer:
-        "Your videos will be edited by a dedicated professional editor assigned to your account, ensuring a consistent style and quality.",
     },
     {
+      answer:
+        "This doesn't happen very often, but if it does - you get unlimited revisions (on Pro and Premium plans). We'll keep tweaking things until you absolutely love your videos. Your satisfaction is non-negotiable.",
       question: "What if I'm not happy with my video?",
-      answer:
-        "No problem! We offer unlimited revisions. Just leave your feedback on the timeline, and we'll make the changes until you're 100% satisfied.",
     },
     {
+      answer:
+        "Upgrade/Downgrade: Absolutely. You can easily adjust your subscription plan to better match your content needs. Contact us, and we'll help adjust your plan, typically effective from the next billing cycle.\nPause: Need a break? Pause your subscription and resume when you're ready.\nCancel: You can cancel your subscription at any time. Cancellation is effective immediately. We offer a pro-rata refund for the unused portion of your current monthly billing cycle, no questions asked. For example, if you cancel after one week, you'll receive a 75% refund for the remaining three weeks.",
       question: "Can I upgrade, downgrade, or pause my subscription?",
-      answer:
-        "Yes, our plans are flexible. You can change your plan or pause your subscription at any time directly from your dashboard.",
     },
     {
-      question: "What happens if I need more videos than my plan includes?",
       answer:
-        "You can easily purchase add-on credits for extra videos or upgrade to a higher tier plan that suits your volume needs.",
+        "Our plans are optimized for a specific monthly volume. If you occasionally need an extra edit, we may be able to accommodate this as an add-on service (calculated as added value). However, if you consistently need more output, upgrading your plan to the next level is recommended for better value and workflow.",
+      question: "What happens if I need more videos than my plan includes?",
     },
   ];
 

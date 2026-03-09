@@ -16,6 +16,7 @@ const Reasons = dynamic(() => import("@/components/section/Reasons"));
 const Team = dynamic(() => import("@/components/section/Team"));
 const Faqs = dynamic(() => import("@/components/section/Faqs"));
 const Pricing = dynamic(() => import("@/components/section/Pricing"));
+const CaseStudy = dynamic(() => import("@/components/section/CaseStudy"));
 
 export default async function Home() {
   const page = await prisma.page.findUnique({
@@ -31,7 +32,7 @@ export default async function Home() {
   const heroData = page?.sections.find((s: any) => s.type === "hero")?.content
     ?.data as HeroData | null;
   const autoCarouselData = page?.sections.find(
-    (s: any) => s.type === "autoCarousel"
+    (s: any) => s.type === "autoCarousel",
   )?.content?.data as CarouselData | null;
   const timelineData = page?.sections.find((s: any) => s.type === "timeline")
     ?.content?.data as any | null;
@@ -50,8 +51,13 @@ export default async function Home() {
   const teamData = page?.sections.find((s: any) => s.type === "team")?.content
     ?.data as any | null;
   const testimonialsData = page?.sections.find(
-    (s: any) => s.type === "testimonials"
+    (s: any) => s.type === "testimonials",
   )?.content?.data as any | null;
+  const footerData = page?.sections.find((s: any) => s.type === "footer")
+    ?.content?.data as any | null;
+  const caseStudyData = page?.sections.find((s: any) => s.type === "caseStudy")
+    ?.content?.data as any | null;
+
   return (
     <main>
       <Header />
@@ -60,13 +66,14 @@ export default async function Home() {
       <HeroVideo data={heroVideoData ?? null} />
       <Timeline data={timelineData ?? null} />
       <Projects data={projectsData ?? null} />
+      <CaseStudy data={caseStudyData ?? null} />
       <Testimonials data={testimonialsData ?? null} />
       <Services data={servicesData ?? null} />
       <Reasons data={reasonsData ?? null} />
       {/* <Team data={teamData ?? null} /> */}
       <Pricing data={pricingData ?? null} />
       <Faqs data={faqsData ?? null} />
-      <Footer />
+      <Footer data={footerData ?? null} />
     </main>
   );
 }

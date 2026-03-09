@@ -17,8 +17,27 @@ interface ServicesProps {
 
 export default function Services({ data }: ServicesProps) {
   const title = data?.title ?? "Our Services";
-  const subtitle = data?.subtitle ?? "Consistent, Seamless & On-brand";
-  const services = data?.services || [];
+  const subtitle = data?.subtitle ?? "";
+  const services = data?.services || [
+    {
+      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764168988/Vector_qdlw3d.png",
+      title: "Convert with Video",
+      description:
+        "Strategic editing for Ads & VSLs that hook viewers and turn clicks into customers",
+    },
+    {
+      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764168988/up_fbcj1b.png",
+      title: "Grow your Channel",
+      description:
+        "High-impact YouTube editing that drives longer watch time and faster channel growth",
+    },
+    {
+      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764168987/phone_bonv6y.png",
+      title: "Multi-Platform ready",
+      description:
+        "We craft attention-grabbing TikToks, Reels & Shorts built for reach and engagement",
+    },
+  ];
 
   if (services.length === 0) {
     return null;

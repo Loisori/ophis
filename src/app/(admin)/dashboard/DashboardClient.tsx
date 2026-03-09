@@ -6,11 +6,13 @@ import HeroEditor from "@/components/admin/HeroEditor";
 import AutoCarouselEditor from "@/components/admin/AutoCarouselEditor";
 import TimelineEditor from "@/components/admin/TimelineEditor";
 import ProjectsEditor from "@/components/admin/ProjectsEditor";
+import CaseStudyEditor from "@/components/admin/CaseStudyEditor";
 import ServicesEditor from "@/components/admin/ServicesEditor";
 import PricingEditor from "@/components/admin/PricingEditor";
 import FaqsEditor from "@/components/admin/FaqsEditor";
 import ReasonsEditor from "@/components/admin/Reasons";
 import HeroVideoEditor from "@/components/admin/HeroVideoEditor";
+import FooterEditor from "@/components/admin/FooterEditor";
 import TeamEditor from "@/components/admin/TeamEditor";
 import TestimonialsEditor from "@/components/admin/TestimonialsEditor";
 // --- Inline Icons ---
@@ -65,6 +67,7 @@ interface DashboardClientProps {
   autoCarouselSection: any;
   timelineSection: any;
   projectsSection: any;
+  caseStudySection: any;
   servicesSection: any;
   pricingSection: any;
   faqsSection: any;
@@ -72,6 +75,7 @@ interface DashboardClientProps {
   heroVideoSection: any;
   teamSection: any;
   testimonialsSection: any;
+  footerSection: any;
 }
 
 export default function DashboardClient({
@@ -79,6 +83,7 @@ export default function DashboardClient({
   autoCarouselSection,
   timelineSection,
   projectsSection,
+  caseStudySection,
   servicesSection,
   pricingSection,
   faqsSection,
@@ -86,8 +91,12 @@ export default function DashboardClient({
   heroVideoSection,
   teamSection,
   testimonialsSection,
+  footerSection,
 }: DashboardClientProps) {
   const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  // Helper to define the list structure
+  // ... (Giữ nguyên các import và interface)
 
   // Helper to define the list structure
   const sectionsList = [
@@ -127,33 +136,33 @@ export default function DashboardClient({
       description: "Video portfolio grid",
     },
     {
+      id: "caseStudy",
+      label: "Case Study",
+      data: caseStudySection,
+      position: 6,
+      description: "In-depth project showcases",
+    },
+    {
       id: "testimonials",
       label: "Testimonials",
       data: testimonialsSection,
-      position: 6,
+      position: 7,
       description: "Client testimonials section",
     },
     {
       id: "services",
       label: "Services",
       data: servicesSection,
-      position: 7,
+      position: 8,
       description: "Service offerings cards",
     },
     {
       id: "reasons",
       label: "Reasons",
       data: reasonsSection,
-      position: 8,
+      position: 9,
       description: "Service offerings cards",
     },
-    // {
-    //   id: "team",
-    //   label: "Team",
-    //   data: teamSection,
-    //   position: 9,
-    //   description: "Meet our brains section",
-    // },
     {
       id: "pricing",
       label: "Pricing",
@@ -168,7 +177,22 @@ export default function DashboardClient({
       position: 11,
       description: "Service offerings cards",
     },
+    {
+      id: "team",
+      label: "Team",
+      data: teamSection,
+      position: 12,
+      description: "Meet our brains section",
+    },
+    {
+      id: "footer",
+      label: "Footer",
+      data: footerSection,
+      position: 13,
+      description: "Footer contact and social links",
+    },
   ];
+
 
   // Render the correct editor based on selection
   const renderEditor = () => {
@@ -199,6 +223,13 @@ export default function DashboardClient({
           <ProjectsEditor
             sectionId={projectsSection.id}
             initialData={projectsSection.content?.data}
+          />
+        );
+      case "caseStudy":
+        return (
+          <CaseStudyEditor
+            sectionId={caseStudySection.id}
+            initialData={caseStudySection.content?.data}
           />
         );
       case "services":
@@ -248,6 +279,13 @@ export default function DashboardClient({
           <FaqsEditor
             sectionId={faqsSection.id}
             initialData={faqsSection.content?.data}
+          />
+        );
+      case "footer":
+        return (
+          <FooterEditor
+            sectionId={footerSection.id}
+            initialData={footerSection.content?.data}
           />
         );
       default:

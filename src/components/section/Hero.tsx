@@ -20,7 +20,7 @@ export default function Hero({ data }: HeroProps) {
     data?.title ?? "The editing team that scales with your ambition";
   const subtitle =
     data?.subtitle ??
-    "Publish faster, maintain exceptional quality, and turn your content into revenue with expert on-demand editing.";
+    "Publish faster, maintain exceptional quality, and turn your content into revenue with expert on-demand editing.With Ophis, you get precision and speed without bottlenecks - all the benefits of a full editorial team, without the overhead.";
 
   const defaultCards: HeroCard[] = [
     { title: "10X Views", subtitle: "Faster lead times" },
