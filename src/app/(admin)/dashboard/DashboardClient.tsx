@@ -6,7 +6,7 @@ import HeroEditor from "@/components/admin/HeroEditor";
 import AutoCarouselEditor from "@/components/admin/AutoCarouselEditor";
 import TimelineEditor from "@/components/admin/TimelineEditor";
 import ProjectsEditor from "@/components/admin/ProjectsEditor";
-import CaseStudyEditor from "@/components/admin/CaseStudyEditor";
+// import CaseStudyEditor from "@/components/admin/CaseStudyEditor";
 import ServicesEditor from "@/components/admin/ServicesEditor";
 import PricingEditor from "@/components/admin/PricingEditor";
 import FaqsEditor from "@/components/admin/FaqsEditor";
