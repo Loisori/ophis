@@ -83,7 +83,7 @@ export default function DashboardClient({
   autoCarouselSection,
   timelineSection,
   projectsSection,
-  caseStudySection,
+  // caseStudySection,
   servicesSection,
   pricingSection,
   faqsSection,
