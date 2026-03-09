@@ -225,13 +225,13 @@ export default function DashboardClient({
             initialData={projectsSection.content?.data}
           />
         );
-      case "caseStudy":
-        return (
-          <CaseStudyEditor
-            sectionId={caseStudySection.id}
-            initialData={caseStudySection.content?.data}
-          />
-        );
+      // case "caseStudy":
+      //   return (
+      //     <CaseStudyEditor
+      //       sectionId={caseStudySection.id}
+      //       initialData={caseStudySection.content?.data}
+      //     />
+      //   );
       case "services":
         return (
           <ServicesEditor
