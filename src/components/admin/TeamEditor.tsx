@@ -1,18 +1,8 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-
-type TeamMember = {
-  name: string;
-  description: string;
-  image: string;
-};
-
-type TeamData = {
-  title?: string;
-  subtitle?: string;
-  members?: TeamMember[];
-};
+import { TeamData, TeamMember } from "@/types/Team.type";
+import { DEFAULT_TEAM_DATA } from "@/constants/defaults";
 
 interface TeamEditorProps {
   sectionId: string;
@@ -23,22 +13,17 @@ export default function TeamEditor({
   sectionId,
   initialData,
 }: TeamEditorProps) {
-  const [title, setTitle] = useState(initialData?.title ?? "Meet our brains");
+  const [title, setTitle] = useState(
+    initialData?.title ?? DEFAULT_TEAM_DATA.title,
+  );
   const [subtitle, setSubTitle] = useState(
-    initialData?.subtitle ?? "The people behind Ophis"
+    initialData?.subtitle ?? DEFAULT_TEAM_DATA.subtitle,
   );
 
   const [members, setMembers] = useState<TeamMember[]>(
     initialData?.members && initialData.members.length > 0
       ? initialData.members
-      : [
-          {
-            name: "Nam Nguyen",
-            description: "Senior editor with 4+ years turning raw footage...",
-            image:
-              "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764172931/Nam_Nguyen_1_oad1gh.png",
-          },
-        ]
+      : DEFAULT_TEAM_DATA.members!,
   );
 
   const [saving, setSaving] = useState(false);
@@ -65,7 +50,7 @@ export default function TeamEditor({
   const updateMember = (
     index: number,
     field: keyof TeamMember,
-    value: string
+    value: string,
   ) => {
     setMembers((prev) => {
       const newMembers = [...prev];
@@ -113,7 +98,7 @@ export default function TeamEditor({
       className="space-y-6 rounded-xl border border-white/15 bg-white/5 p-4 text-sm"
     >
       <div className="space-y-1">
-        <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+        <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
           title
         </label>
         <input
@@ -124,7 +109,7 @@ export default function TeamEditor({
         />
       </div>
       <div className="space-y-1">
-        <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+        <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
           SubTitle
         </label>
         <input
@@ -141,11 +126,13 @@ export default function TeamEditor({
       {/* Members List */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">Team Members</h3>
+          <h3 className="text-small font-semibold uppercase tracking-wide text-white/70">
+            Team Members
+          </h3>
           <button
             type="button"
             onClick={addMember}
-            className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded transition-colors"
+            className="text-small bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded transition-colors"
           >
             + Add Member
           </button>
@@ -157,7 +144,7 @@ export default function TeamEditor({
               key={index}
               className="relative space-y-3 rounded-lg bg-white/5 p-3 border border-white/10"
             >
-              <div className="flex justify-between items-center text-xs text-white/40">
+              <div className="flex justify-between items-center text-small text-white/40">
                 <span className="font-mono">Member #{index + 1}</span>
                 <button
                   type="button"
@@ -177,7 +164,7 @@ export default function TeamEditor({
                   type="text"
                   value={member.name}
                   onChange={(e) => updateMember(index, "name", e.target.value)}
-                  className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-xs outline-none focus:ring-1 focus:ring-purple-400"
+                  className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-purple-400"
                 />
               </div>
 
@@ -202,7 +189,7 @@ export default function TeamEditor({
                     onChange={(e) =>
                       updateMember(index, "image", e.target.value)
                     }
-                    className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-xs outline-none focus:ring-1 focus:ring-purple-400"
+                    className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-purple-400"
                   />
                 </div>
               </div>
@@ -218,7 +205,7 @@ export default function TeamEditor({
                     updateMember(index, "description", e.target.value)
                   }
                   rows={4}
-                  className="w-full resize-none rounded border border-white/20 bg-black/30 px-2 py-1 text-xs outline-none focus:ring-1 focus:ring-purple-400"
+                  className="w-full resize-none rounded border border-white/20 bg-black/30 px-2 py-1 text-small outline-none focus:ring-1 focus:ring-purple-400"
                 />
               </div>
             </div>
@@ -231,12 +218,12 @@ export default function TeamEditor({
         <button
           type="submit"
           disabled={saving}
-          className="rounded-lg bg-purple-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
+          className="rounded-lg bg-purple-500 px-4 py-2 text-small font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
         >
           {saving ? "Saving..." : "Save Team"}
         </button>
 
-        <div className="text-xs font-medium">
+        <div className="text-small font-medium">
           {message && (
             <span className="text-emerald-400 animate-in fade-in">
               {message}

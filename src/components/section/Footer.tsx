@@ -1,52 +1,20 @@
 "use client";
 
 import Image from "next/image";
-
-export type FooterSocial = {
-  label: string;
-  href: string;
-  iconSvg?: string;
-};
-
-export type FooterData = {
-  description?: string;
-  contact?: {
-    address?: string;
-    studyLocation?: string;
-    phone?: string;
-    email?: string;
-  };
-  socials?: FooterSocial[];
-};
+import { FooterData, FooterSocial } from "@/types/Footer.type";
+import { DEFAULT_FOOTER_DATA } from "@/constants/defaults";
 
 interface FooterProps {
   data: FooterData | null;
 }
 
-const FALLBACK_FOOTER: FooterData = {
-  description:
-    "Discover the video editing portfolio of Nam Nguyen - skilled in Adobe Premiere, After Effects, and DaVinci Resolve. Expert in cinematic editing, music videos, ads, and social media content.",
-  contact: {
-    address: "TPHCM, Việt Nam.",
-    studyLocation: "Study location: Online course.",
-    phone: "0905000000",
-    email: "nam@gmail.com",
-  },
-  socials: [
-    { label: "Instagram", href: "#", iconSvg: "" },
-    { label: "Facebook", href: "#", iconSvg: "" },
-    { label: "TikTok", href: "#", iconSvg: "" },
-    { label: "YouTube", href: "#", iconSvg: "" },
-  ],
-};
-
 export default function Footer({ data }: FooterProps) {
-  const merged = { ...FALLBACK_FOOTER, ...(data || {}) };
-  const contact = { ...FALLBACK_FOOTER.contact, ...(data?.contact || {}) };
+  const merged = { ...DEFAULT_FOOTER_DATA, ...(data || {}) };
+  const contact = { ...DEFAULT_FOOTER_DATA.contact, ...(data?.contact || {}) };
   const socials =
     data?.socials && data.socials.length > 0
       ? data.socials
-      : FALLBACK_FOOTER.socials!;
+      : DEFAULT_FOOTER_DATA.socials!;
 
   return (
     <footer id="footer" className="bg-gray-100 text-black py-10 sm:py-14">
@@ -72,7 +40,11 @@ export default function Footer({ data }: FooterProps) {
               </p>
             )}
             {contact.studyLocation && (
-              <a href={contact.studyLocation} target="_blank" className="text-small font-normal block">
+              <a
+                href={contact.studyLocation}
+                target="_blank"
+                className="text-small font-normal block"
+              >
                 <span className="font-semibold">Book a call: </span>
                 Online Meeting
               </a>
@@ -83,7 +55,10 @@ export default function Footer({ data }: FooterProps) {
               </a>
             )}
             {contact.email && (
-              <a href={`mailto:${contact.email}`} className="text-small font-normal block">
+              <a
+                href={`mailto:${contact.email}`}
+                className="text-small font-normal block"
+              >
                 <span className="font-semibold">Email: </span> {contact.email}
               </a>
             )}
@@ -91,7 +66,9 @@ export default function Footer({ data }: FooterProps) {
 
           <div className="space-y-4">
             <div>
-              <p className="text-h3 lg:text-h2 font-semibold mb-2">Connect with us</p>
+              <p className="text-h3 lg:text-h2 font-semibold mb-2">
+                Connect with us
+              </p>
               <div className="flex flex-wrap gap-3 mt-3">
                 {socials.map((social) => (
                   <a

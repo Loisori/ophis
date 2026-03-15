@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import type { FooterSocial, FooterData } from "@/components/section/Footer";
-
+import { FooterSocial, FooterData } from "@/types/Footer.type";
+import { DEFAULT_FOOTER_DATA } from "@/constants/defaults";
 interface FooterEditorProps {
   sectionId: string;
   initialData: FooterData | null;
@@ -13,31 +13,34 @@ export default function FooterEditor({
   initialData,
 }: FooterEditorProps) {
   const [description, setDescription] = useState(
-    initialData?.description ?? ""
+    initialData?.description ?? DEFAULT_FOOTER_DATA.description!,
   );
-  const [address, setAddress] = useState(initialData?.contact?.address ?? "");
+  const [address, setAddress] = useState(
+    initialData?.contact?.address ?? DEFAULT_FOOTER_DATA.contact?.address!,
+  );
   const [studyLocation, setStudyLocation] = useState(
-    initialData?.contact?.studyLocation ?? ""
+    initialData?.contact?.studyLocation ??
+      DEFAULT_FOOTER_DATA.contact?.studyLocation!,
   );
-  const [phone, setPhone] = useState(initialData?.contact?.phone ?? "");
-  const [email, setEmail] = useState(initialData?.contact?.email ?? "");
+  const [phone, setPhone] = useState(
+    initialData?.contact?.phone ?? DEFAULT_FOOTER_DATA.contact?.phone!,
+  );
+  const [email, setEmail] = useState(
+    initialData?.contact?.email ?? DEFAULT_FOOTER_DATA.contact?.email!,
+  );
 
   const [socials, setSocials] = useState<FooterSocial[]>(
-    initialData?.socials ?? [
-      { label: "Instagram", href: "", iconSvg: "" },
-      { label: "Facebook", href: "", iconSvg: "" },
-      { label: "TikTok", href: "", iconSvg: "" },
-      { label: "YouTube", href: "", iconSvg: "" },
-    ]
+    initialData?.socials && initialData.socials.length > 0
+      ? initialData.socials
+      : DEFAULT_FOOTER_DATA.socials!,
   );
-
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   function updateSocial(index: number, patch: Partial<FooterSocial>) {
     setSocials((prev) =>
-      prev.map((item, i) => (i === index ? { ...item, ...patch } : item))
+      prev.map((item, i) => (i === index ? { ...item, ...patch } : item)),
     );
   }
 
@@ -57,7 +60,7 @@ export default function FooterEditor({
 
     try {
       const cleanedSocials = socials.filter(
-        (s) => s.label.trim() || s.href.trim() || s.iconSvg?.trim()
+        (s) => s.label.trim() || s.href.trim() || s.iconSvg?.trim(),
       );
 
       const res = await fetch(`/api/sections/${sectionId}`, {
@@ -98,7 +101,7 @@ export default function FooterEditor({
     >
       <div className="space-y-3">
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             Description
           </label>
           <textarea
@@ -112,7 +115,7 @@ export default function FooterEditor({
 
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="space-y-1">
-            <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+            <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
               Address
             </label>
             <textarea
@@ -124,7 +127,7 @@ export default function FooterEditor({
           </div>
 
           <div className="space-y-1">
-            <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+            <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
               Book a call
             </label>
             <input
@@ -138,7 +141,7 @@ export default function FooterEditor({
 
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="space-y-1">
-            <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+            <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
               Phone
             </label>
             <input
@@ -150,7 +153,7 @@ export default function FooterEditor({
           </div>
 
           <div className="space-y-1">
-            <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+            <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
               Email
             </label>
             <input
@@ -167,11 +170,13 @@ export default function FooterEditor({
 
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold">Social icons</h3>
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
+            Social icons
+          </label>
           <button
             type="button"
             onClick={addSocial}
-            className="rounded-lg border border-white/25 px-3 py-1 text-xs font-semibold uppercase tracking-wide hover:bg-white/10"
+            className="rounded-lg border border-white/25 px-3 py-1 text-small font-semibold uppercase tracking-wide hover:bg-white/10"
           >
             Add icon
           </button>
@@ -193,7 +198,7 @@ export default function FooterEditor({
                   onChange={(e) =>
                     updateSocial(index, { label: e.target.value })
                   }
-                  className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-purple-400"
+                  className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-purple-400"
                   placeholder="Instagram"
                 />
               </div>
@@ -205,8 +210,10 @@ export default function FooterEditor({
                 <input
                   type="text"
                   value={social.href}
-                  onChange={(e) => updateSocial(index, { href: e.target.value })}
-                  className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-purple-400"
+                  onChange={(e) =>
+                    updateSocial(index, { href: e.target.value })
+                  }
+                  className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-purple-400"
                   placeholder="https://…"
                 />
               </div>
@@ -221,7 +228,7 @@ export default function FooterEditor({
                     updateSocial(index, { iconSvg: e.target.value })
                   }
                   rows={2}
-                  className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-purple-400 font-mono"
+                  className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-purple-400 font-mono"
                   placeholder="<svg ...>...</svg>"
                 />
               </div>
@@ -244,12 +251,12 @@ export default function FooterEditor({
         <button
           type="submit"
           disabled={saving}
-          className="rounded-lg bg-purple-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
+          className="rounded-lg bg-purple-500 px-4 py-2 text-small font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
         >
           {saving ? "Saving..." : "Save"}
         </button>
 
-        <div className="text-xs font-medium">
+        <div className="text-small font-medium">
           {message && (
             <span className="text-emerald-400 animate-in fade-in">
               {message}
@@ -263,4 +270,3 @@ export default function FooterEditor({
     </form>
   );
 }
-

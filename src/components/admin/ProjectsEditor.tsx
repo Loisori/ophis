@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-
+import { ProjectsData, ProjectCategory } from "@/types/Projects.type";
+import { DEFAULT_PROJECTS_DATA } from "@/constants/defaults";
 // --- Icons ---
 const PlusIcon = ({ className }: { className?: string }) => (
   <svg
@@ -51,18 +52,6 @@ const SaveIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// --- Types ---
-type Category = {
-  name: string;
-  videos: string[];
-};
-
-type ProjectsData = {
-  title?: string;
-  subtitle?: string;
-  categories?: Category[];
-};
-
 interface ProjectsEditorProps {
   sectionId: string;
   initialData: ProjectsData | null;
@@ -72,16 +61,17 @@ export default function ProjectsEditor({
   sectionId,
   initialData,
 }: ProjectsEditorProps) {
-  const [title, setTitle] = useState(initialData?.title ?? "Projects");
+  const [title, setTitle] = useState(
+    initialData?.title ?? DEFAULT_PROJECTS_DATA.title,
+  );
   const [subtitle, setSubTitle] = useState(
-    initialData?.subtitle ?? "Explore our Video Editing Portfolio"
+    initialData?.subtitle ?? DEFAULT_PROJECTS_DATA.subtitle,
   );
 
-  // State quản lý danh sách Categories
-  const [categories, setCategories] = useState<Category[]>(
-    initialData?.categories || [
-      { name: "Talking Head", videos: [""] }, // Default data nếu chưa có
-    ]
+  const [categories, setCategories] = useState<ProjectCategory[]>(
+    initialData?.categories && initialData.categories.length > 0
+      ? initialData.categories
+      : DEFAULT_PROJECTS_DATA.categories!,
   );
 
   const [saving, setSaving] = useState(false);
@@ -101,7 +91,7 @@ export default function ProjectsEditor({
 
   function updateCategoryName(index: number, newName: string) {
     setCategories((prev) =>
-      prev.map((cat, i) => (i === index ? { ...cat, name: newName } : cat))
+      prev.map((cat, i) => (i === index ? { ...cat, name: newName } : cat)),
     );
   }
 
@@ -109,8 +99,8 @@ export default function ProjectsEditor({
   function addVideoToCategory(catIndex: number) {
     setCategories((prev) =>
       prev.map((cat, i) =>
-        i === catIndex ? { ...cat, videos: [...cat.videos, ""] } : cat
-      )
+        i === catIndex ? { ...cat, videos: [...cat.videos, ""] } : cat,
+      ),
     );
   }
 
@@ -119,8 +109,8 @@ export default function ProjectsEditor({
       prev.map((cat, i) =>
         i === catIndex
           ? { ...cat, videos: cat.videos.filter((_, vi) => vi !== videoIndex) }
-          : cat
-      )
+          : cat,
+      ),
     );
   }
 
@@ -131,11 +121,11 @@ export default function ProjectsEditor({
           ? {
               ...cat,
               videos: cat.videos.map((vid, vi) =>
-                vi === videoIndex ? value : vid
+                vi === videoIndex ? value : vid,
               ),
             }
-          : cat
-      )
+          : cat,
+      ),
     );
   }
 
@@ -188,7 +178,7 @@ export default function ProjectsEditor({
         <h3 className="text-lg font-bold text-white">Main Section Settings</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1">
-            <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+            <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
               Title
             </label>
             <input
@@ -199,7 +189,7 @@ export default function ProjectsEditor({
             />
           </div>
           <div className="space-y-1">
-            <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+            <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
               Subtitle
             </label>
             <input
@@ -219,7 +209,7 @@ export default function ProjectsEditor({
           <button
             type="button"
             onClick={addCategory}
-            className="flex items-center gap-2 rounded-lg bg-purple-600/20 text-white border border-purple-500/30 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide hover:bg-purple-600/40 transition-colors"
+            className="flex items-center gap-2 rounded-lg bg-purple-600/20 text-white border border-purple-500/30 px-3 py-1.5 text-small font-semibold uppercase tracking-wide hover:bg-purple-600/40 transition-colors"
           >
             <PlusIcon className="w-3 h-3" /> Add Category
           </button>
@@ -232,7 +222,7 @@ export default function ProjectsEditor({
           >
             {/* Category Header */}
             <div className="flex items-center gap-3 border-b border-white/10 pb-3">
-              <span className="text-xs font-mono text-white/30">
+              <span className="text-small font-mono text-white/30">
                 #{catIndex + 1}
               </span>
               <input
@@ -265,7 +255,7 @@ export default function ProjectsEditor({
                     onChange={(e) =>
                       updateVideoId(catIndex, vidIndex, e.target.value)
                     }
-                    className="flex-1 rounded border border-white/10 bg-black/40 px-2 py-1.5 text-xs text-white/80 outline-none focus:border-purple-500 focus:bg-black/60 font-mono"
+                    className="flex-1 rounded border border-white/10 bg-black/40 px-2 py-1.5 text-sm text-white/80 outline-none focus:border-purple-500 focus:bg-black/60 font-mono"
                     placeholder="YouTube ID"
                   />
                   <button
@@ -281,7 +271,7 @@ export default function ProjectsEditor({
               <button
                 type="button"
                 onClick={() => addVideoToCategory(catIndex)}
-                className="mt-2 text-xs text-white flex items-center gap-1 opacity-70 hover:opacity-100 transition-opacity"
+                className="mt-2 text-small text-white flex items-center gap-1 opacity-70 hover:opacity-100 transition-opacity"
               >
                 <PlusIcon className="w-3 h-3" /> Add Video to "{cat.name}"
               </button>
@@ -298,7 +288,7 @@ export default function ProjectsEditor({
 
       {/* --- Submit --- */}
       <div className="flex items-center justify-between border-t border-white/10 pt-4 sticky bottom-0 bg-[#1a1a1a] p-2 -mx-2 -mb-2 rounded-b-xl z-10">
-        <div className="text-xs">
+        <div className="text-small">
           {message && (
             <span className="text-emerald-400 font-medium flex items-center gap-1">
               {message}
@@ -312,7 +302,7 @@ export default function ProjectsEditor({
         <button
           type="submit"
           disabled={saving}
-          className="flex items-center gap-2 rounded-lg bg-purple-600 px-6 py-2.5 text-xs font-bold uppercase tracking-wide text-white hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-purple-900/20"
+          className="flex items-center gap-2 rounded-lg bg-purple-600 px-6 py-2.5 text-small font-bold uppercase tracking-wide text-white hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-purple-900/20"
         >
           {saving ? "Saving..." : "Save All Changes"}
         </button>

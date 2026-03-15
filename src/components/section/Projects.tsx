@@ -3,18 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/animations/Reveal";
-
-type Category = {
-  name: string;
-  videos: string[];
-};
+import { ProjectCategory, ProjectsData } from "@/types/Projects.type";
+import { DEFAULT_PROJECTS_DATA } from "@/constants/defaults";
 
 interface ProjectsProps {
-  data?: {
-    title?: string;
-    subtitle?: string;
-    categories?: Category[];
-  } | null;
+  data: ProjectsData | null;
 }
 
 const VideoCard = ({ id, index }: { id: string; index: number }) => {
@@ -69,7 +62,7 @@ const CategorySection = ({
   category,
   index,
 }: {
-  category: Category;
+  category: ProjectCategory;
   index: number;
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -123,40 +116,12 @@ const CategorySection = ({
 };
 
 export default function Projects({ data }: ProjectsProps) {
-  const title = data?.title ?? "Projects";
-  const subtitle = data?.subtitle ?? "Explore our Video Editing Portfolio";
-  const categories = data?.categories || [
-    {
-      name: "Talking Head",
-      videos: [
-        "YY-GORHc_7E",
-        "vZQ8Uz4zZgI",
-        "ZYUoak42Zps",
-        "cESnJkaqFyA",
-        "26zY3VwPnng",
-        "pr41TlQGdSw",
-        "OTy_c2-edP0",
-        "r7acx4pcfG4",
-        "OnsYrZwMslg",
-        "Kxa9mYGpT1k",
-      ],
-    },
-    {
-      name: "Documentary",
-      videos: [
-        "3r6gqZ0aNoM",
-        "uMpBIF6tvR8",
-        "lg7Lz7PZe9o",
-        "-NlnTRYt2-U",
-        "DzlBWSitEB0",
-        "QkstywX0Dfo",
-      ],
-    },
-    {
-      name: "Podcast",
-      videos: ["VnJRsu9BTOk", "yB6EvcFqNz8", "KZ3S_20c5eA", "SuXKcuYzjsU"],
-    },
-  ];
+  const title = data?.title ?? DEFAULT_PROJECTS_DATA.title;
+  const subtitle = data?.subtitle ?? DEFAULT_PROJECTS_DATA.subtitle;
+  const categories =
+    data?.categories && data.categories.length > 0
+      ? data.categories
+      : DEFAULT_PROJECTS_DATA.categories!;
 
   return (
     <section

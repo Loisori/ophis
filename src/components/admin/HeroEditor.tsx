@@ -1,17 +1,8 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-
-type HeroCard = {
-  title: string;
-  subtitle: string;
-};
-
-type HeroData = {
-  title?: string;
-  subtitle?: string;
-  cards?: HeroCard[];
-};
+import { HeroData, HeroCard } from "@/types/Hero.type";
+import { DEFAULT_HERO_DATA } from "@/constants/defaults";
 
 interface HeroEditorProps {
   sectionId: string;
@@ -22,18 +13,17 @@ export default function HeroEditor({
   sectionId,
   initialData,
 }: HeroEditorProps) {
-  const [title, setTitle] = useState(initialData?.title ?? "");
-  const [subtitle, setSubTitle] = useState(initialData?.subtitle ?? "");
+  const [title, setTitle] = useState(
+    initialData?.title ?? DEFAULT_HERO_DATA.title!,
+  );
+  const [subtitle, setSubTitle] = useState(
+    initialData?.subtitle ?? DEFAULT_HERO_DATA.subtitle!,
+  );
 
-  // Initialize cards with DB data or defaults if missing
   const [cards, setCards] = useState<HeroCard[]>(
     initialData?.cards && initialData.cards.length === 3
       ? initialData.cards
-      : [
-          { title: "10X Views", subtitle: "Faster lead times" },
-          { title: "Cancel anytime", subtitle: "No commitment, no stress" },
-          { title: "4-10 days", subtitle: "Video delivery" },
-        ]
+      : DEFAULT_HERO_DATA.cards!,
   );
 
   const [saving, setSaving] = useState(false);
@@ -89,7 +79,7 @@ export default function HeroEditor({
       {/* Main Text Section */}
       <div className="space-y-4">
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             title
           </label>
           <input
@@ -102,7 +92,7 @@ export default function HeroEditor({
         </div>
 
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             subtitle
           </label>
           <textarea
@@ -118,7 +108,9 @@ export default function HeroEditor({
       <hr className="border-white/10" />
 
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold">Glass Cards (3 Items)</h3>
+        <label className="block text-small font-semibold uppercase tracking-wide text-white/70 mb-[.4rem]">
+          Glass Cards (3 Items)
+        </label>
 
         <div className="grid gap-4 sm:grid-cols-3">
           {cards.map((card, index) => (
@@ -126,7 +118,7 @@ export default function HeroEditor({
               key={index}
               className="space-y-2 rounded-lg bg-white/5 p-3 border border-white/10"
             >
-              <div className="text-xs text-white/50 font-mono mb-2">
+              <div className="text-small text-white/50 font-mono mb-2">
                 Card #{index + 1}
               </div>
 
@@ -138,7 +130,7 @@ export default function HeroEditor({
                   type="text"
                   value={card.title}
                   onChange={(e) => updateCard(index, "title", e.target.value)}
-                  className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-xs outline-none focus:ring-1 focus:ring-purple-400"
+                  className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-purple-400"
                 />
               </div>
 
@@ -152,7 +144,7 @@ export default function HeroEditor({
                   onChange={(e) =>
                     updateCard(index, "subtitle", e.target.value)
                   }
-                  className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-xs outline-none focus:ring-1 focus:ring-purple-400"
+                  className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-purple-400"
                 />
               </div>
             </div>
@@ -165,12 +157,12 @@ export default function HeroEditor({
         <button
           type="submit"
           disabled={saving}
-          className="rounded-lg bg-purple-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
+          className="rounded-lg bg-purple-500 px-4 py-2 text-small font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
         >
           {saving ? "Saving..." : "Save"}
         </button>
 
-        <div className="text-xs font-medium">
+        <div className="text-small font-medium">
           {message && (
             <span className="text-emerald-400 animate-in fade-in">
               {message}

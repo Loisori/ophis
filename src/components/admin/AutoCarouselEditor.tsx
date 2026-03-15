@@ -1,17 +1,8 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-
-type CarouselItem = {
-  name: string;
-  logo: string;
-  category: string;
-};
-
-type CarouselData = {
-  title?: string;
-  items?: CarouselItem[];
-};
+import { CarouselData, CarouselItem } from "@/types/AutoCarousel.type";
+import { DEFAULT_CAROUSEL_DATA } from "@/constants/defaults";
 
 interface AutoCarouselEditorProps {
   sectionId: string;
@@ -22,14 +13,14 @@ export default function AutoCarouselEditor({
   sectionId,
   initialData,
 }: AutoCarouselEditorProps) {
-  const [title, setTitle] = useState(initialData?.title ?? "");
+  const [title, setTitle] = useState(
+    initialData?.title ?? DEFAULT_CAROUSEL_DATA.title,
+  );
+
   const [items, setItems] = useState<CarouselItem[]>(
-    initialData?.items ?? [
-      { name: "", logo: "", category: "" },
-      { name: "", logo: "", category: "" },
-      { name: "", logo: "", category: "" },
-      { name: "", logo: "", category: "" },
-    ]
+    initialData?.items && initialData.items.length > 0
+      ? initialData.items
+      : DEFAULT_CAROUSEL_DATA.items!,
   );
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -37,7 +28,7 @@ export default function AutoCarouselEditor({
 
   function updateItem(index: number, patch: Partial<CarouselItem>) {
     setItems((prev) =>
-      prev.map((item, i) => (i === index ? { ...item, ...patch } : item))
+      prev.map((item, i) => (i === index ? { ...item, ...patch } : item)),
     );
   }
 
@@ -57,7 +48,7 @@ export default function AutoCarouselEditor({
 
     try {
       const cleanedItems = items.filter(
-        (item) => item.name.trim() || item.logo.trim() || item.category.trim()
+        (item) => item.name.trim() || item.logo.trim() || item.category.trim(),
       );
 
       const res = await fetch(`/api/sections/${sectionId}`, {
@@ -91,7 +82,7 @@ export default function AutoCarouselEditor({
       className="space-y-4 rounded-xl border border-white/15 bg-white/5 p-4 text-sm"
     >
       <div className="space-y-2">
-        <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+        <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
           main title
         </label>
         <input
@@ -105,11 +96,13 @@ export default function AutoCarouselEditor({
 
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold">Partners</h3>
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
+            Partners
+          </label>
           <button
             type="button"
             onClick={addItem}
-            className="rounded-lg border border-white/25 px-3 py-1 text-xs font-semibold uppercase tracking-wide hover:bg-white/10"
+            className="rounded-lg border border-white/25 px-3 py-1 text-small font-semibold uppercase tracking-wide hover:bg-white/10"
           >
             Add partner
           </button>
@@ -128,10 +121,8 @@ export default function AutoCarouselEditor({
                 <input
                   type="text"
                   value={item.name}
-                  onChange={(e) =>
-                    updateItem(index, { name: e.target.value })
-                  }
-                  className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-purple-400"
+                  onChange={(e) => updateItem(index, { name: e.target.value })}
+                  className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-purple-400"
                   placeholder="Channel / brand name"
                 />
               </div>
@@ -143,10 +134,8 @@ export default function AutoCarouselEditor({
                 <input
                   type="text"
                   value={item.logo}
-                  onChange={(e) =>
-                    updateItem(index, { logo: e.target.value })
-                  }
-                  className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-purple-400"
+                  onChange={(e) => updateItem(index, { logo: e.target.value })}
+                  className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-purple-400"
                   placeholder="/imgs/partners/your-logo.png"
                 />
               </div>
@@ -161,7 +150,7 @@ export default function AutoCarouselEditor({
                   onChange={(e) =>
                     updateItem(index, { category: e.target.value })
                   }
-                  className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-purple-400"
+                  className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-purple-400"
                   placeholder="e.g. 461K subscribers"
                 />
               </div>
@@ -184,12 +173,12 @@ export default function AutoCarouselEditor({
         <button
           type="submit"
           disabled={saving}
-          className="rounded-lg bg-purple-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60"
+          className="rounded-lg bg-purple-500 px-4 py-2 text-small font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60"
         >
           {saving ? "Saving..." : "Save"}
         </button>
 
-        <div className="text-xs">
+        <div className="text-small">
           {message && <span className="text-emerald-300">{message}</span>}
           {error && <span className="text-red-300">{error}</span>}
         </div>
@@ -197,5 +186,3 @@ export default function AutoCarouselEditor({
     </form>
   );
 }
-
-

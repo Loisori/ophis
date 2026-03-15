@@ -2,7 +2,8 @@
 
 import { sub } from "framer-motion/client";
 import { useState, FormEvent } from "react";
-
+import { TimelineData, TimelineStepItem } from "@/types/Timeline.type";
+import { DEFAULT_TIMELINE_DATA } from "@/constants/defaults";
 // --- Inline Icons for Admin UI ---
 const PlusIcon = ({ className }: { className?: string }) => (
   <svg
@@ -74,23 +75,6 @@ const LoaderIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// --- Types ---
-type TimelineStep = {
-  id: number;
-  title: string;
-  description: string;
-  icon: string;
-  icondark: string;
-};
-
-type TimelineData = {
-  title?: string;
-  subtitle?: string;
-  quote?: string;
-  subquote?: string;
-  steps?: TimelineStep[];
-};
-
 interface TimelineEditorProps {
   sectionId: string;
   initialData: TimelineData | null;
@@ -100,34 +84,35 @@ export default function TimelineEditor({
   sectionId,
   initialData,
 }: TimelineEditorProps) {
-  const [title, setTitle] = useState(initialData?.title ?? "How it works");
+  const [title, setTitle] = useState(
+    initialData?.title ?? DEFAULT_TIMELINE_DATA.title,
+  );
   const [subtitle, setSubTitle] = useState(
-    initialData?.subtitle ?? "Consistent, Seamless & On-brand"
+    initialData?.subtitle ?? DEFAULT_TIMELINE_DATA.subtitle,
   );
   const [quote, setQuote] = useState(
-    initialData?.quote ??
-      "The way editing should have been done from the start."
+    initialData?.quote ?? DEFAULT_TIMELINE_DATA.quote,
   );
   const [subquote, setSubQuote] = useState(
-    initialData?.subquote ??
-      "By understanding your brand’s tone and visual identity, we build a streamlined editing workflow that keeps every video consistent - from the first cut to the final export."
+    initialData?.subquote ?? DEFAULT_TIMELINE_DATA.subquote,
   );
-  const [steps, setSteps] = useState<TimelineStep[]>(
-    initialData?.steps || [
-      { id: 1, title: "", description: "", icon: "", icondark: "" },
-      { id: 2, title: "", description: "", icon: "", icondark: "" },
-      { id: 3, title: "", description: "", icon: "", icondark: "" },
-      { id: 4, title: "", description: "", icon: "", icondark: "" },
-    ]
+  const [steps, setSteps] = useState<TimelineStepItem[]>(
+    initialData?.steps && initialData.steps.length > 0
+      ? initialData.steps
+      : DEFAULT_TIMELINE_DATA.steps!,
   );
 
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  function updateStep(index: number, field: keyof TimelineStep, value: any) {
+  function updateStep(
+    index: number,
+    field: keyof TimelineStepItem,
+    value: any,
+  ) {
     setSteps((prev) =>
-      prev.map((step, i) => (i === index ? { ...step, [field]: value } : step))
+      prev.map((step, i) => (i === index ? { ...step, [field]: value } : step)),
     );
   }
 
@@ -186,7 +171,7 @@ export default function TimelineEditor({
     >
       <div className="space-y-4 border-b border-white/10 pb-6">
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             Title
           </label>
           <input
@@ -198,7 +183,7 @@ export default function TimelineEditor({
           />
         </div>
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             SubTitle
           </label>
           <input
@@ -210,7 +195,7 @@ export default function TimelineEditor({
           />
         </div>
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             Quote{" "}
             {
               'put the words you want to highlight inside <span class="text-purple-200 font-bold">...</span>'
@@ -226,7 +211,7 @@ export default function TimelineEditor({
           />
         </div>
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             SubQuote
           </label>
           <input
@@ -239,11 +224,11 @@ export default function TimelineEditor({
         </div>
       </div>
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-white/90">Process Steps</h3>
+        <label className="block text-small font-semibold uppercase tracking-wide text-white/70">Process Steps</label>
         <button
           type="button"
           onClick={addStep}
-          className="flex items-center gap-2 rounded-lg border border-white/25 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide hover:bg-white/10 transition-colors"
+          className="flex items-center gap-2 rounded-lg border border-white/25 px-3 py-1.5 text-small font-semibold uppercase tracking-wide hover:bg-white/10 transition-colors"
         >
           <PlusIcon className="w-3 h-3" /> Add Step
         </button>
@@ -256,7 +241,7 @@ export default function TimelineEditor({
             className="relative grid gap-4 rounded-lg border border-white/15 bg-black/20 p-4"
           >
             {/* Step Badge */}
-            <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-xs shadow-lg border border-black">
+            <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-small shadow-lg border border-black">
               {index + 1}
             </div>
 
@@ -322,7 +307,7 @@ export default function TimelineEditor({
               <button
                 type="button"
                 onClick={() => removeStep(index)}
-                className="flex items-center gap-1.5 text-xs text-red-400 hover:text-red-300 transition-colors px-2 py-1 rounded hover:bg-red-500/10"
+                className="flex items-center gap-1.5 text-small text-red-400 hover:text-red-300 transition-colors px-2 py-1 rounded hover:bg-red-500/10"
               >
                 <TrashIcon className="w-3 h-3" /> Remove Step
               </button>
@@ -332,7 +317,7 @@ export default function TimelineEditor({
       </div>
 
       <div className="flex items-center justify-between border-t border-white/10 pt-4">
-        <div className="text-xs">
+        <div className="text-small">
           {message && (
             <span className="text-emerald-400 font-medium flex items-center gap-1">
               {message}
@@ -346,7 +331,7 @@ export default function TimelineEditor({
         <button
           type="submit"
           disabled={saving}
-          className="flex items-center gap-2 rounded-lg bg-purple-600 px-6 py-2.5 text-xs font-bold uppercase tracking-wide text-white hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-purple-900/20"
+          className="flex items-center gap-2 rounded-lg bg-purple-600 px-6 py-2.5 text-small font-bold uppercase tracking-wide text-white hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-purple-900/20"
         >
           {saving ? (
             <LoaderIcon className="w-4 h-4 animate-spin" />

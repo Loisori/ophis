@@ -1,21 +1,8 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-
-type PricingPlan = {
-  name: string;
-  price: string;
-  description: string;
-  features: string[];
-  cta: string;
-  popular: boolean;
-};
-
-type PricingData = {
-  title?: string;
-  subtitle?: string;
-  plans?: PricingPlan[];
-};
+import { PricingData, PricingPlan } from "@/types/Pricing.type";
+import { DEFAULT_PRICING_DATA } from "@/constants/defaults";
 
 interface PricingEditorProps {
   sectionId: string;
@@ -26,52 +13,17 @@ export default function PricingEditor({
   sectionId,
   initialData,
 }: PricingEditorProps) {
-  const [title, setTitle] = useState(initialData?.title ?? "Pricing");
+  const [title, setTitle] = useState(
+    initialData?.title ?? DEFAULT_PRICING_DATA.title!,
+  );
   const [subtitle, setSubtitle] = useState(
-    initialData?.subtitle ?? "subPricing"
+    initialData?.subtitle ?? DEFAULT_PRICING_DATA.subtitle,
   );
 
   const [plans, setPlans] = useState<PricingPlan[]>(
     initialData?.plans && initialData.plans.length === 3
       ? initialData.plans
-      : [
-          {
-            name: "BASIC",
-            price: "$800",
-            description: "Perfect for getting started",
-            features: [
-              "2 long-form videos/month",
-              "Unlimited revisions",
-              "3-5 day turnaround",
-            ],
-            cta: "Get started",
-            popular: false,
-          },
-          {
-            name: "PRO",
-            price: "$2000",
-            description: "Our most popular package",
-            features: [
-              "4 long-form videos",
-              "Slack group access",
-              "Unlimited revisions",
-            ],
-            cta: "Get started",
-            popular: true,
-          },
-          {
-            name: "PREMIUM",
-            price: "",
-            description: "For established creators",
-            features: [
-              "Tailored editing volume",
-              "Dedicated Editor",
-              "Brand voice development",
-            ],
-            cta: "Book a call",
-            popular: false,
-          },
-        ]
+      : DEFAULT_PRICING_DATA.plans!,
   );
 
   const [saving, setSaving] = useState(false);
@@ -130,7 +82,7 @@ export default function PricingEditor({
       className="space-y-6 rounded-xl border border-white/15 bg-white/5 p-4 text-sm"
     >
       <div className="space-y-1">
-        <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+        <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
           title
         </label>
         <input
@@ -142,7 +94,7 @@ export default function PricingEditor({
         />
       </div>
       <div className="space-y-1">
-        <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+        <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
           subtitle
         </label>
         <input
@@ -164,10 +116,10 @@ export default function PricingEditor({
             className="space-y-3 rounded-lg bg-white/5 p-3 border border-white/10 relative"
           >
             <div className="flex justify-between items-center mb-2">
-              <span className="text-xs text-white/50 font-mono">
+              <span className="text-sm text-white/50 font-mono">
                 Plan #{index + 1}
               </span>
-              <label className="flex items-center gap-2 text-xs cursor-pointer">
+              <label className="flex items-center gap-2 text-sm cursor-pointer">
                 <input
                   type="checkbox"
                   checked={plan.popular}
@@ -190,7 +142,7 @@ export default function PricingEditor({
                   type="text"
                   value={plan.name}
                   onChange={(e) => updatePlan(index, "name", e.target.value)}
-                  className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-xs outline-none focus:ring-1 focus:ring-purple-400"
+                  className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-purple-400"
                 />
               </div>
               <div className="space-y-1">
@@ -202,7 +154,7 @@ export default function PricingEditor({
                   value={plan.price}
                   onChange={(e) => updatePlan(index, "price", e.target.value)}
                   placeholder="e.g. $800"
-                  className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-xs outline-none focus:ring-1 focus:ring-purple-400"
+                  className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-purple-400"
                 />
               </div>
             </div>
@@ -218,7 +170,7 @@ export default function PricingEditor({
                 onChange={(e) =>
                   updatePlan(index, "description", e.target.value)
                 }
-                className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-xs outline-none focus:ring-1 focus:ring-purple-400"
+                className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-purple-400"
               />
             </div>
 
@@ -231,7 +183,7 @@ export default function PricingEditor({
                 value={plan.features.join("\n")}
                 onChange={(e) => updateFeatures(index, e.target.value)}
                 rows={6}
-                className="w-full resize-none rounded border border-white/20 bg-black/30 px-2 py-1 text-xs outline-none focus:ring-1 focus:ring-purple-400 leading-relaxed"
+                className="w-full resize-none rounded border border-white/20 bg-black/30 px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-purple-400 leading-relaxed"
                 placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
               />
             </div>
@@ -245,7 +197,7 @@ export default function PricingEditor({
                 type="text"
                 value={plan.cta}
                 onChange={(e) => updatePlan(index, "cta", e.target.value)}
-                className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-xs outline-none focus:ring-1 focus:ring-purple-400"
+                className="w-full rounded border border-white/20 bg-black/30 px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-purple-400"
               />
             </div>
           </div>
@@ -257,12 +209,12 @@ export default function PricingEditor({
         <button
           type="submit"
           disabled={saving}
-          className="rounded-lg bg-purple-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
+          className="rounded-lg bg-purple-500 px-4 py-2 text-small font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
         >
           {saving ? "Saving..." : "Save Pricing"}
         </button>
 
-        <div className="text-xs font-medium">
+        <div className="text-small font-medium">
           {message && (
             <span className="text-emerald-400 animate-in fade-in">
               {message}

@@ -1,37 +1,33 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-
-type ReasonsData = {
-  headline?: string;
-  description?: string;
-  ophisFeatures?: string[];
-  othersFeatures?: string[];
-};
+import { ReasonsData } from "@/types/Reasons.type";
+import { DEFAULT_REASONS_DATA } from "@/constants/defaults";
 
 interface ReasonsEditorProps {
   sectionId: string;
   initialData: ReasonsData | null;
 }
 
-export default function ReasonsEditor({ sectionId, initialData }: ReasonsEditorProps) {
+export default function ReasonsEditor({
+  sectionId,
+  initialData,
+}: ReasonsEditorProps) {
   const [headline, setHeadline] = useState(
-    initialData?.headline ?? "Why Ophis is the right choice?"
+    initialData?.headline ?? DEFAULT_REASONS_DATA.headline!,
   );
   const [description, setDescription] = useState(
-    initialData?.description ??
-      "We bring you all the advantages of having a full in-house editing team - without the overhead or hassle."
+    initialData?.description ?? DEFAULT_REASONS_DATA.description!,
   );
 
-  // We manage lists as simple strings (one item per line) for easy editing
   const [ophisText, setOphisText] = useState(
-    initialData?.ophisFeatures?.join("\n") ?? 
-    "Fair, transparent pricing\nDedicated creative team\nExpert in-house editors"
+    initialData?.ophisFeatures?.join("\n") ??
+      DEFAULT_REASONS_DATA.ophisFeatures!.join("\n"),
   );
-  
+
   const [othersText, setOthersText] = useState(
-    initialData?.othersFeatures?.join("\n") ?? 
-    "Hourly or per-project pricing\nNo dedicated editing team\nOutsourced to average talent"
+    initialData?.othersFeatures?.join("\n") ??
+      DEFAULT_REASONS_DATA.othersFeatures!.join("\n"),
   );
 
   const [saving, setSaving] = useState(false);
@@ -45,8 +41,12 @@ export default function ReasonsEditor({ sectionId, initialData }: ReasonsEditorP
     setError(null);
 
     // Convert newlines to arrays
-    const ophisFeatures = ophisText.split("\n").filter(line => line.trim() !== "");
-    const othersFeatures = othersText.split("\n").filter(line => line.trim() !== "");
+    const ophisFeatures = ophisText
+      .split("\n")
+      .filter((line) => line.trim() !== "");
+    const othersFeatures = othersText
+      .split("\n")
+      .filter((line) => line.trim() !== "");
 
     try {
       const res = await fetch(`/api/sections/${sectionId}`, {
@@ -84,7 +84,7 @@ export default function ReasonsEditor({ sectionId, initialData }: ReasonsEditorP
       {/* Header Info */}
       <div className="space-y-4">
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             Headline
           </label>
           <input
@@ -96,7 +96,7 @@ export default function ReasonsEditor({ sectionId, initialData }: ReasonsEditorP
         </div>
 
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             Description
           </label>
           <textarea
@@ -112,10 +112,9 @@ export default function ReasonsEditor({ sectionId, initialData }: ReasonsEditorP
 
       {/* Comparison Lists */}
       <div className="grid md:grid-cols-2 gap-6">
-        
         {/* Left Column (Good/Ophis) */}
         <div className="space-y-2">
-          <label className="block text-xs font-bold uppercase tracking-wide text-cyan-400">
+          <label className="block text-small font-bold uppercase tracking-wide text-cyan-400">
             Ophis Features (Green List)
           </label>
           <p className="text-[10px] text-white/40">One feature per line.</p>
@@ -129,7 +128,7 @@ export default function ReasonsEditor({ sectionId, initialData }: ReasonsEditorP
 
         {/* Right Column (Bad/Others) */}
         <div className="space-y-2">
-          <label className="block text-xs font-bold uppercase tracking-wide text-gray-400">
+          <label className="block text-small font-bold uppercase tracking-wide text-gray-400">
             Other Agencies (Gray List)
           </label>
           <p className="text-[10px] text-white/40">One feature per line.</p>
@@ -140,7 +139,6 @@ export default function ReasonsEditor({ sectionId, initialData }: ReasonsEditorP
             className="w-full resize-none rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-gray-400 leading-loose"
           />
         </div>
-
       </div>
 
       {/* Action Bar */}
@@ -148,14 +146,20 @@ export default function ReasonsEditor({ sectionId, initialData }: ReasonsEditorP
         <button
           type="submit"
           disabled={saving}
-          className="rounded-lg bg-purple-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
+          className="rounded-lg bg-purple-500 px-4 py-2 text-small font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
         >
           {saving ? "Saving..." : "Save Changes"}
         </button>
 
-        <div className="text-xs font-medium">
-          {message && <span className="text-emerald-400 animate-in fade-in">{message}</span>}
-          {error && <span className="text-red-400 animate-in fade-in">{error}</span>}
+        <div className="text-small font-medium">
+          {message && (
+            <span className="text-emerald-400 animate-in fade-in">
+              {message}
+            </span>
+          )}
+          {error && (
+            <span className="text-red-400 animate-in fade-in">{error}</span>
+          )}
         </div>
       </div>
     </form>

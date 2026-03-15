@@ -1,19 +1,9 @@
 "use client";
 
 import { useState } from "react";
-
 import { Reveal } from "@/components/animations/Reveal";
+import { FaqData, FaqItem } from "@/types/Faqs.type";
 
-export type FaqItem = {
-  question: string;
-  answer: string;
-};
-
-export type FaqData = {
-  headline?: string;
-  subheadline?: string;
-  items?: FaqItem[];
-};
 
 interface FaqsProps {
   data: FaqData | null;

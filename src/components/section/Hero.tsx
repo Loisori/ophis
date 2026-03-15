@@ -1,35 +1,18 @@
 import { Reveal } from "@/components/animations/Reveal";
-
-export type HeroCard = {
-  title: string;
-  subtitle: string;
-};
-
-export type HeroData = {
-  title?: string;
-  subtitle?: string;
-  cards?: HeroCard[];
-};
+import { HeroData, HeroCard } from "@/types/Hero.type";
+import { DEFAULT_HERO_DATA } from "@/constants/defaults";
 
 interface HeroProps {
   data: HeroData | null;
 }
 
 export default function Hero({ data }: HeroProps) {
-  const title =
-    data?.title ?? "The editing team that scales with your ambition";
-  const subtitle =
-    data?.subtitle ??
-    "Publish faster, maintain exceptional quality, and turn your content into revenue with expert on-demand editing.With Ophis, you get precision and speed without bottlenecks - all the benefits of a full editorial team, without the overhead.";
-
-  const defaultCards: HeroCard[] = [
-    { title: "10X Views", subtitle: "Faster lead times" },
-    { title: "Cancel anytime", subtitle: "No commitment, no stress" },
-    { title: "4-10 days", subtitle: "Video delivery" },
-  ];
-
+  const title = data?.title || DEFAULT_HERO_DATA.title;
+  const subtitle = data?.subtitle || DEFAULT_HERO_DATA.subtitle;
   const cards =
-    data?.cards && data.cards.length === 3 ? data.cards : defaultCards;
+    data?.cards && data.cards.length === 3
+      ? data.cards
+      : DEFAULT_HERO_DATA.cards!;
 
   return (
     <section

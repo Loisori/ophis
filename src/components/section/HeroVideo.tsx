@@ -2,19 +2,15 @@
 
 import Image from "next/image";
 import { WistiaPlayer } from "@wistia/wistia-player-react";
-
-export type HeroVideoData = {
-  videoUrl?: string;
-};
+import { HeroVideoData } from "@/types/HeroVideo.type";
+import { DEFAULT_HERO_VIDEO_DATA } from "@/constants/defaults";
 
 interface HeroVideoProps {
   data: HeroVideoData | null;
 }
 
 export default function HeroVideo({ data }: HeroVideoProps) {
-  const defaultVideo = "21e8o6knns";
-
-  const videoUrl = data?.videoUrl || defaultVideo;
+const videoUrl = data?.videoUrl || DEFAULT_HERO_VIDEO_DATA.videoUrl!;
 
   return (
     <section

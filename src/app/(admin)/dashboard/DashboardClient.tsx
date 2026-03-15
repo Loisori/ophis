@@ -193,7 +193,6 @@ export default function DashboardClient({
     },
   ];
 
-
   // Render the correct editor based on selection
   const renderEditor = () => {
     switch (activeSection) {
@@ -317,7 +316,7 @@ export default function DashboardClient({
           <div className="animate-in fade-in slide-in-from-right-4 duration-300">
             <button
               onClick={() => setActiveSection(null)}
-              className="flex items-center gap-2 text-sm text-purple-300 hover:text-white mb-6 transition-colors group"
+              className="flex items-center gap-2 text-sm hover:text-white mb-6 transition-colors group"
             >
               <BackIcon />
               <span className="group-hover:-translate-x-1 transition-transform">
@@ -350,25 +349,25 @@ export default function DashboardClient({
                 >
                   <div className="flex items-center gap-4">
                     <div className="flex flex-col">
-                      <span className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors">
+                      <span className="text-body font-bold text-white group-hover:text-purple-300 transition-colors">
                         {section.label}
                       </span>
-                      <span className="text-xs text-white/40 mt-1 font-mono">
+                      <span className="text-small text-white/40 mt-1 font-mono">
                         Position {section.position} • {section.description}
                       </span>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-4">
-                    {section.data ? (
+                    {/* {section.data ? (
                       <span className="hidden sm:inline-flex px-3 py-1 rounded-full bg-white/5 text-[10px] text-white/30 font-mono border border-white/5">
                         ID: {section.data.id.slice(0, 8)}...
                       </span>
                     ) : (
-                      <span className="px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-xs border border-red-500/20">
+                      <span className="px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-small border border-red-500/20">
                         Missing Data
                       </span>
-                    )}
+                    )} */}
 
                     <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/40 group-hover:bg-purple-500 group-hover:text-white transition-all">
                       <ChevronRight />

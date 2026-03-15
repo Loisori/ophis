@@ -1,20 +1,7 @@
-import { Reveal } from "@/components/animations/Reveal";
 import Link from "next/link";
-
-export type PricingPlan = {
-  name: string;
-  price: string;
-  description: string;
-  features: string[];
-  cta: string;
-  popular: boolean;
-};
-
-export type PricingData = {
-  title?: string;
-  subtitle?: string;
-  plans?: PricingPlan[];
-};
+import { Reveal } from "@/components/animations/Reveal";
+import { PricingData, PricingPlan } from "@/types/Pricing.type";
+import { DEFAULT_PRICING_DATA } from "@/constants/defaults";
 
 interface PricingProps {
   data: PricingData | null;
@@ -36,59 +23,12 @@ const PLAN_STYLES = [
 ];
 
 export default function Pricing({ data }: PricingProps) {
-  const title = data?.title ?? "";
-  const subtitle = data?.subtitle ?? "Pricing";
-
-  const defaultPlans: PricingPlan[] = [
-    {
-      name: "BASIC",
-      price: "$800",
-      description: "Perfect for getting started",
-      features: [
-        "2 long-form videos/month",
-        "Unlimited revisions",
-        "3-5 day turnaround",
-        "Pause or cancel anytime",
-      ],
-      cta: "Book a call",
-      popular: false,
-    },
-    {
-      name: "PRO",
-      price: "$2000",
-      description: "Our most popular package",
-      features: [
-        "4 long-form videos",
-        "10 short-form videos",
-        "Content expert feedback",
-        "Slack group access",
-        "Unlimited revisions",
-        "3-5 day turnaround",
-        "Pause or cancel anytime",
-        "Billed monthly",
-      ],
-      cta: "Book a call",
-      popular: true,
-    },
-    {
-      name: "PREMIUM",
-      price: "", // Empty string implies "Contact us" or custom layout
-      description: "For established creators",
-      features: [
-        "Tailored editing volume & workflows",
-        "Dedicated Editor & Strategy Lead",
-        "Content planning consultation",
-        "Multi-format expertise",
-        "Dedicated Designer",
-        "Brand voice development",
-      ],
-      cta: "Book a call",
-      popular: false,
-    },
-  ];
-
+  const title = data?.title ?? DEFAULT_PRICING_DATA.title;
+  const subtitle = data?.subtitle ?? DEFAULT_PRICING_DATA.subtitle;
   const plans =
-    data?.plans && data.plans.length === 3 ? data.plans : defaultPlans;
+    data?.plans && data.plans.length === 3
+      ? data.plans
+      : DEFAULT_PRICING_DATA.plans!;
 
   return (
     <section

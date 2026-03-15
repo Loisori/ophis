@@ -1,37 +1,28 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-
-type FaqItem = {
-  question: string;
-  answer: string;
-};
-
-type FaqData = {
-  headline?: string;
-  subheadline?: string;
-  items?: FaqItem[];
-};
-
+import { FaqData, FaqItem } from "@/types/Faqs.type";
+import { DEFAULT_FAQ_DATA } from "@/constants/defaults";
 interface FaqsEditorProps {
   sectionId: string;
   initialData: FaqData | null;
 }
 
-export default function FaqsEditor({ sectionId, initialData }: FaqsEditorProps) {
-  const [headline, setHeadline] = useState(initialData?.headline ?? "Frequently asked questions");
-  const [subheadline, setSubheadline] = useState(initialData?.subheadline ?? "FAQ's");
+export default function FaqsEditor({
+  sectionId,
+  initialData,
+}: FaqsEditorProps) {
+  const [headline, setHeadline] = useState(
+    initialData?.headline ?? DEFAULT_FAQ_DATA.headline!,
+  );
+  const [subheadline, setSubheadline] = useState(
+    initialData?.subheadline ?? DEFAULT_FAQ_DATA.subheadline!,
+  );
 
-  // Default to one empty item if nothing exists
   const [items, setItems] = useState<FaqItem[]>(
     initialData?.items && initialData.items.length > 0
       ? initialData.items
-      : [
-          {
-            question: "Who is this service designed for?",
-            answer: "This service is perfect for content creators...",
-          },
-        ]
+      : DEFAULT_FAQ_DATA.items!,
   );
 
   const [saving, setSaving] = useState(false);
@@ -97,7 +88,7 @@ export default function FaqsEditor({ sectionId, initialData }: FaqsEditorProps) 
       {/* Headlines */}
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             Small Label
           </label>
           <input
@@ -108,7 +99,7 @@ export default function FaqsEditor({ sectionId, initialData }: FaqsEditorProps) 
           />
         </div>
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             Main Headline
           </label>
           <input
@@ -125,11 +116,13 @@ export default function FaqsEditor({ sectionId, initialData }: FaqsEditorProps) 
       {/* Items List */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">Questions List</h3>
+          <label className="text-small font-semibold uppercase tracking-wide text-white/70">
+            Questions List
+          </label>
           <button
             type="button"
             onClick={addItem}
-            className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded transition-colors"
+            className="text-small bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded transition-colors"
           >
             + Add Question
           </button>
@@ -141,7 +134,7 @@ export default function FaqsEditor({ sectionId, initialData }: FaqsEditorProps) 
               key={index}
               className="relative rounded-lg bg-white/5 p-3 border border-white/10 space-y-3"
             >
-              <div className="flex justify-between items-center text-xs text-white/40">
+              <div className="flex justify-between items-center text-small text-white/40">
                 <span className="font-mono">Question #{index + 1}</span>
                 <button
                   type="button"
@@ -156,7 +149,9 @@ export default function FaqsEditor({ sectionId, initialData }: FaqsEditorProps) 
                 <input
                   type="text"
                   value={item.question}
-                  onChange={(e) => updateItem(index, "question", e.target.value)}
+                  onChange={(e) =>
+                    updateItem(index, "question", e.target.value)
+                  }
                   placeholder="Question text..."
                   className="w-full rounded border border-white/20 bg-black/30 px-2 py-2 text-sm font-bold outline-none focus:ring-1 focus:ring-purple-400"
                 />
@@ -181,14 +176,20 @@ export default function FaqsEditor({ sectionId, initialData }: FaqsEditorProps) 
         <button
           type="submit"
           disabled={saving}
-          className="rounded-lg bg-purple-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
+          className="rounded-lg bg-purple-500 px-4 py-2 text-small font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
         >
           {saving ? "Saving..." : "Save FAQs"}
         </button>
 
-        <div className="text-xs font-medium">
-          {message && <span className="text-emerald-400 animate-in fade-in">{message}</span>}
-          {error && <span className="text-red-400 animate-in fade-in">{error}</span>}
+        <div className="text-small font-medium">
+          {message && (
+            <span className="text-emerald-400 animate-in fade-in">
+              {message}
+            </span>
+          )}
+          {error && (
+            <span className="text-red-400 animate-in fade-in">{error}</span>
+          )}
         </div>
       </div>
     </form>

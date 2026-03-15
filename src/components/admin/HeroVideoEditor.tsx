@@ -1,20 +1,20 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-
-type HeroVideoData = {
-  videoUrl?: string;
-};
+import { HeroVideoData } from "@/types/HeroVideo.type";
+import { DEFAULT_HERO_VIDEO_DATA } from "@/constants/defaults";
 
 interface HeroVideoEditorProps {
   sectionId: string;
   initialData: HeroVideoData | null;
 }
 
-export default function HeroVideoEditor({ sectionId, initialData }: HeroVideoEditorProps) {
+export default function HeroVideoEditor({
+  sectionId,
+  initialData,
+}: HeroVideoEditorProps) {
   const [videoUrl, setVideoUrl] = useState(
-    initialData?.videoUrl ??
-    "https://res.cloudinary.com/dhxrsiqip/video/upload/v1764155115/Ophis_Intro_v01_xqoqrd.mp4"
+    initialData?.videoUrl ?? DEFAULT_HERO_VIDEO_DATA.videoUrl!,
   );
 
   const [saving, setSaving] = useState(false);
@@ -59,7 +59,7 @@ export default function HeroVideoEditor({ sectionId, initialData }: HeroVideoEdi
     >
       <div className="space-y-4">
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             Video Source URL (MP4)
           </label>
           <input
@@ -76,7 +76,7 @@ export default function HeroVideoEditor({ sectionId, initialData }: HeroVideoEdi
 
         {/* Live Preview */}
         <div className="space-y-1">
-          <label className="block text-xs font-semibold uppercase tracking-wide text-white/70">
+          <label className="block text-small font-semibold uppercase tracking-wide text-white/70">
             Preview
           </label>
           <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-white/10 bg-black/50">
@@ -101,14 +101,20 @@ export default function HeroVideoEditor({ sectionId, initialData }: HeroVideoEdi
         <button
           type="submit"
           disabled={saving}
-          className="rounded-lg bg-purple-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
+          className="rounded-lg bg-purple-500 px-4 py-2 text-small font-semibold uppercase tracking-wide hover:bg-purple-400 disabled:opacity-60 transition-colors"
         >
           {saving ? "Saving..." : "Save Video"}
         </button>
 
-        <div className="text-xs font-medium">
-          {message && <span className="text-emerald-400 animate-in fade-in">{message}</span>}
-          {error && <span className="text-red-400 animate-in fade-in">{error}</span>}
+        <div className="text-small font-medium">
+          {message && (
+            <span className="text-emerald-400 animate-in fade-in">
+              {message}
+            </span>
+          )}
+          {error && (
+            <span className="text-red-400 animate-in fade-in">{error}</span>
+          )}
         </div>
       </div>
     </form>

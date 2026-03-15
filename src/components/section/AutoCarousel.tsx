@@ -5,17 +5,7 @@ import { useEffect, useMemo } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Reveal } from "@/components/animations/Reveal";
 import AutoScroll from "embla-carousel-auto-scroll";
-
-export type CarouselItem = {
-  name: string;
-  logo: string;
-  category: string;
-};
-
-export type CarouselData = {
-  title?: string;
-  items?: CarouselItem[];
-};
+import { CarouselData, CarouselItem } from "@/types/AutoCarousel.type";
 
 interface AutoCarouselProps {
   data: CarouselData | null;

@@ -2,10 +2,11 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "@/components/animations/Reveal";
 import { useInView } from "framer-motion";
-import Link from "next/link";
-
+import { TimelineData, TimelineStepItem } from "@/types/Timeline.type";
+import { DEFAULT_TIMELINE_DATA } from "@/constants/defaults";
 // --- Types ---
 interface Step {
   id: number;
@@ -153,52 +154,14 @@ const TimelineStep = ({ step, index }: { step: Step; index: number }) => {
 
 // --- Main Component ---
 export default function Timeline({ data }: TimelineProps) {
-  const title = data?.title ?? "How it works";
-  const subtitile = data?.subtitle ?? "Consistent, Seamless & On-brand";
-  const quote =
-    data?.quote ?? "The way editing should have been done from the start.";
-  const subquote =
-    data?.subquote ??
-    "By understanding your brand’s tone and visual identity, we build a streamlined editing workflow that keeps every video consistent - from the first cut to the final export.";
-
-  const activeSteps = data?.steps || [
-    {
-      id: 1,
-      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_67_eoevr5.png",
-      title: "Your raw footage",
-      icondark:
-        "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155930/Group_128_svaimc.png",
-      description:
-        "Start by filling out our quick form so we can understand your needs and how we can best support your content goals.",
-    },
-    {
-      id: 2,
-      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_124_cv2zyq.png",
-      title: "Our creative editing team",
-      icondark:
-        "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155949/Group_130_a8fskc.png",
-      description:
-        "We craft a unique editing style that reflects your brand’s identity and keeps it consistent across every video.",
-    },
-    {
-      id: 3,
-      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_125_vbut1z.png",
-      title: "Refinement & feedback",
-      icondark:
-        "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_127_l2kaoe.png",
-      description:
-        "Track tasks and progress in Notion.\nShare feedback and review edits through Frame.io for fast, streamlined revisions.",
-    },
-    {
-      id: 4,
-      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155929/Group_126_b2egzu.png",
-      title: "Delivery",
-      icondark:
-        "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764155930/Group_129_bjwbls.png",
-      description:
-        "We deliver your final videos in all required formats or directly to your internal library.",
-    },
-  ];
+  const title = data?.title ?? DEFAULT_TIMELINE_DATA.title;
+  const subtitle = data?.subtitle ?? DEFAULT_TIMELINE_DATA.subtitle;
+  const quote = data?.quote ?? DEFAULT_TIMELINE_DATA.quote;
+  const subquote = data?.subquote ?? DEFAULT_TIMELINE_DATA.subquote;
+  const activeSteps =
+    data?.steps && data.steps.length > 0
+      ? data.steps
+      : DEFAULT_TIMELINE_DATA.steps!;
 
   if (activeSteps.length === 0) return null;
 
@@ -209,7 +172,7 @@ export default function Timeline({ data }: TimelineProps) {
           <div className="mb-8">
             <h2 className="text-center font-bold leading-[135%]">{title}</h2>
             <p className="text-body sm:text-h2 lg:text-h1 font-bold text-center">
-              {subtitile}
+              {subtitle}
             </p>
           </div>
           <Link
@@ -234,7 +197,7 @@ export default function Timeline({ data }: TimelineProps) {
           <Reveal>
             <h2
               className="font-normal "
-              dangerouslySetInnerHTML={{ __html: quote }}
+              dangerouslySetInnerHTML={{ __html: quote! }}
             />
             <p className="max-w-[87rem] m-auto text-smallest sm:text-smaller lg:text-small">
               {subquote}

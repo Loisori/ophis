@@ -1,48 +1,22 @@
 "use client";
 
 import Image from "next/image";
-
 import { Reveal } from "@/components/animations/Reveal";
-
-export type TeamMember = {
-  name: string;
-  description: string;
-  image: string;
-};
-
-export type TeamData = {
-  title?: string;
-  subtitle?: string;
-  members?: TeamMember[];
-};
+import { TeamData, TeamMember } from "@/types/Team.type";
+import { DEFAULT_TEAM_DATA } from "@/constants/defaults";
 
 interface TeamProps {
   data: TeamData | null;
 }
 
 export default function Team({ data }: TeamProps) {
-  const title = data?.title ?? "Meet our brains";
-  const subtitle = data?.subtitle ?? "The people behind Ophis";
-
-  const defaultMembers: TeamMember[] = [
-    {
-      name: "Nam Nguyen",
-      description:
-        "Senior editor with 4+ years turning raw footage into revenue-driving content. Specializes in diverse video styles that convert viewers into customers and grow brands faster.",
-      image:
-        "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764172931/Nam_Nguyen_1_oad1gh.png",
-    },
-    {
-      name: "Simon",
-      description:
-        "With a background that spans from gaming content to brand storytelling, has led editing teams, designed motion graphics, and produced standout visuals under tight deadlines.",
-      image:
-        "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764172931/Simon_da4ogc.png",
-    },
-  ];
+  const title = data?.title ?? DEFAULT_TEAM_DATA.title;
+  const subtitle = data?.subtitle ?? DEFAULT_TEAM_DATA.subtitle;
 
   const members =
-    data?.members && data.members.length > 0 ? data.members : defaultMembers;
+    data?.members && data.members.length > 0
+      ? data.members
+      : DEFAULT_TEAM_DATA.members!;
 
   return (
     <section className="py-24 px-4 bg-white text-black overflow-hidden">

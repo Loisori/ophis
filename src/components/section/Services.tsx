@@ -2,42 +2,19 @@
 
 import Image from "next/image";
 import { Reveal } from "@/components/animations/Reveal";
-
+import { ServicesData, ServiceItem } from "@/types/Services.type";
+import { DEFAULT_SERVICES_DATA } from "@/constants/defaults";
 interface ServicesProps {
-  data?: {
-    title?: string;
-    subtitle?: string;
-    services?: Array<{
-      title: string;
-      description: string;
-      icon: string;
-    }>;
-  } | null;
+  data: ServicesData | null;
 }
 
 export default function Services({ data }: ServicesProps) {
-  const title = data?.title ?? "Our Services";
-  const subtitle = data?.subtitle ?? "";
-  const services = data?.services || [
-    {
-      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764168988/Vector_qdlw3d.png",
-      title: "Convert with Video",
-      description:
-        "Strategic editing for Ads & VSLs that hook viewers and turn clicks into customers",
-    },
-    {
-      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764168988/up_fbcj1b.png",
-      title: "Grow your Channel",
-      description:
-        "High-impact YouTube editing that drives longer watch time and faster channel growth",
-    },
-    {
-      icon: "https://res.cloudinary.com/dhxrsiqip/image/upload/v1764168987/phone_bonv6y.png",
-      title: "Multi-Platform ready",
-      description:
-        "We craft attention-grabbing TikToks, Reels & Shorts built for reach and engagement",
-    },
-  ];
+  const title = data?.title ?? DEFAULT_SERVICES_DATA.title;
+  const subtitle = data?.subtitle ?? DEFAULT_SERVICES_DATA.subtitle;
+  const services =
+    data?.services && data.services.length > 0
+      ? data.services
+      : DEFAULT_SERVICES_DATA.services!;
 
   if (services.length === 0) {
     return null;

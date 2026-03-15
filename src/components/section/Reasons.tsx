@@ -1,55 +1,25 @@
 "use client";
 
-import { Reveal } from "@/components/animations/Reveal";
 import Link from "next/link";
-
-export type ReasonsData = {
-  headline?: string;
-  description?: string;
-  ophisFeatures?: string[];
-  othersFeatures?: string[];
-};
+import { Reveal } from "@/components/animations/Reveal";
+import { ReasonsData } from "@/types/Reasons.type";
+import { DEFAULT_REASONS_DATA } from "@/constants/defaults";
 
 interface ReasonsProps {
   data: ReasonsData | null;
 }
 
 export default function Reasons({ data }: ReasonsProps) {
-  // --- Defaults ---
-  const defaultHeadline = "Why Ophis is the right choice?";
-  const defaultDesc =
-    "We bring you all the advantages of having a full in-house editing team - without the overhead or hassle. From clear communication to on-brand consistency, we focus on transparency, collaboration, and trust in every step of the process.";
-
-  const defaultOphis = [
-    "Fair, transparent pricing",
-    "Dedicated creative team",
-    "Expert in-house editors",
-    "Modern editing approach",
-    "Industry-informed decisions",
-    "Real-time tracking",
-    "Flexible contracts",
-  ];
-
-  const defaultOthers = [
-    "Hourly or per-project pricing",
-    "No dedicated editing team",
-    "Outsourced to average talent",
-    "Outdated creative methods",
-    "Minimal industry insight",
-    "No real-time progress tracking",
-    "Locked-in, inflexible contracts",
-  ];
-
-  const headline = data?.headline ?? defaultHeadline;
-  const description = data?.description ?? defaultDesc;
+  const headline = data?.headline ?? DEFAULT_REASONS_DATA.headline!;
+  const description = data?.description ?? DEFAULT_REASONS_DATA.description;
   const ophisFeatures =
     data?.ophisFeatures && data.ophisFeatures.length > 0
       ? data.ophisFeatures
-      : defaultOphis;
+      : DEFAULT_REASONS_DATA.ophisFeatures!;
   const othersFeatures =
     data?.othersFeatures && data.othersFeatures.length > 0
       ? data.othersFeatures
-      : defaultOthers;
+      : DEFAULT_REASONS_DATA.othersFeatures!;
 
   return (
     <section className="bg-linear-to-b from-[#2e0249] to-black text-white relative overflow-hidden">
