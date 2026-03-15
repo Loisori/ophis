@@ -1,9 +1,21 @@
-import Hero, { type HeroData } from "@/components/section/Hero";
+import Hero from "@/components/section/Hero";
 import dynamic from "next/dynamic";
-import AutoCarousel, {
-  type CarouselData,
-} from "@/components/section/AutoCarousel";
+import AutoCarousel from "@/components/section/AutoCarousel";
 import { prisma } from "@/lib/prisma";
+
+import { HeroData } from "@/types/Hero.type";
+import { CarouselData } from "@/types/AutoCarousel.type";
+import { TimelineData } from "@/types/Timeline.type";
+import { ProjectsData } from "@/types/Projects.type";
+import { ServicesData } from "@/types/Services.type";
+import { PricingData } from "@/types/Pricing.type";
+import { FaqData } from "@/types/Faqs.type";
+import { ReasonsData } from "@/types/Reasons.type";
+import { HeroVideoData } from "@/types/HeroVideo.type";
+import { TeamData } from "@/types/Team.type";
+import { TestimonialsData } from "@/types/Testimonials.type";
+import { FooterData } from "@/types/Footer.type";
+import { CaseStudyData } from "@/types/CaseStudy.type";
 
 const Header = dynamic(() => import("@/components/section/Header"));
 const Footer = dynamic(() => import("@/components/section/Footer"));
@@ -29,51 +41,26 @@ export default async function Home() {
     },
   });
 
-  const heroData = page?.sections.find((s: any) => s.type === "hero")?.content
-    ?.data as HeroData | null;
-  const autoCarouselData = page?.sections.find(
-    (s: any) => s.type === "autoCarousel",
-  )?.content?.data as CarouselData | null;
-  const timelineData = page?.sections.find((s: any) => s.type === "timeline")
-    ?.content?.data as any | null;
-  const projectsData = page?.sections.find((s: any) => s.type === "projects")
-    ?.content?.data as any | null;
-  const servicesData = page?.sections.find((s: any) => s.type === "services")
-    ?.content?.data as any | null;
-  const pricingData = page?.sections.find((s: any) => s.type === "pricing")
-    ?.content?.data as any | null;
-  const faqsData = page?.sections.find((s: any) => s.type === "faqs")?.content
-    ?.data as any | null;
-  const reasonsData = page?.sections.find((s: any) => s.type === "reasons")
-    ?.content?.data as any | null;
-  const heroVideoData = page?.sections.find((s: any) => s.type === "heroVideo")
-    ?.content?.data as any | null;
-  const teamData = page?.sections.find((s: any) => s.type === "team")?.content
-    ?.data as any | null;
-  const testimonialsData = page?.sections.find(
-    (s: any) => s.type === "testimonials",
-  )?.content?.data as any | null;
-  const footerData = page?.sections.find((s: any) => s.type === "footer")
-    ?.content?.data as any | null;
-  const caseStudyData = page?.sections.find((s: any) => s.type === "caseStudy")
-    ?.content?.data as any | null;
+const sectionMap = new Map(
+    page?.sections.map((s: any) => [s.type, s.content?.data])
+  );
 
   return (
-    <main>
+<main>
       <Header />
-      <Hero data={heroData ?? null} />
-      <AutoCarousel data={autoCarouselData ?? null} />
-      <HeroVideo data={heroVideoData ?? null} />
-      <Timeline data={timelineData ?? null} />
-      <Projects data={projectsData ?? null} />
-      <CaseStudy data={caseStudyData ?? null} />
-      <Testimonials data={testimonialsData ?? null} />
-      <Services data={servicesData ?? null} />
-      <Reasons data={reasonsData ?? null} />
-      {/* <Team data={teamData ?? null} /> */}
-      <Pricing data={pricingData ?? null} />
-      <Faqs data={faqsData ?? null} />
-      <Footer data={footerData ?? null} />
+      <Hero data={sectionMap.get("hero") as HeroData} />
+      <AutoCarousel data={sectionMap.get("autoCarousel") as CarouselData} />
+      <HeroVideo data={sectionMap.get("heroVideo") as HeroVideoData} />
+      <Timeline data={sectionMap.get("timeline") as TimelineData} />
+      <Projects data={sectionMap.get("projects") as ProjectsData} />
+      <CaseStudy data={sectionMap.get("caseStudy") as CaseStudyData} />
+      <Testimonials data={sectionMap.get("testimonials") as TestimonialsData} />
+      <Services data={sectionMap.get("services") as ServicesData} />
+      <Reasons data={sectionMap.get("reasons") as ReasonsData} />
+      {/* <Team data={sectionMap.get("team") as TeamData} /> */}
+      <Pricing data={sectionMap.get("pricing") as PricingData} />
+      <Faqs data={sectionMap.get("faqs") as FaqData} />
+      <Footer data={sectionMap.get("footer") as FooterData} />
     </main>
   );
 }
