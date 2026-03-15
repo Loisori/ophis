@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import type { FooterSocial } from "@/components/section/Footer";
+import type { FooterSocial, FooterData } from "@/components/section/Footer";
 
 interface FooterEditorProps {
   sectionId: string;
