@@ -6,7 +6,7 @@ import HeroEditor from "@/components/admin/HeroEditor";
 import AutoCarouselEditor from "@/components/admin/AutoCarouselEditor";
 import TimelineEditor from "@/components/admin/TimelineEditor";
 import ProjectsEditor from "@/components/admin/ProjectsEditor";
-// import CaseStudyEditor from "@/components/admin/CaseStudyEditor";
+import CaseStudyEditor from "@/components/admin/CaseStudyEditor";
 import ServicesEditor from "@/components/admin/ServicesEditor";
 import PricingEditor from "@/components/admin/PricingEditor";
 import FaqsEditor from "@/components/admin/FaqsEditor";
@@ -67,7 +67,7 @@ interface DashboardClientProps {
   autoCarouselSection: any;
   timelineSection: any;
   projectsSection: any;
-  // caseStudySection: any;
+  caseStudySection: any;
   servicesSection: any;
   pricingSection: any;
   faqsSection: any;
@@ -83,7 +83,7 @@ export default function DashboardClient({
   autoCarouselSection,
   timelineSection,
   projectsSection,
-  // caseStudySection,
+  caseStudySection,
   servicesSection,
   pricingSection,
   faqsSection,
@@ -135,13 +135,13 @@ export default function DashboardClient({
       position: 5,
       description: "Video portfolio grid",
     },
-    // {
-    //   id: "caseStudy",
-    //   label: "Case Study",
-    //   data: caseStudySection,
-    //   position: 6,
-    //   description: "In-depth project showcases",
-    // },
+    {
+      id: "caseStudy",
+      label: "Case Study",
+      data: caseStudySection,
+      position: 6,
+      description: "In-depth project showcases",
+    },
     {
       id: "testimonials",
       label: "Testimonials",
@@ -225,13 +225,13 @@ export default function DashboardClient({
             initialData={projectsSection.content?.data}
           />
         );
-      // case "caseStudy":
-      //   return (
-      //     <CaseStudyEditor
-      //       sectionId={caseStudySection.id}
-      //       initialData={caseStudySection.content?.data}
-      //     />
-      //   );
+      case "caseStudy":
+        return (
+          <CaseStudyEditor
+            sectionId={caseStudySection.id}
+            initialData={caseStudySection.content?.data}
+          />
+        );
       case "services":
         return (
           <ServicesEditor

@@ -16,7 +16,7 @@ const Reasons = dynamic(() => import("@/components/section/Reasons"));
 const Team = dynamic(() => import("@/components/section/Team"));
 const Faqs = dynamic(() => import("@/components/section/Faqs"));
 const Pricing = dynamic(() => import("@/components/section/Pricing"));
-// const CaseStudy = dynamic(() => import("@/components/section/CaseStudy"));
+const CaseStudy = dynamic(() => import("@/components/section/CaseStudy"));
 
 export default async function Home() {
   const page = await prisma.page.findUnique({
@@ -66,7 +66,7 @@ export default async function Home() {
       <HeroVideo data={heroVideoData ?? null} />
       <Timeline data={timelineData ?? null} />
       <Projects data={projectsData ?? null} />
-      {/* <CaseStudy data={caseStudyData ?? null} /> */}
+      <CaseStudy data={caseStudyData ?? null} />
       <Testimonials data={testimonialsData ?? null} />
       <Services data={servicesData ?? null} />
       <Reasons data={reasonsData ?? null} />

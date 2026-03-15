@@ -49,8 +49,8 @@ export default function Footer({ data }: FooterProps) {
       : FALLBACK_FOOTER.socials!;
 
   return (
-    <footer id="footer" className="bg-gray-100 text-black py-10 sm:py-14 mt-16">
-      <div className="wrapper max-w-6xl mx-auto px-4">
+    <footer id="footer" className="bg-gray-100 text-black py-10 sm:py-14">
+      <div className="wrapper">
         <Image
           src="/imgs/logoblack.png"
           alt="Ophis Logo"
@@ -64,47 +64,47 @@ export default function Footer({ data }: FooterProps) {
           </div>
 
           <div className="space-y-3 text-sm sm:text-small">
-            <h2 className="font-semibold mb-2">Contact</h2>
+            <p className="text-h3 lg:text-h2 font-semibold mb-2">Contact</p>
             {contact.address && (
-              <p className="">
+              <p className="text-small font-normal">
                 <span className="font-semibold">Address: </span>
                 {contact.address}
               </p>
             )}
             {contact.studyLocation && (
-              <p className="">
+              <a href={contact.studyLocation} target="_blank" className="text-small font-normal block">
                 <span className="font-semibold">Book a call: </span>
-                {contact.studyLocation}
-              </p>
+                Online Meeting
+              </a>
             )}
             {contact.phone && (
-              <p className="">
+              <a href={contact.phone} className="text-small font-normal block">
                 <span className="font-semibold">Phone: </span> {contact.phone}
-              </p>
+              </a>
             )}
             {contact.email && (
-              <p className="">
+              <a href={`mailto:${contact.email}`} className="text-small font-normal block">
                 <span className="font-semibold">Email: </span> {contact.email}
-              </p>
+              </a>
             )}
           </div>
 
           <div className="space-y-4">
             <div>
-              <h2 className="font-semibold mb-2">Connect with us</h2>
+              <p className="text-h3 lg:text-h2 font-semibold mb-2">Connect with us</p>
               <div className="flex flex-wrap gap-3 mt-3">
                 {socials.map((social) => (
                   <a
                     key={social.label}
                     href={social.href || "#"}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full transition drop-shadow-lg"
                     aria-label={social.label}
                     target="_blank"
                   >
                     {social.iconSvg ? (
                       <span
                         aria-hidden="true"
-                        className="size-10 text-white"
+                        className="size-10 text-white hover:scale-[1.2] duration-500"
                         dangerouslySetInnerHTML={{
                           __html: social.iconSvg,
                         }}

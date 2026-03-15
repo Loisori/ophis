@@ -1300,7 +1300,7 @@ export default async function AdminHome() {
       heroVideoSection={heroVideoSection}
       timelineSection={timelineSection}
       projectsSection={projectsSection}
-      // caseStudySection={caseStudySection}
+      caseStudySection={caseStudySection}
       testimonialsSection={testimonialsSection}
       servicesSection={servicesSection}
       reasonsSection={reasonsSection}
